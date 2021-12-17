@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-I am you personal chatbot
+Hello, I am you personal educational chatbot!
 </body>
 </html>
