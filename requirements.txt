@@ -1,6 +1,5 @@
 bs4==0.0.1
 google==3.0.0
-nltk==3.6.7
 numpy==1.22.1
 pdfplumber==0.6.0
 spacy==3.2.1
