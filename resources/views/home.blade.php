@@ -11,7 +11,7 @@
 
 <div class="container">
     <div class="center" style="border: 2px solid grey; text-align: center;">
-        <h1>I am your chatbot</h1>
+        <h1>I am yours</h1>
     </div>
 
 
