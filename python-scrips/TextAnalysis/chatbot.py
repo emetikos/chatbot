@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import importlib.util
 import random
 import json
 
@@ -10,6 +10,7 @@ import numpy as np
 import os
 
 import nltk
+
 
 import FileAnalysis
 import UserInput as elsie
@@ -26,6 +27,10 @@ from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
 
 
+# nltk.download('punkt')
+# nltk.download('wordnet')
+# nltk.download('omw-1.4')
+# nltk.download('vader_lexicon')
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -93,7 +98,7 @@ readyToSubmit = False  # helps to identify when user accept or not the topic whi
 fileSubmitted = False # helps to identify the the user upload the file or not
 classifiedMessage = '' # saves the
 
-while False:
+while True:
     res = ""
     emptyInputResponses = ['Please enter something first... :)',
                            'You did not write anything! Try again!',
