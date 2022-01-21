@@ -8,13 +8,10 @@
     <title>chatbot</title>
 </head>
 <body>
-
-<div class="container">
-    <div class="center" style="border: 2px solid grey; text-align: center;">
-        <h1>I am your Chatbot!</h1>
-    </div>
-
-
+<div id="app">
+    <example-component></example-component>
 </div>
+
+<script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>
