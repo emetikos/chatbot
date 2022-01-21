@@ -93,7 +93,7 @@ readyToSubmit = False  # helps to identify when user accept or not the topic whi
 fileSubmitted = False # helps to identify the the user upload the file or not
 classifiedMessage = '' # saves the
 
-while True:
+while False:
     res = ""
     emptyInputResponses = ['Please enter something first... :)',
                            'You did not write anything! Try again!',
