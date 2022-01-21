@@ -69,6 +69,7 @@ final class PythonModel extends Model {
                     . "`...</code></p>");
             
             $process->run();
+            print_r($process->getErrorOutput());
             
             return $process->getOutput();
         }
