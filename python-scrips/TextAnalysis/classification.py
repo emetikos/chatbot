@@ -74,9 +74,9 @@ class classification:
         return filtered_sent
 
     """
-    Function to lemmatize the user input and classify each word by utilising a for loop to store the verbs, 
-    adjectives and nouns to  their corresponding lists. Checks in the user input if there is an adjective 
-    and a noun and calls a function to store them as a chunk    
+    Function to lemmatize the user input and classify each word by utilising a for loop to store the verbs,
+    adjectives and nouns to  their corresponding lists. Checks in the user input if there is an adjective
+    and a noun and calls a function to store them as a chunk
     :params - noun, adj (bool)
     :params - noun_text, adj_text (string)
     """

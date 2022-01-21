@@ -25,7 +25,7 @@ from nltk.stem import WordNetLemmatizer
 # function to load the model that been created in the training script
 from tensorflow.keras.models import load_model
 
-classifier = en_core_web_sm.load()
+
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -93,7 +93,7 @@ readyToSubmit = False  # helps to identify when user accept or not the topic whi
 fileSubmitted = False # helps to identify the the user upload the file or not
 classifiedMessage = '' # saves the
 
-while False:
+while True:
     res = ""
     emptyInputResponses = ['Please enter something first... :)',
                            'You did not write anything! Try again!',
