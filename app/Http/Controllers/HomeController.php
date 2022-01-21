@@ -8,6 +8,8 @@ class HomeController extends Controller {
     public function index() {
         print_r(PythonModel::runHerokuTest("Hello World", 10, "False", "None"));
         
+        print_r(PythonModel::runChatbot("Hello World", 10, "False", "None"));
+        
         return view('home');
     }
 }
