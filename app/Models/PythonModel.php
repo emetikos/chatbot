@@ -25,7 +25,7 @@ final class PythonModel extends Model {
     // The path to the chatbot script
     private const CHATBOT_FILE_PATH      = "TextAnalysis/chatbot.py";
     // The path to the Heroku test script
-    private const HEROKU_TEST_FILE_PATH  = "HerokuTest.py";
+    private const PYTHON_TEST_FILE_PATH  = "PythonTest.py";
     
     /**
      * The class constructor.
@@ -48,14 +48,14 @@ final class PythonModel extends Model {
      * during the script being ran, anything printed up until the error will be
      * returned.
      * 
-     * @param  string      $filePath the file path to the Python script
-     * @param  array       $args     the variables to be passed to the Python
-     *                               script
-     * @return string|null           the output of the Python script, or null
+     * @param  string $filePath  the file path to the Python script
+     * @param  array  $args      the variables to be passed to the Python
+     *                           script
+     * @return string|array|null the output of the Python script, or null
      */
     private static function runScript(
             string $filePath,
-            array $args) : string {
+            array $args) {
         
         $fullFilePath = PythonModel::SCRIPTS_DIRECTORY_PATH . $filePath;
         
@@ -66,12 +66,16 @@ final class PythonModel extends Model {
             
             print_r("<p><code>Executing `"
                     . $process->getCommandLine()
-                    . "`...</code></p>");
+                    . "`...</code></p><br>");
             
             $process->run();
+            
             print_r($process->getErrorOutput());
             
-            return $process->getOutput();
+            $output = $process->getOutput();
+            $json   = json_decode($output);
+            
+            return (json_last_error() === JSON_ERROR_NONE) ? $json : $output;
         }
         
         return null;
@@ -80,21 +84,22 @@ final class PythonModel extends Model {
     /**
      * Runs the ChatBot script, passing any given variables to the script.
      * 
-     * @param  mixed  ...$args the variables to be passed to the Python script
-     * @return string          the output of the Python script, or null
+     * @param  mixed ...$args    the variables to be passed to the Python script
+     * @return string|array|null the output of the Python script, or null
      */
-    public static function runChatbot(...$args) : string {
-        return PythonModel::runScript(PythonModel::CHATBOT_FILE_PATH, $args);
+    public static function runChatbot(...$args) {
+        return PythonModel::runScript(PythonModel::CHATBOT_FILE_PATH,
+                                      $args);
     }
     
     /**
-     * Runs the HerokuTest script, passing any given variables to the script.
+     * Runs the PythonTest script, passing any given variables to the script.
      * 
-     * @param  mixed  ...$args the variables to be passed to the Python script
-     * @return string          the output of the Python script, or null
+     * @param  mixed ...$args    the variables to be passed to the Python script
+     * @return string|array|null the output of the Python script, or null
      */
-    public static function runHerokuTest(...$args) : string {
-        return PythonModel::runScript(PythonModel::HEROKU_TEST_FILE_PATH,
+    public static function runTest(...$args) {
+        return PythonModel::runScript(PythonModel::PYTHON_TEST_FILE_PATH,
                                       $args);
     }
     
@@ -122,9 +127,9 @@ final class PythonModel extends Model {
      * Returns a new Process object that can run the file at the given path,
      * passing any variables to the file.
      * 
-     * @param  string  $filePath the path to the file
-     * @param  array   $args     the variables to be passed to the file
-     * @return Process           the Process object
+     * @param  string $filePath the path to the file
+     * @param  array  $args     the variables to be passed to the file
+     * @return Process          the Process object
      */
     private static function getNewProcess(
             string $filePath,
