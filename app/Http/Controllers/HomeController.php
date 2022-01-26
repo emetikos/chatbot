@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PythonModel;
 
 class HomeController extends Controller {
-    public function index() {dd(PythonModel::runTest());
+    public function index() {dd(PythonModel::runTest(true, false, null, ["a", 1, "b"=>[4, 5, 6]]));
     
     echo("<br><br>");
     
