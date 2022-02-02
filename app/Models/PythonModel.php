@@ -64,9 +64,9 @@ final class PythonModel extends Model {
             
             $process = PythonModel::getNewProcess($fullFilePath, $args);
             
-            print_r("<p><code>Executing `"
-                    . $process->getCommandLine()
-                    . "`...</code></p><br>");
+//            print_r("<p><code>Executing `"
+//                    . $process->getCommandLine()
+//                    . "`...</code></p><br>");
             
             $process->run();
             
