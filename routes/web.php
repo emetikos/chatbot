@@ -22,7 +22,8 @@ if (App::environment('production')) {
 
 Route::get('/', [HomeController::class, 'index']);
 //Route::post('query', [HomeController::class, 'query']);
-Route::post('query', [HomeController::class, 'ajaxQuery']);
+//Route::post('/query', [HomeController::class, 'ajaxQuery']);
+Route::post('/query', [HomeController::class, 'api']);
 
 //Route::get('/store', [TableController::class, 'store']);
 //Route::get('/same', [TableController::class, 'retrieve_same']);

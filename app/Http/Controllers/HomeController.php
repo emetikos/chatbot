@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\PythonModel;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller {
@@ -12,7 +14,7 @@ class HomeController extends Controller {
         return view('presentation-view');
     }
 
-    public function query(Request $request) {
+    public function query(Request $request): \Illuminate\Http\RedirectResponse {
 
         // Spyros classify() doesn't accept 'can you help me with'
         $message = '';
@@ -43,7 +45,7 @@ class HomeController extends Controller {
         return back()->with('success', $arr['response']);
 
     }
-    public function ajaxQuery(Request $request) {
+    public function ajaxQuery(Request $request): \Illuminate\Http\JsonResponse {
 
         // Spyros classify() doesn't accept 'can you help me with'
         $message = '';
@@ -74,6 +76,37 @@ class HomeController extends Controller {
         return response()->json($arr, 200);
 
     }
+    /**
+     * @throws RequestException
+     */
+    public function api(Request $request) {
+        $message = '';
+        if($request->input('query')) $message = $request->input('query');
+        $readySubmit = 'False';
+        if(Session::has('readySubmit')) $readySubmit = Session::get('readySubmit');
+        $topicFound = 'False';
+        if(Session::has('topicFound')) $topicFound = Session::get('topicFound');
+        $fileSubmit = 'False';
+        if(Session::has('fileSubmit')) $fileSubmit = Session::get('fileSubmit');
+        $classifiedMsg = '';
+        if(Session::has('classifiedMsg')) $classifiedMsg = Session::get('classifiedMsg');
+
+        $arr = Http::get('https://chatbot-educ-api.herokuapp.com/',[
+                'message'=>$message,
+                'readySubmit'=>$readySubmit,
+                'topicFound'=>$topicFound,
+                'fileSubmit'=>$fileSubmit,
+                'classifiedMsg'=>$classifiedMsg,
+            ])->throw()->json();
+
+        Session::put('readySubmit', $arr['readySubmit']);
+        Session::put('topicFound', $arr['topicFound']);
+        Session::put('fileSubmit', $arr['fileSubmit']);
+        Session::put('classifiedMsg', $arr['classifiedMsg']);
+
+        return response($arr, 200);
+        }
+
 }
 
 
