@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
       body: formData
     });
     if (response.ok) {
-      let result = await response.json();
+      let result = await response;
       output.innerHTML = result.response;
       form.reset();
       btn.classList.remove('_sending');
