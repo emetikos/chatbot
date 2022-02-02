@@ -6,10 +6,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+{{--    <link--}}
+{{--            rel="stylesheet"--}}
+{{--            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"--}}
+{{--    />--}}
     <link href="http://fonts.cdnfonts.com/css/progbot" rel="stylesheet">
 
     <style>
@@ -47,6 +47,22 @@
             font-size: 20px;
 
         }
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(51, 51, 51, 0.9) url("/img/loading.gif") center / 50px no-repeat;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease 0s;
+        }
+        .btn._sending::after {
+            opacity: 1;
+            visibility: visible;
+        }
 
 
 
@@ -61,9 +77,7 @@
           id="form"
           class="feedback-form__body">
         @csrf
-        <image></image>
-        <img
-                src="{{ URL('img/chatbot.png') }}" alt="burger-logo">
+        <img src="{{ URL('img/chatbot.png') }}" alt="burger-logo">
         <h1 class="form__title"> Educational ChatBot </h1>
 
         <div class="form__item">
@@ -76,22 +90,57 @@
         <button type="submit" class="feedback-form__btn btn">Send message</button>
 
     </form>
-    @if ($errors->any())
-        <div class="feedback-form__error error">
-            @foreach($errors->all() as $error)
-                <li class="error__item">
-                    {{$error}}
-                </li>
-            @endforeach
-        </div>
-    @endif
+    <div class="output"></div>
+{{--    @if ($errors->any())--}}
+{{--        <div class="feedback-form__error error">--}}
+{{--            @foreach($errors->all() as $error)--}}
+{{--                <li class="error__item">--}}
+{{--                    {{$error}}--}}
+{{--                </li>--}}
+{{--            @endforeach--}}
+{{--        </div>--}}
+{{--    @endif--}}
 
-    @if (session('success'))
-            <div class="output animate__animated animate__bounce">{{session('success')}}</div>
-    @endif
+{{--    @if (session('success'))--}}
+{{--            <div class="output animate__animated animate__bounce">{{session('success')}}</div>--}}
+{{--    @endif--}}
 
 
 </article>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('form');
+  const output = document.querySelector('.output');
+  const btn = document.querySelector('.btn');
+  const input = document.querySelector('.form__input');
+  form.addEventListener('submit', formSend);
 
+  async function formSend (e) {
+    e.preventDefault();
+    let formData = new FormData(form);
+    btn.classList.add('_sending');
+    btn.disabled = true;
+    input.disabled = true;
+    let response = await fetch('/query', {
+      method: 'POST',
+      body: formData
+    });
+    if (response.ok) {
+      let result = await response.json();
+      output.innerHTML = result.response;
+      form.reset();
+      btn.classList.remove('_sending');
+      btn.disabled = false;
+      input.disabled = false;
+    }
+    else {
+      alert("Error");
+      btn.classList.remove('_sending');
+      btn.disabled = false;
+      input.disabled = false;
+    }
+  }
+});
+</script>
 </body>
 </html>
