@@ -138,8 +138,11 @@ else:
                 topicFound = True
                 res['topicFound'] = topicFound
                 classifiedMessage = userInput.classify()
-                res['classifiedMsg'] = classifiedMessage
-                res['response'] = "Is '" + classifiedMessage + "' what you looking for?"
+                if classifiedMessage:
+                    res['classifiedMsg'] = classifiedMessage
+                    res['response'] = "Is '" + classifiedMessage + "' what you looking for?"
+                else:
+                    res['response'] = "I am not really sure what You looking for. Can you be more specific"
                 break
             elif float(i['probability']) < 0.8:
                 res['topicFound'] = topicFound

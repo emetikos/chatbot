@@ -1,7 +1,16 @@
 import en_core_web_sm
 
+
+# DOWNLOAD MODEL FROM TERMINAL
+# python -m spacy download en_core_web_lg
+
+
 # Load the model en_core_web_sm of English for vocabulary, syntax & entities
+
+
 classifier = en_core_web_sm.load()
+
+stopwords = classifier.Defaults.stop_words
 
 # Create an array for all the nouns in the input
 nouns = []
@@ -14,7 +23,6 @@ adjectives = []
 
 # Create an array to combine adjectives and nouns from the input
 chunks = []
-
 
 """"
 Create a class to initialise the user input and use classification
@@ -57,6 +65,7 @@ class classification:
         token_list = []
 
         for token in self.run_classifier():
+            print(token.text, token.pos_)
             token_list.append(token.text)
         return token_list
 
@@ -153,4 +162,4 @@ class classification:
         elif adjectives:
             return nouns[-1]
         else:
-            return
+            return None
