@@ -128,6 +128,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (response.ok) {
       let result = await response.json();
       output.innerHTML = result.response
+      if(result.resource) alert(result.resource)
+      if(result.possibleTopics) alert(result.possibleTopics)
       form.reset();
       btn.classList.remove('_sending');
       btn.disabled = false;
