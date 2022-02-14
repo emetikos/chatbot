@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +24,7 @@ Route::get('/', [HomeController::class, 'index']);
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+Route:: get ('/delete', [TableController::class,'delete_function']);
+
+Route:: get ('/update', [TableController::class,'update']);
