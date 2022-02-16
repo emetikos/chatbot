@@ -27,6 +27,7 @@ Route::post('/query', [HomeController::class, 'api']);
 
 //Route::get('/store', [TableController::class, 'store']);
 //Route::get('/same', [TableController::class, 'retrieve_same']);
+//Route::get('/test', [TableController::class, 'test']);
 
 //Route::get('/', function () {
 //    return view('welcome');
