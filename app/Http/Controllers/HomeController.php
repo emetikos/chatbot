@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 class HomeController extends Controller {
     public function index() {
 //        Session::flush();
-        return view('presentation-view');
+        return view('home');
     }
 
     public function query(Request $request): \Illuminate\Http\RedirectResponse {
