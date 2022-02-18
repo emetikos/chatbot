@@ -1,14 +1,18 @@
-<template>
+<template >
     <div>
-        <div class="topics-not-found">
+        <div class="topics-found" v-if="topics['topicsFound'].length">
             <h4>This is what I found</h4>
             <div class="topics" >
                 <ul>
-                    <li v-for="topic in topics">
+                    <li v-for="topic in topics['topicsFound']">
                         <TopicItem v-on:print-topic="$emit('print-topic', topic)" v-bind:topic="topic"/>
                     </li>
                 </ul>
             </div>
+        </div>
+
+        <div v-else>
+
         </div>
     </div>
 
@@ -32,16 +36,10 @@ export default {
     display: block;
 }
 
-.topics-not-found {
-    display: none;
-}
 .topics {
     max-width: 12rem;
     border:1px solid black;
     border-radius: 4px;
-    /*padding: .5rem;*/
 }
-
-
 
 </style>
