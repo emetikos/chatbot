@@ -1,7 +1,7 @@
 <template>
 <div class="topic-item">
 
-        <button @click="$emit('print-topic', topic)" type="submit">{{ topic }}</button>
+        <button class="btn" @click="$emit('print-topic', topic)" type="submit">{{ topic }}</button>
 
 </div>
 
@@ -19,7 +19,17 @@
 .topic-item {
     margin: .3rem;
     width: 100%;
-    padding:.5rem  .5rem;
 
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 4px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
 }
 </style>

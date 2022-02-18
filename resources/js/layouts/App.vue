@@ -31,7 +31,8 @@ export default {
     methods: {
       // TEST METHOD TO CHEKC OUTPUT
       printTopic(topic) {
-          console.log(topic);
+          alert("Let me see what i can find about "+ "'"+ topic +"'");
+          this.topics['topicsFound'] = [];
       },
         // THIS WILL FETCH THE DATA
         fetchData() {
