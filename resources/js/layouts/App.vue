@@ -7,17 +7,21 @@
 <!--      SEND PROCS IN THE COMPONENT -->
       <Topics v-bind:topics="topics" v-on:print-topic="printTopic"/>
 
+      <Logo/>
+
   </div>
 </template>
 
 <script>
 import ExampleComponent from '../components/ExampleComponent';
 import Topics from '../components/Topics';
+import Logo from '../components/Logo';
 
 export default {
   components: {
     ExampleComponent,
     Topics,
+    Logo,
   },
     data() {
         return {
@@ -43,6 +47,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<!-- global styling -->
+<style>
+    div {
+        font-family: "Helvetica Neue", sans-serif;
+    }
 
 </style>

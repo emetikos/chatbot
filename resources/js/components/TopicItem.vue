@@ -31,5 +31,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
+    font-style: italic;
+    font-family: "Helvetica Neue", sans-serif;
 }
 </style>
