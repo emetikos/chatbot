@@ -39,6 +39,7 @@ class TableController extends Controller
     }
 
 
+ //delete specific data in the table   
     public function delete_function()
     {
         $resource = 'link';
