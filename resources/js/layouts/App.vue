@@ -1,15 +1,18 @@
 <template>
-  <div class="container">
-      <example-component/>
-  </div>
+    <section class="chat-bot">
+        <div class="chat-bot__container">
+
+<!--      <example-component/>-->
+        </div>
+    </section>
 </template>
 
 <script>
-import ExampleComponent from '../components/ExampleComponent';
+// import ExampleComponent from '../components/ExampleComponent';
 
 export default {
   components: {
-    ExampleComponent
+    // ExampleComponent
   }
 }
 </script>
