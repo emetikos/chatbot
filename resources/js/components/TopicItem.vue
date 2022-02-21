@@ -1,8 +1,6 @@
 <template>
 <div class="topic-item">
-
         <button class="btn" @click="$emit('print-topic', topic)" type="submit">{{ topic }}</button>
-
 </div>
 
 </template>
@@ -10,7 +8,8 @@
 <script>
     export default {
         name: 'topicItem',
-        props:['topic']
+        props:['topic'],
+
     }
 </script>
 
