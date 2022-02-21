@@ -8,7 +8,6 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
-
 import App from './layouts/App.vue';
 /**
  * The following block of code may be used to automatically register your
@@ -35,3 +34,5 @@ const app = new Vue({
     el: '#app',
     render: h => h(App)
 });
+
+Vue.prototype.axios = axios
