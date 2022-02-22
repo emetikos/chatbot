@@ -1,19 +1,30 @@
 <template>
-  <div class="container">
-      <example-component/>
-  </div>
+    <section class="chat-bot">
+                <Topics/>
+                <main-window-component/>
+				<FileUploadComponent />
+    </section>
 </template>
 
 <script>
-import ExampleComponent from '../components/ExampleComponent';
+import Topics from '../components/Topics';
+// import ExampleComponent from '../components/ExampleComponent';
+import MainWindowComponent from '../components/MainWindowComponent';
+import FileUploadComponent from '../components/File/FileUploadComponent';
 
 export default {
   components: {
-    ExampleComponent
+    Topics,
+    // ExampleComponent
+      MainWindowComponent,
+	  FileUploadComponent
   }
 }
 </script>
 
-<style scoped>
-
+<!-- global styling -->
+<style>
+    div {
+        font-family: "Helvetica Neue", sans-serif;
+    }
 </style>

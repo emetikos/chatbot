@@ -1,13 +1,26 @@
-import sys, json
+# Used to get the variables passed from PHP (located at sys.argv[1])
+import sys
 
-jsonEncoder = json.JSONEncoder()
+import json
 
+
+JSONEncoder = json.JSONEncoder()
+JSONDecoder = json.JSONDecoder()
+
+
+# Decoded variables passed from PHP
+variables = JSONDecoder.decode(sys.argv[1])
+
+
+# Example dictionary
 aDict = {
 	"item-1": [1, 2, 3],
 	"item-2": "A String",
 	"item-3": True,
 	"item-4": None,
-	"passed-variables": sys.argv
+	"passed-variables": variables
 }
 
-print(jsonEncoder.encode(aDict))
+
+# Return the encoded dictionary to PHP
+print(JSONEncoder.encode(aDict))

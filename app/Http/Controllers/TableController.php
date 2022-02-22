@@ -2,29 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TableController extends Controller
 {
-    public function retrieve_same(){
-        $in = '1';
-        $samequery = DB::select('SELECT path_name FROM resources r JOIN queries q ON r.query_id=q.id WHERE q.name = ?', [$in]);
-        dd($samequery);
+    public function retrieve_same($in){
+        try {
+            $samequery = DB::select('SELECT path_name FROM resources r JOIN queries q ON r.query_id=q.id WHERE q.name = ?', [$in]);
+            return $samequery;
+        }
+        catch (Exception $e) {
+            return "NULL";
+        }
     }
 
-   
+
     public function store(){
         $query = '1';
         $link = 'asdf';
         $storequery = DB::insert('INSERT INTO queries (name) VALUES (?)', [$query]);
         $storequery = DB::insert('INSERT INTO resources (query_id, path_name) VALUES ((SELECT MAX(id) FROM queries), ?)', [$link]);
+    public function store($query, $link){
+        try {
+            $check = DB::select('SELECT path_name FROM resources r JOIN queries q ON r.query_id=q.id WHERE q.name = ?', [$query]);
+            return;
+        }
+        catch (Exception $e) {
+            $storequery = DB::insert('INSERT INTO queries (name) VALUES (?)', [$query]);
+            $storequery = DB::insert('INSERT INTO resources (query_id, path_name) VALUES ((SELECT MAX(id) FROM queries), ?)', [$link]);
+        }
     }
-    
 
 
 
-//upadting/editing data in the table 
+
+//upadting/editing data in the table
     public function update()
     {
         $tableName = 'person';
@@ -39,7 +53,7 @@ class TableController extends Controller
     }
 
 
- //delete specific data in the table   
+ //delete specific data in the table
     public function delete_function()
     {
         $resource = 'link';
@@ -52,10 +66,10 @@ class TableController extends Controller
     }
 
 
-    
 
 
-    // store example 
+
+    // store example
     /*public function store()
     {
         $tableName = 'person';
@@ -68,4 +82,8 @@ class TableController extends Controller
 
 
 
+
+    public function test() {
+        return view('resource-test');
+    }
 }

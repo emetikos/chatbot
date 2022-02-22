@@ -1,10 +1,17 @@
+
 import en_core_web_sm
-import spacy
-from spacy.lang.en import English
-from spacy.lang.en.stop_words import STOP_WORDS
+
+
+# DOWNLOAD MODEL FROM TERMINAL
+# python -m spacy download en_core_web_lg
+
 
 # Load the model en_core_web_sm of English for vocabulary, syntax & entities
+
+
 classifier = en_core_web_sm.load()
+
+stopwords = classifier.Defaults.stop_words
 
 # Create an array for all the nouns in the input
 nouns = []
@@ -40,9 +47,14 @@ class classification:
     def returnInput(self):
         return self.userInput
 
+    """
+    Run the the user input throught the classifier param from spacy
+    :return the text
+    """
+
     def run_classifier(self):
-        text = classifier(self.userInput)
-        return text
+        classified_input = classifier(self.userInput)
+        return classified_input
 
     """
     Function to tokenize the user input
@@ -50,10 +62,11 @@ class classification:
     """
 
     def text_tokenize(self):
-        text = classifier(self.userInput)
 
         token_list = []
-        for token in text:
+
+        for token in self.run_classifier():
+            print(token.text, token.pos_)
             token_list.append(token.text)
         return token_list
 
@@ -63,31 +76,30 @@ class classification:
     """
 
     def clean_stop_words(self):
-        text = classifier(self.userInput)
 
         filtered_sent = []
-        for word in text:
+        for word in self.run_classifier():
             if not word.is_stop:
                 filtered_sent.append(word)
         return filtered_sent
 
     """
-    Function to lemmatize the user input and classify each word by utilising a for loop to store the verbs, 
-    adjectives and nouns to  their corresponding lists. Checks in the user input if there is an adjective 
-    and a noun and calls a function to store them as a chunk    
+    Function to lemmatize the user input and classify each word by utilising a for loop to store the verbs,
+    adjectives and nouns to  their corresponding lists. Checks in the user input if there is an adjective
+    and a noun and calls a function to store them as a chunk
     :params - noun, adj (bool)
     :params - noun_text, adj_text (string)
     """
 
     def text_lemmatizer(self):
-        lem = classifier(self.userInput)
+
         noun = False
         adj = False
         noun_text = ""
         adj_text = ""
 
-        for word in lem:
-            print(word.text, word.pos_)
+        for word in self.run_classifier():
+            # print(word.text, word.pos_)
             if word.pos_ == "VERB":
                 verbs.append(word.text)
             if word.pos_ == "ADJ":
@@ -114,25 +126,42 @@ class classification:
     """
 
     def print_nouns(self):
-        print("Nouns in the user input: " + str(nouns))
+        return nouns
 
     """
     Prints the list of the verbs
     """
 
     def print_verbs(self):
-        print("Verbs in the user input: " + str(verbs))
+        return verbs
 
     """
     Prints the list of the adjectives
     """
 
     def print_adjectives(self):
-        print("Adjectives in the user input: " + str(adjectives))
+        return adjectives
 
     """
     Prints the list of the chunks
     """
 
     def print_chunks(self):
-        print("Chunks in the user input: " + str(chunks))
+        return chunks
+
+    """
+    function to check check the list for the most accurate response to the user
+    """
+
+    def classify(self):
+
+        self.text_lemmatizer()
+        if chunks:
+            return chunks[-1]
+        elif nouns:
+            return nouns[-1]
+        elif adjectives:
+            return nouns[-1]
+        else:
+            return None
+

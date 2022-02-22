@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import importlib.util
 import random
+import sys
 import json
 
 import pickle
@@ -10,7 +11,6 @@ import numpy as np
 import os
 
 import nltk
-
 
 import FileAnalysis
 import UserInput as elsie
@@ -25,7 +25,6 @@ from nltk.stem import WordNetLemmatizer
 
 # function to load the model that been created in the training script
 from tensorflow.keras.models import load_model
-
 
 # nltk.download('punkt')
 # nltk.download('wordnet')
@@ -43,6 +42,9 @@ intents = json.loads(open('intents.json').read())
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
 model = load_model('chatbotmodel.h5')
+
+JSONEncoder = json.JSONEncoder()
+JSONDecoder = json.JSONDecoder()
 
 
 # function for cleaning up the sentences
@@ -90,96 +92,118 @@ def get_response(intents_list, intents_json):
     return result
 
 
-print("Hi! How can I help you?")
+# Decoded variables passed from PHP
+variables = JSONDecoder.decode(sys.argv[1])
+res = dict()
+# helps to avoid repetition of predictions from the intents.json
+topicFound = variables[0]['topicFound']
+res['topicFound'] = variables[0]['topicFound']
+# helps to identify when user accept or not the topic which he wants to look in a text file
+readyToSubmit = variables[0]['readySubmit']
+res['readySubmit'] = variables[0]['readySubmit']
+# helps to identify the user upload the file or not before submitting it
+fileSubmitted = variables[0]['fileSubmit']
+res['fileSubmit'] = variables[0]['fileSubmit']
+classifiedMessage = variables[0]['classifiedMsg']
+res['classifiedMsg'] = variables[0]['classifiedMsg']
 
-topicFound = False  # helps to avoid repetition of predictions from the intents.json
-readyToSubmit = False  # helps to identify when user accept or not the topic which he wants to look in a text file
-# before submitting it
-fileSubmitted = False # helps to identify the the user upload the file or not
-classifiedMessage = '' # saves the
+emptyInputResponses = ['Please enter something first... :)',
+                       'You did not write anything! Try again!',
+                       'Are you joking? I am not so silly, as you may think!',
+                       'Oh, man! Seriously?',
+                       'Come on! Stop kidding me:(']
 
-while True:
-    res = ""
-    emptyInputResponses = ['Please enter something first... :)',
-                           'You did not write anything! Try again!',
-                           'Are you joking? I am not so silly, as you may think!',
-                           'Oh, man! Seriously?',
-                           'Come on! Stop kidding me:(']
+notKnownResponses = ['Sorry?',
+                     'Excuse me?',
+                     'Pardon?',
+                     'Excuse me, could you repeat the question?',
+                     'I’m sorry, I don’t understand. Could you say it again?',
+                     'I’m sorry, I didn’t catch that. Would you mind speaking more slowly?',
+                     'I’m confused. Could you tell me again?',
+                     'I’m sorry, I didn’t understand. Could you repeat a little louder, please?',
+                     'I didn’t hear you. Please could you tell me again?']
 
-    notKnownResponses = ['Sorry?',
-                         'Excuse me?',
-                         'Pardon?',
-                         'Excuse me, could you repeat the question?',
-                         'CI’m sorry, I don’t understand. Could you say it again?',
-                         'I’m sorry, I didn’t catch that. Would you mind speaking more slowly?',
-                         'I’m confused. Could you tell me again?',
-                         'I’m sorry, I didn’t understand. Could you repeat a little louder, please?',
-                         'I didn’t hear you. Please could you tell me again?']
+m = variables[0]['message']
+message = m.lower()
+userInput = classification(message)
 
-    m = input(">> ")
-    message = m.lower()
-    userInput = classification(message)
-
-    if not message:
-        print(random.choice(emptyInputResponses))
-
-    else:
-        if not topicFound:
-            ints = predict_class(message)
-            for i in ints:
-                if i['intent'] == 'help' and float(i['probability']) > 0.8:
-                    topicFound = True
-                    classifiedMessage = userInput.classify()
-                    res = "Is '" + classifiedMessage + "' what you looking for?"
-                    break
-                elif float(i['probability']) < 0.8:
-                    res = random.choice(notKnownResponses)
-                    break
+if not message:
+    res['response'] = random.choice(emptyInputResponses)
+    print(JSONEncoder.encode(res))
+else:
+    if not topicFound:
+        ints = predict_class(message)
+        for i in ints:
+            if i['intent'] == 'help' and float(i['probability']) > 0.8:
+                topicFound = True
+                res['topicFound'] = topicFound
+                classifiedMessage = userInput.classify()
+                if classifiedMessage:
+                    res['classifiedMsg'] = classifiedMessage
+                    res['response'] = "Is '" + classifiedMessage + "' what you looking for?"
                 else:
-                    res = get_response(ints, intents)
-            print(res)
-        else:
-            # TODO write predictions if the user ask new questions regarding the file before uploading
+                    res['response'] = "I am not really sure what You looking for. Can you be more specific"
+                break
+            elif float(i['probability']) < 0.8:
+                res['topicFound'] = topicFound
+                res['response'] = random.choice(notKnownResponses)
+                break
+            else:
+                res['topicFound'] = topicFound
+                res['response'] = get_response(ints, intents)
+                break
+        res['readySubmit'] = readyToSubmit
+        print(JSONEncoder.encode(res))
+    else:
+        if not readyToSubmit or not fileSubmitted:
+            sid = SentimentIntensityAnalyzer()
+            sentiment_score = sid.polarity_scores(message)
 
-            if not readyToSubmit:
-                sid = SentimentIntensityAnalyzer()
-                sentiment_score = sid.polarity_scores(message)
-
-                if sentiment_score['pos'] > 0.6:
-                    readyToSubmit = True
-                    if not fileSubmitted:
-                        print("Provide the file please")
-                        time.sleep(2)
-                        print("I got the you file! Thanks")
-                        time.sleep(2)
-                        print("reading your file.......")
-                        time.sleep(2)
-                        print("done")
-                        time.sleep(1)
-                        fileSubmitted = True
-
-                    fileAnalysisResults = FileAnalysis.analyseFile('pdf_files/Individual Neurons.pdf', classifiedMessage)
-
+            if sentiment_score['pos'] > 0.6:
+                if fileSubmitted:
+                    fileAnalysisResults = FileAnalysis.analyseFile('pdf_files/Individual Neurons.pdf',
+                                                                   classifiedMessage)
                     if not fileAnalysisResults:
-                        print('Sorry, but I could not find `' + classifiedMessage + '` in your file! Please try again '
-                                                                                    'with your '
-                                                                                    'search!')
+                        res['response'] = 'Sorry, but I could not find `' + classifiedMessage + '` in your ' \
+                                                                                                'file! ' \
+                                                                                                'Please ' \
+                                                                                                'try again '
+                        'with your '
+                        'search!'
                         topicFound = False
+                        res['topicFound'] = topicFound
                         readyToSubmit = False
+                        res['readyToSubmit'] = readyToSubmit
+                        print(JSONEncoder.encode(res))
                     else:
                         # will need to return the user's selected topic as a string
                         topic = elsie.main(fileAnalysisResults)
-                        print(rg.get_resources(topic))
-                        print("Do you need any more help?")
+                        res['resource'] = rg.get_resources(topic)
+                        res['response'] = "Do you need any more help?"
                         topicFound = False
+                        res['topicFound'] = topicFound
                         readyToSubmit = False
+                        res['readyToSubmit'] = readyToSubmit
+                        print(JSONEncoder.encode(res))
+                else:
+                    readyToSubmit = True
+                    res['readyToSubmit'] = readyToSubmit
+                    res['response'] = "Provide the file please"
+                    print(JSONEncoder.encode(res))
 
                 if sentiment_score['neg'] > 0.6:
                     topicFound = False
-                    print('OK, ask me something else again...')
+                    res['topicFound'] = topicFound
+                    res['response'] = 'OK, ask me something else again...'
+                    print(JSONEncoder.encode(res))
                 if sentiment_score['neu'] > 0.6:
-                    print('So, yes or no?')
-
+                    res['response'] = 'So, yes or no?'
+                    print(JSONEncoder.encode(res))
             else:
                 topicFound = False
+                res['topicFound'] = topicFound
                 readyToSubmit = False
+                res['readySubmit'] = readyToSubmit
+                res['response'] = 'Ok, you can ask me something again :}'
+                print(JSONEncoder.encode(res))
+

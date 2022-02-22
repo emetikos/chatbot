@@ -64,9 +64,9 @@ final class PythonModel extends Model {
             
             $process = PythonModel::getNewProcess($fullFilePath, $args);
             
-            print_r("<p><code>Executing `"
-                    . $process->getCommandLine()
-                    . "`...</code></p><br>");
+//            print_r("<p><code>Executing `"
+//                    . $process->getCommandLine()
+//                    . "`...</code></p><br>");
             
             $process->run();
             
@@ -75,7 +75,10 @@ final class PythonModel extends Model {
             $output = $process->getOutput();
             $json   = json_decode($output);
             
-            return (json_last_error() === JSON_ERROR_NONE) ? $json : $output;
+            return (json_last_error() === JSON_ERROR_NONE
+                        && $json !== null)
+                    ? $json
+                    : $output;
         }
         
         return null;
@@ -135,8 +138,8 @@ final class PythonModel extends Model {
             string $filePath,
             array $args) : Process {
         
-        $commandInfo = array(PythonModel::PYTHON_LOCATION, $filePath);
-        
-        return new Process(array_merge($commandInfo, $args));
+        return new Process(array(PythonModel::PYTHON_LOCATION,
+                                 $filePath,
+                                 json_encode($args)));
     }
 }
