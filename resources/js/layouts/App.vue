@@ -13,20 +13,29 @@
             </div>
         </div>
     </section>
+  <div class="container">
+      <Topics/>
+
+  </div>
 </template>
 
 <script>
+import Topics from '../components/Topics';
 // import ExampleComponent from '../components/ExampleComponent';
 import MainWindowComponent from '../components/MainWindowComponent';
 
 export default {
   components: {
+    Topics,
     // ExampleComponent
       MainWindowComponent
   }
 }
 </script>
 
-<style scoped>
-
+<!-- global styling -->
+<style>
+    div {
+        font-family: "Helvetica Neue", sans-serif;
+    }
 </style>
