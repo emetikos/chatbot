@@ -12,6 +12,10 @@ class HomeController extends Controller {
     public function index() {
 //        Session::flush();
 
+        return view('iframe');
+    }
+
+    public function home() {
         return view('home');
     }
 

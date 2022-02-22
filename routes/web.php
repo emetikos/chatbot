@@ -20,7 +20,8 @@ if (App::environment('production')) {
     URL::forceScheme('https');
 }
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/target-page', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'home']);
 //Route::post('query', [HomeController::class, 'query']);
 //Route::post('/query', [HomeController::class, 'ajaxQuery']);
 Route::post('/query', [HomeController::class, 'api']);
