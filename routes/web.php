@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
@@ -24,6 +25,8 @@ Route::get('/', [HomeController::class, 'index']);
 //Route::post('query', [HomeController::class, 'query']);
 //Route::post('/query', [HomeController::class, 'ajaxQuery']);
 Route::post('/query', [HomeController::class, 'api']);
+
+Route::post('/upload/pdf', [UploadController::class, 'pdf']);
 
 //Route::get('/store', [TableController::class, 'store']);
 //Route::get('/same', [TableController::class, 'retrieve_same']);

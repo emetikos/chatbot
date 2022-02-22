@@ -1,6 +1,7 @@
 <template>
     <section class="chat-bot">
         <div class="chat-bot__container">
+			<FileUploadComponent />
             <div class="chat-bot__header">
 
             </div>
@@ -18,11 +19,13 @@
 <script>
 // import ExampleComponent from '../components/ExampleComponent';
 import MainWindowComponent from '../components/MainWindowComponent';
+import FileUploadComponent from '../components/File/FileUploadComponent';
 
 export default {
   components: {
     // ExampleComponent
-      MainWindowComponent
+      MainWindowComponent,
+	  FileUploadComponent
   }
 }
 </script>
