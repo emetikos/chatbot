@@ -183,7 +183,7 @@ If you would like to make a link or bookmark to this page, the URL is:<BR> https
 
 
 <div id="div-frame">
-    <iframe id="frame" class="hidden"  src="http://127.0.0.1:8000/home"></iframe>
+    <iframe id="frame" class="hidden"  src="http://127.0.0.1:8000/"></iframe>
 </div>
 
 
