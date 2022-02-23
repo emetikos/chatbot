@@ -75,6 +75,7 @@ export default {
                 this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight
             })
 
+
         }
     }
 }
