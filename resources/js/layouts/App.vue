@@ -1,8 +1,9 @@
 <template>
     <section class="chat-bot">
-                <Topics/>
-                <main-window-component/>
+        <Topics/>
+        <main-window-component/>
 				<FileUploadComponent />
+        <LinksOut />
     </section>
 </template>
 
@@ -11,13 +12,15 @@ import Topics from '../components/Topics';
 // import ExampleComponent from '../components/ExampleComponent';
 import MainWindowComponent from '../components/MainWindowComponent';
 import FileUploadComponent from '../components/File/FileUploadComponent';
+import LinksOut from '../components/LinksOut';
 
 export default {
   components: {
     Topics,
     // ExampleComponent
-      MainWindowComponent,
-	  FileUploadComponent
+    MainWindowComponent,
+	  FileUploadComponent,
+    LinksOut
   }
 }
 </script>
