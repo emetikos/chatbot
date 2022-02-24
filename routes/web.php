@@ -36,3 +36,6 @@ Route::post('/upload/pdf', [UploadController::class, 'pdf']);
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+
+Route::get('/topicFound', [HomeController::class, 'api']);
