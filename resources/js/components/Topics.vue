@@ -29,27 +29,39 @@ export default {
     data() {
         return {
             topics :{
-                // THIS WILL STORE DATA AFTER FETCH
+                // THIS WILL STORE TOPICS AFTER FETCHING FROM THE API
                 topicsFound: [],
             }
         }
     },
     methods: {
-        // TEST METHOD TO CHEKC OUTPUT
+
+        /**
+         * Picks the topic that the user has chosen
+         * @if there are no topics the user cannot click the button
+         * @else the selected topic will be displayed into the chat for the user to confirm that
+         * is the correct topic he chose.
+         *
+         * @param topic
+         */
         showTopic(topic) {
 
             if (topic === TOPICS_NOT_FOUND) {
-
+                // TODO: this should lead back to chatbot and asking the user if he want to search for something else.
             }else{
+                // TODO: this should be displayed to the user chat area for confirmation.
                 console.log("Let me see what i can find about "+ "'"+ topic +"'");
                 this.topics['topicsFound'] = [];
             }
-
         },
-        // THIS WILL FETCH THE DATA
+
+        /**
+         *
+         * @axios will call the route for the API to get the topics after the given file has been upload and analyzed.
+         *
+         * @return list of topics relevant to the user's query for him to use one.
+         */
         fetchTopics() {
-            // FOR NOW PASSING DATA MANUALLY FOR TESTING
-            // this.topics['topicsFound'] = ['Topic one','Topic two','Topic three','Topic four','Topic five']
 
             axios.get('/topicFound')
                  .then(res => {
@@ -61,7 +73,9 @@ export default {
                      }else{
                          this.topics['topicsFound'] = topicsFound
                      }
-                 })
+                 }).catch(e => {
+                     this.topics['topicsFound'] = e.error;
+            })
         }
     }
 }
