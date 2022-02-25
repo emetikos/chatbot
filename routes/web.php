@@ -22,7 +22,7 @@ if (App::environment('production')) {
 }
 
 Route::get('/target-page', [HomeController::class, 'index']);
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', [HomeController::class, 'home'])->name('home');
 //Route::post('query', [HomeController::class, 'query']);
 //Route::post('/query', [HomeController::class, 'ajaxQuery']);
 Route::post('/query', [HomeController::class, 'api']);
@@ -39,3 +39,4 @@ Route::post('/upload/pdf', [UploadController::class, 'pdf']);
 
 
 Route::get('/topicFound', [HomeController::class, 'api']);
+Route::get('/flash', [HomeController::class, 'flashSession']);

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller {
     public function index() {
-//        Session::flush();
 
         return view('iframe');
     }
@@ -119,6 +118,16 @@ class HomeController extends Controller {
 
         return response($arr, 200);
         }
+
+    /**
+     * Method to flash the session
+     * @redirect to main page
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function flashSession(){
+        Session::flush();
+        return redirect()->route('home');
+    }
 
 }
 
