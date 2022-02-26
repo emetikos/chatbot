@@ -123,13 +123,13 @@ class HomeController extends Controller {
     /**
      * Method to flash the session
      * @redirect to main page
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function flashSession(){
         Session::flush();
         return redirect()->route('home');
     }
+
 }
 
 
