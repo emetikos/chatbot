@@ -1,32 +1,32 @@
 <template>
-    <div class ="chat-bot-list-container" ref="chatbot">
+    <section class="chat-box">
+    <div class ="chat-bot-list-container">
+        <ul class="chat-bot-list">
         <li class="message" v-for="(message, idx) in messages" :key="idx" :class="message.author">
             <p>
                 <span>{{message.text}}</span>
             </p>
         </li>
+        </ul>
     </div>
-
-    <
-
-    <div class="text-input">
+    <div class="text-inputs">
+        <label><b>Hi there, im your educational bot, here to help</b></label>
         <input type ="text" v-model="message" @keyup.enter="sendMessage"/>
-        <form action="/query" class="form-container">
+        <textarea placeholder="Type message.." name="msg" required></textarea>
+        <button @click="sendMessage" >Send</button>
 
-            <h1>CHATBOT</h1>
-            <br>
-            <label><b>Hi there, im your educational bot. How can i help?</b></label>
-            <br/>
+    </div>
+    </section>
+<!--</template>-->
 
-            <textarea placeholder="Type message.." name="msg" required></textarea>
-            <button type="submit" @click="sendMessage" >Send</button>
-        </form>
+            <form action="/query" class="form-container">
+            </form>
 
-        <template/>
+        </template>
 
         <script>
             export default {
-                name: "TextInputTESTING",
+                name: "TextInputField",
                 data: () => ({
                     message: '',
                     messages:[]
