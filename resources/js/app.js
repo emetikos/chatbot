@@ -6,7 +6,12 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue').default;
+window.Vue   = require('vue').default;
+window.axios = require("axios");
+
+// Set the header's CSRF token value
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] =
+    document.getElementById("__token").content;
 
 
 import App from './layouts/App.vue';

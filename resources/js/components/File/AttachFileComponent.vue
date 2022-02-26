@@ -1,21 +1,15 @@
 <template>
     <div class="chatbot-attach-file-area"
-         v-bind:class="{ 'drag-over' : this.isDragEvent } "
          @click="onClick"
          @dragover="onDragOver"
          @drop="onDrop">
 
-        <input ref="file-input" class="chatbot-file-input"
+        <input ref="file-input"
+               class="chatbot-file-input"
                type="file" accept=".pdf"
                @change="onFileSelect">
 
         <span class="chatbot-attach-file-icon">&plus;</span>
-
-        <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-             class="chatbot-attach-file-icon">
-
-            <path d="M18,15v3H6v-3H4v3c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-3H18z M7,9l1.41,1.41L11,7.83V16h2V7.83l2.59,2.58L17,9l-5-5L7,9z"></path>
-        </svg>-->
 
         <span class="chatbot-attach-file-text">
             Click or drag PDF here to upload
@@ -74,7 +68,7 @@
      * If the file is a PDF it will be attached to the parent component and the
      * parent's state will change to file attached.
      *
-     * @param event
+     * @param event  the change event
      */
     function onFileSelect(event) {
         // Attach the file to the parent component
@@ -88,8 +82,9 @@
      *
      * If no PDF files were present, an empty list will be returned.
      *
-     * @param dataTransfer  the DataTransfer object from the drag event
-     * @returns {*[]}       the list of PDF files
+     * @param dataTransfer                   the DataTransfer object from the
+     *                                       drag event
+     * @returns {DataTransferItem[]|File[]}  the list of PDF files
      */
     function getPDFFilesFromDrag(dataTransfer) {
         let pdfFiles = [];
@@ -98,7 +93,9 @@
             // Whether the files are being retrieved from dataTransfer.items or
             // dataTransfer.files
             let isDataItems = dataTransfer.items !== null;
-            let items = isDataItems ? dataTransfer.items : dataTransfer.files;
+            let items       = isDataItems
+                              ? dataTransfer.items
+                              : dataTransfer.files;
             let item;
 
             for (let i in items) {
@@ -160,12 +157,6 @@
             getPDFFileFromDrag,
             hasDraggedFilesGotPDFs,
         },
-
-        data() {
-            return {
-                isDragEvent: false,
-            }
-        }
     }
 </script>
 
@@ -196,12 +187,11 @@
         color: var(--foreground-colour-hover);
     }
 
-    .chatbot-attach-file-area .chatbot-file-input {
+    .chatbot-file-input {
         display: none !important;
     }
 
-    .chatbot-attach-file-area .chatbot-attach-file-icon,
-    .chatbot-attach-file-area .chatbot-attach-file-text {
+    .chatbot-attach-file-icon, .chatbot-attach-file-text {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -211,11 +201,11 @@
         padding: 0;
     }
 
-    .chatbot-attach-file-area .chatbot-attach-file-icon {
+    .chatbot-attach-file-icon {
         font-size: 6em;
     }
 
-    .chatbot-attach-file-area .chatbot-attach-file-text {
+    .chatbot-attach-file-text {
         font-size: 1em;
     }
 

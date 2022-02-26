@@ -1,9 +1,13 @@
 <template>
-	<div class="chatbot-file-upload-container">
-        <AttachFileComponent v-if="currentState === State.ATTACH_FILE" />
-        <FileAttachedComponent v-if="currentState === State.FIlE_ATTACHED" />
-        <FileUploadingComponent v-if="currentState === State.FILE_UPLOADING" />
-        <FileUploadedComponent v-if="currentState === State.FILE_UPLOADED" />
+	<div class="chatbot-file-upload-container" v-if="remove === false">
+        <AttachFileComponent ref="attach-file"
+                             v-if="currentState === State.ATTACH_FILE" />
+        <FileAttachedComponent ref="file-attached"
+                               v-if="currentState === State.FIlE_ATTACHED" />
+        <FileUploadingComponent ref="file-uploading"
+                                v-if="currentState === State.FILE_UPLOADING" />
+        <AnalyseFileComponent ref="analyse-file"
+                              v-if="currentState === State.ANALYSE_FILE" />
 	</div>
 </template>
 
@@ -12,42 +16,55 @@
     import AttachFileComponent from "./AttachFileComponent";
     import FileAttachedComponent from "./FileAttachedComponent";
     import FileUploadingComponent from "./FileUploadingComponent";
-    import FileUploadedComponent from "./FileUploadedComponent";
+    import AnalyseFileComponent from "./AnalyseFileComponent";
 
 
-    // Import Vue's Axios for uploading files to the server
-    window.axios = require("axios");
-    // Set the header's CSRF token value
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] =
-        document.getElementById("__token").content;
+    /**
+     * Sets the state of this component to the one specified.
+     *
+     * Waits for the next tick so the component is rendered.
+     *
+     * @param state  the new state of this component
+     */
+    async function setState(state) {
+        if (Object.values(this.State).includes(state)) {
+            this.currentState = state;
 
+            // Wait for the component to render before continuing
+            await this.$nextTick();
+
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * Sets the state of this component to the attach file state.
      */
-    function setAttachFileState() {
-        this.currentState = this.State.ATTACH_FILE;
+    async function setAttachFileState() {
+        return await this.setState(this.State.ATTACH_FILE);
     }
 
     /**
      * Sets the state of this component to the file attached state.
      */
-    function setFileAttachedState() {
-        this.currentState = this.State.FIlE_ATTACHED;
+    async function setFileAttachedState() {
+        return await this.setState(this.State.FIlE_ATTACHED);
     }
 
     /**
      * Sets the state of this component to the file uploading state.
      */
-    function setFileUploadingState() {
-        this.currentState = this.State.FILE_UPLOADING;
+    async function setFileUploadingState() {
+        return await this.setState(this.State.FILE_UPLOADING);
     }
 
     /**
      * Sets the state of this component to the file uploaded state.
      */
-    function setFileUploadedState() {
-        this.currentState = this.State.FILE_UPLOADED;
+    async function setAnalyseFileState() {
+        return await this.setState(this.State.ANALYSE_FILE);
     }
 
     /**
@@ -63,18 +80,16 @@
             return false;
         }
 
-        console.log("Uploading file: " + this.getFilename());
-
         // Change the component's state to file uploading
         this.setFileUploadingState();
 
-        // Reference this component inside anonymous functions
+        // Reference this component inside anonymous/embedded functions
         let component = this;
         // The form data containing the file to send via post
-        let formData = new FormData();
+        let formData  = new FormData();
         formData.append("pdf", this.file);
         // The config data containing the file upload progress function
-        let config = {
+        let config    = {
             onUploadProgress(progressEvent) {
                 component.onFileUploadProgress(progressEvent);
             },
@@ -82,9 +97,21 @@
 
         // Upload the file with the progress, uploaded and error callback
         // functions
-        axios.post(this.uploadURI, formData, config)
+        axios.post(this.URI.UPLOAD, formData, config)
              .then(this.onFileUploaded)
              .catch(this.onFileUploadError);
+    }
+
+    /**
+     * Called when the file being uploaded progresses.
+     *
+     * Updates the progress bar to display how much of the file has been
+     * uploaded.
+     *
+     * @param progress  the progress event from the http request
+     */
+    function onFileUploadProgress(progress) {
+        this.fileUploadProgress = (progress.loaded / progress.total) * 100;
     }
 
     /**
@@ -94,73 +121,116 @@
      *
      * @param response  the response from the http request
      */
-    function onFileUploaded(response) {
-        console.log("File uploaded! Analysing...");
-
-        this.isFileUploaded     = true;
+    async function onFileUploaded(response) {
         this.fileUploadProgress = 100;
+        this.isFileUploaded     = true;
 
-        this.setFileUploadedState();
-    }
+        await this.setAnalyseFileState();
 
-    /**
-     * Called when the file being uploaded progresses.
-     *
-     * Updates the progress to the component which will then be displayed to the
-     * user.
-     *
-     * @param progress  the progress of the file
-     */
-    function onFileUploadProgress(progress) {
-        this.uploadProgress = (progress.loaded / progress.total) * 100;
+        this.$refs["analyse-file"].setText("Analysing file!");
 
-        console.log(`File upload progress: ${this.fileUploadProgress}%`);
+        // Analyse the uploaded file
+        axios.post(this.URI.ANALYSE)
+             .then(this.onFileAnalysed)
+             .catch(this.onFileAnalyseError);
     }
 
     /**
      * Called when the file being uploaded encounters an error.
      *
+     * Displays a file upload error, logging the error to the console.
+     *
      * @param error  the error that occurred
      */
-    function onFileUploadError(error) {
-        console.log(`Error Uploading File: ${error}`);
+    async function onFileUploadError(error) {
+        await this.setAnalyseFileState();
+
+        this.$refs["analyse-file"].setText("Error uploading file!", true);
+
+        console.log("Error Uploading File: ", error);
+    }
+
+    /**
+     * Called when the uploaded file has been analysed.
+     *
+     * Displays the returned topics for the user to select, or an error if
+     * the topics array was not returned in the response.
+     *
+     * @param response  the response from the http request
+     */
+    function onFileAnalysed(response) {
+        let topics = response.data["possibleTopics"];
+
+        // Displays the topics returned and remove this component
+        if (Array.isArray(topics)) {
+            this.$refs["analyse-file"].setText("File analysed!");
+            this.isFileAnalysed = true;
+
+            this.$parent.$refs["topics"].topics.topicsFound = topics;
+
+            // Remove this component
+            setTimeout(() => { this.remove = true; }, 1000);
+        }
+        // Displays an error if the topics array was not returned
+        else {
+            this.onFileAnalyseError("No topics returned!");
+        }
+    }
+
+    /**
+     * Called when the uploaded file being analysed encounters an error.
+     *
+     * Displays a file analyse error, logging the error to the console
+     *
+     * @param error  the error that occurred
+     */
+    function onFileAnalyseError(error) {
+        this.$refs["analyse-file"].setText("Error analysing file!", true);
+
+        console.log("Error Analysing File: ", error);
     }
 
     /**
      * Returns whether a file is attached to this component.
      *
-     * @returns {boolean} whether a file is attached to this component
+     * @returns {boolean}  whether a file is attached to this component
      */
     function hasFile() {
         return this.file !== null;
     }
 
+    /**
+     * Returns whether the given file is a File object and a PDF.
+     *
+     * @param file         the file to check
+     * @returns {boolean}  whether the given file is valid
+     */
     function isValidFile(file) {
-        return (file instanceof File) && file.type === this.FileType.PDF;
+        return (file instanceof File) && (file.type === this.FileType.PDF);
     }
 
     /**
-     * Returns the name of the file attached to this component, or an empty
-     * string if a file is not attached.
+     * Returns the name of the file attached to this component, or a file not
+     * found string if a file is not attached.
      *
-     * @returns {string}
+     * @returns {string}  the name of the file attached, or a file not found
+     *                    string
      */
     function getFilename() {
-        return this.hasFile() ? this.file.name : "";
+        return this.hasFile() ? this.file.name : "File not found!";
     }
 
     /**
      * Sets the file for this component to the one given, changing the
      * component's state to file attached.
      *
-     * If the file is not of type File or is not a PDF, the file will not be
+     * If the file is not a File object or is not a PDF, the file will not be
      * set and false will be returned.
      *
      * @param file         the file to attach to this component
-     * @returns {boolean}  whether or not the file was set
+     * @returns {boolean}  whether or not the file was attached
      */
     function setFile(file) {
-        // Return false if the file is not of type File or is not a PDF
         if (!this.isValidFile(file)) {
             alert("File must be a PDF!");
 
@@ -188,18 +258,21 @@
             AttachFileComponent,
             FileAttachedComponent,
             FileUploadingComponent,
-            FileUploadedComponent,
+            AnalyseFileComponent,
         },
 
         methods: {
+            setState,
             setAttachFileState,
             setFileAttachedState,
             setFileUploadingState,
-            setFileUploadedState,
+            setAnalyseFileState,
             uploadFile,
             onFileUploaded,
             onFileUploadProgress,
             onFileUploadError,
+            onFileAnalysed,
+            onFileAnalyseError,
             getFilename,
             hasFile,
             isValidFile,
@@ -212,19 +285,24 @@
                 State: {
                     ATTACH_FILE: 0,
                     FIlE_ATTACHED: 1,
-                    FILE_UPLOADING: 3,
-                    FILE_UPLOADED: 4,
+                    FILE_UPLOADING: 2,
+                    ANALYSE_FILE: 3,
                 },
                 FileType: {
                     PDF: "application/pdf"
                 },
+                URI: {
+                    UPLOAD: "/upload/pdf",
+                    ANALYSE: "/query",
+                },
 
                 currentState: 0,
-
-                uploadURI: "/upload/pdf",
                 file: null,
                 isFileUploaded: false,
+                isFileAnalysed: false,
                 fileUploadProgress: 0,
+
+                remove: false,
             }
         }
     }
@@ -249,7 +327,7 @@
         box-sizing: border-box;
     }
 
-    .chatbot-file-upload-container * {
+    * {
         font-family: Verdana, serif;
         fill: var(--foreground-colour);
         color: var(--foreground-colour);

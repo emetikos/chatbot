@@ -103,6 +103,7 @@ readyToSubmit = variables[0]['readySubmit']
 res['readySubmit'] = variables[0]['readySubmit']
 # helps to identify the user upload the file or not before submitting it
 fileSubmitted = variables[0]['fileSubmit']
+file = variables[0]["file"]
 res['fileSubmit'] = variables[0]['fileSubmit']
 classifiedMessage = variables[0]['classifiedMsg']
 res['classifiedMsg'] = variables[0]['classifiedMsg']
@@ -161,8 +162,9 @@ else:
 
             if sentiment_score['pos'] > 0.6:
                 if fileSubmitted:
-                    fileAnalysisResults = FileAnalysis.analyseFile('pdf_files/Individual Neurons.pdf',
-                                                                   classifiedMessage)
+                    fileAnalysisResults =
+                        FileAnalysis.analyseFile(file, classifiedMessage)
+
                     if not fileAnalysisResults:
                         res['response'] = 'Sorry, but I could not find `' + classifiedMessage + '` in your ' \
                                                                                                 'file! ' \

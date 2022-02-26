@@ -22,25 +22,48 @@ class UploadController extends Controller {
     /**
      * Saves the PDF that was uploaded to the server.
      *
-     * If no file was sent, or the file is not a PDF, the file will not be saved
-     * and false will be returned.
+     * If no file was sent, the file is not a PDF or an error occurred, the file
+     * will not be saved and false will be returned.
      *
-     * @return bool  Whether or not the uploaded file was saved to the server.
+     * If the directory the file is being saved to does not exist, it will be
+     * created along with any parent directories.
+     *
+     * @return bool  Whether the uploaded file was saved to the server.
      */
     public static function pdf() : bool {
-        $PDF = $_FILES["pdf"] ?? null;
+        try {
+            $PDF = $_FILES["pdf"] ?? null;
 
-        // If no file was sent or the file type is not a PDF
-        if (empty($PDF) || $PDF["type"] !== "application/pdf") {
-            return false;
+            // If no file was sent or the file type is not a PDF
+            if (empty($PDF) || $PDF["type"] !== "application/pdf") {
+                return false;
+            }
+
+            // Create the directory if it does not exist and any parent
+            // directories
+            if (!file_exists(UploadController::PDF_DIRECTORY)) {
+                mkdir(UploadController::PDF_DIRECTORY, 0777, true);
+            }
+
+            $filePath = UploadController::PDF_DIRECTORY . $PDF["name"];
+            // Update the file name if it already exists to one that doesn't
+            $availableFilePath = UploadController
+                                     ::toAvailableFilePath($filePath);
+
+            // Save the uploaded file to the server, updating the session
+            // variables
+            if (move_uploaded_file($PDF["tmp_name"], $availableFilePath)) {
+                Session::put("fileSubmit", "True");
+                Session::put("file", realpath($availableFilePath));
+
+                return true;
+            }
+        }
+        catch (Exception $e) {
+
         }
 
-        // Update the file name if it already exists to one that doesn't
-        $filePath          = UploadController::PDF_DIRECTORY . $PDF["name"];
-        $availableFilePath = UploadController::toAvailableFilePath($filePath);
-
-        // Moves the uploaded file, returning whether it was successful
-        return move_uploaded_file($PDF["tmp_name"], $availableFilePath);
+        return false;
     }
 
     /**
@@ -49,12 +72,12 @@ class UploadController extends Controller {
      * exist. If a file at the given path initial does not exist, a number
      * won't be appended, returning the original path.
      *
-     * E.g., ff a file exists with the name example.txt, it will have an
-     * incrementing number appended, such as:
+     * E.g., if a file exists with the name example.txt, it will have an
+     * incrementing number appended to it, such as:
      *     example 1.txt
      *     example 2.txt
      *     example 3.txt
-     * until a filename with that number does not exist.
+     * until a filename with that name and number does not exist.
      *
      * @param string $path  the file path
      * @return string       the updated file path, or the original path if a

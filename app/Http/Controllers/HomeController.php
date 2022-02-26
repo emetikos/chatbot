@@ -93,6 +93,8 @@ class HomeController extends Controller {
         if(Session::has('topicFound')) $topicFound = Session::get('topicFound');
         $fileSubmit = 'True';
         if(Session::has('fileSubmit')) $fileSubmit = Session::get('fileSubmit');
+        $file = 'None';
+        if(Session::has('file')) $file = Session::get('file');
         $classifiedMsg = '';
         if(Session::has('classifiedMsg')) $classifiedMsg = Session::get('classifiedMsg');
         $topicSelected = 'False';
@@ -105,6 +107,7 @@ class HomeController extends Controller {
                 'readySubmit'=>$readySubmit,
                 'topicFound'=>$topicFound,
                 'fileSubmit'=>$fileSubmit,
+                'file'=>$file,
                 'classifiedMsg'=>$classifiedMsg,
                 'topicSelected'=>$topicSelected,
                 'topicFinal'=>$topicFinal,
