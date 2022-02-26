@@ -26,6 +26,7 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::post('/query', [HomeController::class, 'api']);
 Route::post('/upload/pdf', [UploadController::class, 'pdf']);
 Route::get('/flash', [HomeController::class, 'flashSession']);
+Route::get('/topicFound', [HomeController::class, 'api']);
 //Route::get('/store', [TableController::class, 'store']);
 //Route::get('/same', [TableController::class, 'retrieve_same']);
 //Route::get('/test', [TableController::class, 'test']);
