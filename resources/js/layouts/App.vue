@@ -9,7 +9,6 @@
 
 <script>
 import Topics from '../components/Topics';
-// import ExampleComponent from '../components/ExampleComponent';
 import MainWindowComponent from '../components/MainWindowComponent';
 import FileUploadComponent from '../components/File/FileUploadComponent';
 import LinksOut from '../components/LinksOut';
