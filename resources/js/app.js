@@ -13,7 +13,6 @@ window.axios = require("axios");
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] =
     document.getElementById("__token").content;
 
-
 import App from './layouts/App.vue';
 /**
  * The following block of code may be used to automatically register your
