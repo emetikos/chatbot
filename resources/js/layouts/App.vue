@@ -1,16 +1,16 @@
 <template>
     <section class="chat-bot">
-        <Topics ref="topics" />
-        <main-window-component />
-        <TextInputField/>
-        <FileUploadComponent />
-        <LinksOut />
+        <div class="chat-bot__conainer">
+            <Topics ref="topics" />
+            <TextInputField/>
+            <FileUploadComponent />
+            <LinksOut />
+        </div>
     </section>
 </template>
 
 <script>
 import Topics from '../components/Topics';
-import MainWindowComponent from '../components/MainWindowComponent';
 import FileUploadComponent from '../components/File/FileUploadComponent';
 import LinksOut from '../components/LinksOut';
 import TextInputField from "../components/TextInputField";
@@ -18,7 +18,6 @@ import TextInputField from "../components/TextInputField";
 export default {
     components: {
         Topics,
-        MainWindowComponent,
         TextInputField,
 	    FileUploadComponent,
         LinksOut,

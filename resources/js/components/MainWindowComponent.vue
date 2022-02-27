@@ -3,7 +3,7 @@ Template for the  main window to display response from the chatbot as a text
 Author: Vitaly Ivanov
 
 <template>
-    <div class="chat-bot__main main-list">
+
         <div class="main-list__container" ref="chatBot">
             <ul class="main-list__messages">
                 <li class="main-list__message"
@@ -17,7 +17,7 @@ Author: Vitaly Ivanov
                 </li>
             </ul>
         </div>
-    </div>
+
 
 </template>
 
@@ -25,36 +25,11 @@ Author: Vitaly Ivanov
 <script>
 export default {
     name: "MainWindowComponent",
-    data: () => ({
-        props: ['messages'],
-    }),
-    methods: {
-
-    }
+    props: ['messages'],
 }
 </script>
 
 <style scoped lang="scss">
-.main-list, .main-list__messages {
-
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-
-}
-
-.main-list {
-
-    margin-top: 50px;
-    border: 1px solid lightgray;
-    width: 50vw;
-    height: 50vh;
-    border-radius: 4px;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: space-between;
-
-}
 
 .main-list__container {
     overflow: scroll;
@@ -69,6 +44,9 @@ export default {
 }
 
 .main-list__messages {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
 
     span {
         padding: 8px;
@@ -102,35 +80,5 @@ export default {
 .main-list__message {
     padding: 0.5rem;
 }
-
-//.main-list__input {
-//    display: flex;
-//}
-//
-//input {
-//    flex-grow: 2;
-//    line-height: 3;
-//    border: 1px none lightgray;
-//    border-top-style: solid;
-//    border-bottom-left-radius: 4px;
-//    padding-left: 20px;
-//
-//
-//}
-//input:focus {
-//    outline: none;
-//}
-//
-//button {
-//    flex-grow: 1;
-//    cursor: pointer;
-//    color: white;
-//    background: #008cff;
-//    border-bottom-right-radius: 4px;
-//    border-width: unset;
-//    border-style: unset;
-//    border-color: unset;
-//}
-
 
 </style>

@@ -1,16 +1,19 @@
 <template>
 
-    <div class="text-inputs">
-        <label><b>Hi there, im your educational bot, here to help</b></label>
-        <input type ="text"
-               v-model="message"
-               @keyup.enter="sendMessage"/>
-        <button @click="sendMessage" :disabled="isDisabled">Send</button>
+    <div class="chat-bot__main main-list">
+        <MainWindowComponent :messages="messages"></MainWindowComponent>
+        <div class="main-list__input">
+            <input type ="text"
+                   v-model="message"
+                   @keyup.enter="sendMessage"/>
+            <button @click="sendMessage" :disabled="isDisabled">Send</button>
 
+        </div>
     </div>
 </template>
 
         <script>
+        import MainWindowComponent from "./MainWindowComponent";
             export default {
                 name: "TextInputField",
                 data: () => ({
@@ -53,77 +56,56 @@
                         //clear message space after text is sent
                         this.message =  ''
                     }
+                },
+                components: {
+                    MainWindowComponent
                 }
             }
         </script>
 
         <style scoped lang="scss">
-            .chat-box,
-            .chat-box-list {
-                display: flex;
-                flex-direction: column;
-                list-style-type: none;
-            }
 
-            .chat-box-list-container{
-                overflow:scroll;
-            }
+        .main-list {
+            display: flex;
+            flex-direction: column;
+            list-style-type: none;
+            margin-top: 50px;
+            border: 1px solid lightgray;
+            width: 50vw;
+            height: 50vh;
+            border-radius: 4px;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: space-between;
 
-            .chat-box-list{
-                padding-left: 10px;
-                padding-right: 10px;
+        }
+        .main-list__input {
+            display: flex;
+        }
 
-                span{
-                    color: white;
-                }
-                .server{
-                    span{
-                        background: lightblue;
-                    }
-                    p{
-                        float: left;
-                    }
-                }
-                .user{
-                    span{
-                        background: #5f6368;
-                    }
-                    p{
-                        float: right;
-                    }
-                }
-            }
+        input {
+            flex-grow: 2;
+            line-height: 3;
+            border: 1px none lightgray;
+            border-top-style: solid;
+            border-bottom-left-radius: 4px;
+            padding-left: 20px;
 
-            .chat-box {
-                margin: 10px;
-                border: 2px solid #1a202c;
-                width: 60vw;
-                height: 60vh;
-                border-radius: 5px;
-                margin-left: auto;
-                margin-right: auto;
-                justify-content: space-between;
-            }
 
-            .chat-inputs{
-                display:flex;
-                input {
-                    line-height: 4;
-                    width: 100%;
-                    border: 1px solid #1a202c ;
-                    border-left: #718096;
-                    border-bottom: #718096;
-                    border-right: #718096;
-                    border-bottom-left-radius: 5px;
-                    padding-left: 15px;
-                }
-            }
+        }
+        input:focus {
+            outline: none;
+        }
 
-            button{
-                width: 150px;
-                color: #e2e8f0;
-                background: #1a202c;
-                border-bottom-right-radius: 5px;
-            }
+        button {
+            flex-grow: 1;
+            cursor: pointer;
+            color: white;
+            background: #008cff;
+            border-bottom-right-radius: 4px;
+            border-width: unset;
+            border-style: unset;
+            border-color: unset;
+        }
 
         </style>
