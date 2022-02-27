@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,3 +36,7 @@ Route::get('/topicFound', [HomeController::class, 'api']);
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+Route:: get ('/delete', [TableController::class,'delete_function']);
+
+Route:: get ('/update', [TableController::class,'update']);
