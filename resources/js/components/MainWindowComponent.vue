@@ -3,7 +3,7 @@ Template for the  main window to display response from the chatbot as a text
 Author: Vitaly Ivanov
 
 <template>
-
+    <div class="chat-bot__main main-list">
         <div class="main-list__container" ref="chatBot">
             <ul class="main-list__messages">
                 <li class="main-list__message"
@@ -17,6 +17,8 @@ Author: Vitaly Ivanov
                 </li>
             </ul>
         </div>
+
+    </div>
 
 
 </template>

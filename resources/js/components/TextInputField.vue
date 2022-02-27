@@ -1,7 +1,4 @@
 <template>
-
-    <div class="chat-bot__main main-list">
-        <MainWindowComponent :messages="messages"></MainWindowComponent>
         <div class="main-list__input">
             <input type ="text"
                    v-model="message"
@@ -9,28 +6,23 @@
             <button @click="sendMessage" :disabled="isDisabled">Send</button>
 
         </div>
-    </div>
 </template>
 
         <script>
-        import MainWindowComponent from "./MainWindowComponent";
             export default {
                 name: "TextInputField",
                 data: () => ({
                     message: '',
-                    messages:[],
                     isDisabled: false,
                 }),
                 methods: {
                     //send message to bot from user
                     sendMessage(){
                         this.isDisabled = true
-
-                        this.messages.push({
+                        this.$emit("messages", {
                             text: this.message,
                             author: 'user'
                         })
-
 
                         //get a response from bot
                         this.axios
@@ -38,13 +30,13 @@
                             query: this.message
                         })
                             .then(res=> {
-                                this.messages.push({
+                                this.$emit("messages", {
                                     text: res.data.response,
                                     author: 'bot'
                                 })
                             })
                             .catch(error => {
-                                this.messages.push({
+                                this.$emit("messages", {
                                     text: 'Something went wrong. Try again.',
                                     author: 'bot'
                                 })
@@ -55,30 +47,18 @@
                             })
                         //clear message space after text is sent
                         this.message =  ''
-                    }
+                    },
                 },
-                components: {
-                    MainWindowComponent
+                watch: {
+                    // sendMessagesToWindow() {
+                    //     this.$emit("messages", this.messages)
+                    // }
                 }
             }
         </script>
 
         <style scoped lang="scss">
 
-        .main-list {
-            display: flex;
-            flex-direction: column;
-            list-style-type: none;
-            margin-top: 50px;
-            border: 1px solid lightgray;
-            width: 50vw;
-            height: 50vh;
-            border-radius: 4px;
-            margin-left: auto;
-            margin-right: auto;
-            justify-content: space-between;
-
-        }
         .main-list__input {
             display: flex;
         }
