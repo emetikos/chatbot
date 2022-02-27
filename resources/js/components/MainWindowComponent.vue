@@ -1,5 +1,5 @@
 
-Template for the user input and the main window to display response from the chatbot as a text
+Template for the  main window to display response from the chatbot as a text
 Author: Vitaly Ivanov
 
 <template>
@@ -17,15 +17,6 @@ Author: Vitaly Ivanov
                 </li>
             </ul>
         </div>
-        <div class="main-list__input">
-
-                <input
-                    type="text"
-                    v-model="message"
-                    @keyup.enter="sendMessage"
-                />
-                <button @click="sendMessage" :disabled="isDisabled">Send</button>
-        </div>
     </div>
 
 </template>
@@ -35,48 +26,10 @@ Author: Vitaly Ivanov
 export default {
     name: "MainWindowComponent",
     data: () => ({
-        message: '',
-        messages: [],
-        isDisabled: false,
+        props: ['messages'],
     }),
     methods: {
-        sendMessage() {
-            this.isDisabled = true
 
-            this.messages.push({
-                text: this.message,
-                author: 'user'
-            })
-
-            this.axios
-                .post('/query', {
-                    query: this.message
-
-                })
-                .then(res => {
-                    this.messages.push({
-                        text: res.data.response,
-                        author: 'bot'
-                    })
-                })
-                .catch(error => {
-                    this.messages.push({
-                        text: 'Something went wrong. Try again.',
-                        author: 'bot'
-                    })
-                    console.log(error.response.data.errors)
-                })
-                .finally(() => {
-                    this.isDisabled = false
-                })
-            this.message = ''
-
-            this.$nextTick(() => {
-                this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight
-            })
-
-
-        }
     }
 }
 </script>
@@ -150,34 +103,34 @@ export default {
     padding: 0.5rem;
 }
 
-.main-list__input {
-    display: flex;
-}
-
-input {
-    flex-grow: 2;
-    line-height: 3;
-    border: 1px none lightgray;
-    border-top-style: solid;
-    border-bottom-left-radius: 4px;
-    padding-left: 20px;
-
-
-}
-input:focus {
-    outline: none;
-}
-
-button {
-    flex-grow: 1;
-    cursor: pointer;
-    color: white;
-    background: #008cff;
-    border-bottom-right-radius: 4px;
-    border-width: unset;
-    border-style: unset;
-    border-color: unset;
-}
+//.main-list__input {
+//    display: flex;
+//}
+//
+//input {
+//    flex-grow: 2;
+//    line-height: 3;
+//    border: 1px none lightgray;
+//    border-top-style: solid;
+//    border-bottom-left-radius: 4px;
+//    padding-left: 20px;
+//
+//
+//}
+//input:focus {
+//    outline: none;
+//}
+//
+//button {
+//    flex-grow: 1;
+//    cursor: pointer;
+//    color: white;
+//    background: #008cff;
+//    border-bottom-right-radius: 4px;
+//    border-width: unset;
+//    border-style: unset;
+//    border-color: unset;
+//}
 
 
 </style>

@@ -2089,56 +2089,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "MainWindowComponent",
   data: function data() {
     return {
-      message: '',
-      messages: [],
-      isDisabled: false
+      props: ['messages']
     };
   },
-  methods: {
-    sendMessage: function sendMessage() {
-      var _this = this;
-
-      this.isDisabled = true;
-      this.messages.push({
-        text: this.message,
-        author: 'user'
-      });
-      this.axios.post('/query', {
-        query: this.message
-      }).then(function (res) {
-        _this.messages.push({
-          text: res.data.response,
-          author: 'bot'
-        });
-      })["catch"](function (error) {
-        _this.messages.push({
-          text: 'Something went wrong. Try again.',
-          author: 'bot'
-        });
-
-        console.log(error.response.data.errors);
-      })["finally"](function () {
-        _this.isDisabled = false;
-      });
-      this.message = '';
-      this.$nextTick(function () {
-        _this.$refs.chatBot.scrollTop = _this.$refs.chatBot.scrollHeight;
-      });
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -2265,7 +2223,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main-list[data-v-6cbf7bd9], .main-list__messages[data-v-6cbf7bd9] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list[data-v-6cbf7bd9] {\n  margin-top: 50px;\n  border: 1px solid lightgray;\n  width: 50vw;\n  height: 50vh;\n  border-radius: 4px;\n  margin-left: auto;\n  margin-right: auto;\n  justify-content: space-between;\n}\n.main-list__container[data-v-6cbf7bd9] {\n  overflow: scroll;\n}\n.main-list__container ul[data-v-6cbf7bd9] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages span[data-v-6cbf7bd9] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-6cbf7bd9] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-6cbf7bd9] {\n  float: left;\n}\n.main-list__messages .user span[data-v-6cbf7bd9] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-6cbf7bd9] {\n  float: right;\n}\n.main-list__message[data-v-6cbf7bd9] {\n  padding: 0.5rem;\n}\n.main-list__input[data-v-6cbf7bd9] {\n  display: flex;\n}\ninput[data-v-6cbf7bd9] {\n  flex-grow: 2;\n  line-height: 3;\n  border: 1px none lightgray;\n  border-top-style: solid;\n  border-bottom-left-radius: 4px;\n  padding-left: 20px;\n}\ninput[data-v-6cbf7bd9]:focus {\n  outline: none;\n}\nbutton[data-v-6cbf7bd9] {\n  flex-grow: 1;\n  cursor: pointer;\n  color: white;\n  background: #008cff;\n  border-bottom-right-radius: 4px;\n  border-width: unset;\n  border-style: unset;\n  border-color: unset;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main-list[data-v-6cbf7bd9], .main-list__messages[data-v-6cbf7bd9] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list[data-v-6cbf7bd9] {\n  margin-top: 50px;\n  border: 1px solid lightgray;\n  width: 50vw;\n  height: 50vh;\n  border-radius: 4px;\n  margin-left: auto;\n  margin-right: auto;\n  justify-content: space-between;\n}\n.main-list__container[data-v-6cbf7bd9] {\n  overflow: scroll;\n}\n.main-list__container ul[data-v-6cbf7bd9] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages span[data-v-6cbf7bd9] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-6cbf7bd9] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-6cbf7bd9] {\n  float: left;\n}\n.main-list__messages .user span[data-v-6cbf7bd9] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-6cbf7bd9] {\n  float: right;\n}\n.main-list__message[data-v-6cbf7bd9] {\n  padding: 0.5rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -20281,44 +20239,6 @@ var render = function () {
           )
         }),
         0
-      ),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "main-list__input" }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.message,
-            expression: "message",
-          },
-        ],
-        attrs: { type: "text" },
-        domProps: { value: _vm.message },
-        on: {
-          keyup: function ($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm.sendMessage.apply(null, arguments)
-          },
-          input: function ($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.message = $event.target.value
-          },
-        },
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        { attrs: { disabled: _vm.isDisabled }, on: { click: _vm.sendMessage } },
-        [_vm._v("Send")]
       ),
     ]),
   ])
