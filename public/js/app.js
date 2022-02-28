@@ -2660,23 +2660,8 @@ function _onFileUploadError() {
   return _onFileUploadError.apply(this, arguments);
 }
 
-function onFileAnalysed(response) {
-  var _this = this;
-
-  var topics = response.data["possibleTopics"]; // Displays the topics returned and remove this component
-
-  if (Array.isArray(topics)) {
-    this.$refs["analyse-file"].setText("File analysed!");
-    this.isFileAnalysed = true;
-    this.$parent.$refs["topics"].topics.topicsFound = topics; // Remove this component
-
-    setTimeout(function () {
-      _this.remove = true;
-    }, 1000);
-  } // Displays an error if the topics array was not returned
-  else {
-    this.onFileAnalyseError("No topics returned!");
-  }
+function onFileAnalysed(_x4) {
+  return _onFileAnalysed.apply(this, arguments);
 }
 /**
  * Called when the uploaded file being analysed encounters an error.
@@ -2686,6 +2671,45 @@ function onFileAnalysed(response) {
  * @param error  the error that occurred
  */
 
+
+function _onFileAnalysed() {
+  _onFileAnalysed = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(response) {
+    var topics;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            topics = response.data["possibleTopics"]; // Displays the topics returned and remove this component
+
+            if (!Array.isArray(topics)) {
+              _context8.next = 11;
+              break;
+            }
+
+            this.$refs["analyse-file"].setText("File analysed!");
+            this.isFileAnalysed = true;
+            this.$parent.showTopics = true;
+            _context8.next = 7;
+            return this.$nextTick();
+
+          case 7:
+            this.$parent.$refs["topics"].topics.topicsFound = topics;
+            this.$parent.showFileUpload = false;
+            _context8.next = 12;
+            break;
+
+          case 11:
+            this.onFileAnalyseError("No topics returned!");
+
+          case 12:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8, this);
+  }));
+  return _onFileAnalysed.apply(this, arguments);
+}
 
 function onFileAnalyseError(error) {
   this.$refs["analyse-file"].setText("Error analysing file!", true);
@@ -2801,8 +2825,7 @@ function removeFile() {
       file: null,
       isFileUploaded: false,
       isFileAnalysed: false,
-      fileUploadProgress: 0,
-      remove: false
+      fileUploadProgress: 0
     };
   }
 });
@@ -3392,7 +3415,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.topic-item[data-v-e46213f2] {\n    margin: .3rem;\n    width: 100%;\n}\n.btn[data-v-e46213f2] {\n    background-color: white;\n    color: black;\n    border: none;\n    padding: 4px 4px;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    font-size: 12px;\n    font-style: italic;\n    font-family: \"Helvetica Neue\", sans-serif;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.topic-item[data-v-e46213f2] {\r\n    margin: .3rem;\r\n    width: 100%;\n}\n.btn[data-v-e46213f2] {\r\n    background-color: white;\r\n    color: black;\r\n    border: none;\r\n    padding: 4px 4px;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    display: inline-block;\r\n    font-size: 12px;\r\n    font-style: italic;\r\n    font-family: \"Helvetica Neue\", sans-serif;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3416,7 +3439,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.topics-found[data-v-49d1554f] {\n    display: block;\n}\n.topics[data-v-49d1554f] {\n    max-width: 12rem;\n    border:1px solid black;\n    border-radius: 4px;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.topics-found[data-v-49d1554f] {\r\n    display: block;\n}\n.topics[data-v-49d1554f] {\r\n    max-width: 12rem;\r\n    border:1px solid black;\r\n    border-radius: 4px;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23417,30 +23440,28 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.remove === false
-    ? _c(
-        "div",
-        { staticClass: "chatbot-file-upload-container" },
-        [
-          _vm.currentState === _vm.State.ATTACH_FILE
-            ? _c("AttachFileComponent", { ref: "attach-file" })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentState === _vm.State.FIlE_ATTACHED
-            ? _c("FileAttachedComponent", { ref: "file-attached" })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentState === _vm.State.FILE_UPLOADING
-            ? _c("FileUploadingComponent", { ref: "file-uploading" })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentState === _vm.State.ANALYSE_FILE
-            ? _c("AnalyseFileComponent", { ref: "analyse-file" })
-            : _vm._e(),
-        ],
-        1
-      )
-    : _vm._e()
+  return _c(
+    "div",
+    { staticClass: "chatbot-file-upload-container" },
+    [
+      _vm.currentState === _vm.State.ATTACH_FILE
+        ? _c("AttachFileComponent", { ref: "attach-file" })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentState === _vm.State.FIlE_ATTACHED
+        ? _c("FileAttachedComponent", { ref: "file-attached" })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentState === _vm.State.FILE_UPLOADING
+        ? _c("FileUploadingComponent", { ref: "file-uploading" })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentState === _vm.State.ANALYSE_FILE
+        ? _c("AnalyseFileComponent", { ref: "analyse-file" })
+        : _vm._e(),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -35957,7 +35978,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","F:\\\\MyCloud\\\\university\\\\Computing\\\\Stage 3\\\\CO600 - Group Project - Laravel"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"F:\\\\MyCloud\\\\university\\\\Computing\\\\Stage 3\\\\CO600 - Group Project - Laravel","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 
@@ -36136,7 +36157,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunkchatbot"] = self["webpackChunkchatbot"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();

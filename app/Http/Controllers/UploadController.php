@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Session;
  * @since    1.0
  */
 class UploadController extends Controller {
-    private const PDF_DIRECTORY = "../resources/pdf/";
+    private const PDF_DIRECTORY = "../public/pdf/";
 
     /**
      * Saves the PDF that was uploaded to the server.
@@ -55,7 +55,7 @@ class UploadController extends Controller {
             if (move_uploaded_file($PDF["tmp_name"], $availableFilePath)) {
                 Session::put("fileSubmit", "True");
                 Session::put("readySubmit", "False");
-                Session::put("file", realpath($availableFilePath));
+                Session::put("file", pathinfo($availableFilePath, PATHINFO_BASENAME));
 
                 return true;
             }
