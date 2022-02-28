@@ -15,10 +15,15 @@
                             </p>
                         </li>
                     </ul>
-
-                    <FileUploadComponent />
-                    <Topics ref="topics" />
-                    <LinksOut/>
+                    <div v-if="showFileUpload" class="main-list__upload-file">
+                        <FileUploadComponent />
+                    </div>
+                    <div v-if="showTopics" class="main-list__show-topics">
+                        <Topics ref="topics" />
+                    </div>
+                    <div v-if="showLinks" class="main-list__show-links">
+                        <LinksOut/>
+                    </div>
 
                 </div>
                 <TextInputField @messages="getMessages"/>
@@ -37,6 +42,9 @@ export default {
     name: "MainWindowComponent",
     data: () => ({
         messages:[],
+        showFileUpload: false,
+        showTopics: false,
+        showLinks: false,
     }),
     methods: {
         getMessages(values) {

@@ -3140,6 +3140,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -3148,7 +3153,10 @@ __webpack_require__.r(__webpack_exports__);
   name: "MainWindowComponent",
   data: function data() {
     return {
-      messages: []
+      messages: [],
+      showFileUpload: false,
+      showTopics: false,
+      showLinks: false
     };
   },
   methods: {
@@ -23718,35 +23726,51 @@ var render = function () {
         "div",
         { staticClass: "chat-bot__main main-list" },
         [
-          _c(
-            "div",
-            { ref: "chatBot", staticClass: "main-list__container" },
-            [
-              _c(
-                "ul",
-                { staticClass: "main-list__messages" },
-                _vm._l(_vm.messages, function (message, index) {
-                  return _c(
-                    "li",
-                    {
-                      key: index,
-                      staticClass: "main-list__message",
-                      class: message.author,
-                    },
-                    [_c("p", [_c("span", [_vm._v(_vm._s(message.text))])])]
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c("FileUploadComponent"),
-              _vm._v(" "),
-              _c("Topics", { ref: "topics" }),
-              _vm._v(" "),
-              _c("LinksOut"),
-            ],
-            1
-          ),
+          _c("div", { ref: "chatBot", staticClass: "main-list__container" }, [
+            _c(
+              "ul",
+              { staticClass: "main-list__messages" },
+              _vm._l(_vm.messages, function (message, index) {
+                return _c(
+                  "li",
+                  {
+                    key: index,
+                    staticClass: "main-list__message",
+                    class: message.author,
+                  },
+                  [_c("p", [_c("span", [_vm._v(_vm._s(message.text))])])]
+                )
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _vm.showFileUpload
+              ? _c(
+                  "div",
+                  { staticClass: "main-list__upload-file" },
+                  [_c("FileUploadComponent")],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.showTopics
+              ? _c(
+                  "div",
+                  { staticClass: "main-list__show-topics" },
+                  [_c("Topics", { ref: "topics" })],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.showLinks
+              ? _c(
+                  "div",
+                  { staticClass: "main-list__show-links" },
+                  [_c("LinksOut")],
+                  1
+                )
+              : _vm._e(),
+          ]),
           _vm._v(" "),
           _c("TextInputField", { on: { messages: _vm.getMessages } }),
         ],
