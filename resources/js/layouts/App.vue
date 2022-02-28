@@ -26,7 +26,7 @@
                     </div>
 
                 </div>
-                <TextInputField @messages="getMessages"/>
+                <TextInputField @messages="getMessages" @readyToSubmit="isFileUploaded"/>
             </div>
         </div>
     </section>
@@ -48,7 +48,11 @@ export default {
     }),
     methods: {
         getMessages(values) {
-            this.messages.push(values);
+            this.messages.push(values)
+        },
+        isFileUploaded(values) {
+            if (values === 'False') this.showFileUpload = false
+            if (values === 'True') this.showFileUpload = true
         }
     },
     components: {
@@ -61,8 +65,10 @@ export default {
 }
 </script>
 
-<!-- global styling -->
+
 <style scoped lang="scss">
+
+// Messages
 .main-list {
     display: flex;
     flex-direction: column;
@@ -127,5 +133,13 @@ export default {
 .main-list__message {
     padding: 0.5rem;
 }
+
+// file upload container
+.main-list__upload-file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 </style>

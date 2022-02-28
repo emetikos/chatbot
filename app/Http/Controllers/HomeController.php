@@ -86,12 +86,13 @@ class HomeController extends Controller {
      */
     public function api(Request $request) {
         $message = '';
+        if(Session::has('userInput')) $message = Session::get('userInput');
         if($request->input('query')) $message = $request->input('query');
         $readySubmit = 'False';
         if(Session::has('readySubmit')) $readySubmit = Session::get('readySubmit');
         $topicFound = 'False';
         if(Session::has('topicFound')) $topicFound = Session::get('topicFound');
-        $fileSubmit = 'True';
+        $fileSubmit = 'False';
         if(Session::has('fileSubmit')) $fileSubmit = Session::get('fileSubmit');
         $file = 'None';
         if(Session::has('file')) $file = Session::get('file');
@@ -102,7 +103,7 @@ class HomeController extends Controller {
         $topicFinal = 'Example topic';
         if(Session::has('topicFinal')) $topicFinal = Session::get('topicFinal');
 
-        $arr = Http::get('https://chatbot-educ-api.herokuapp.com/',[
+        $arr = Http::get('http://127.0.0.1:5000/',[
                 'message'=>$message,
                 'readySubmit'=>$readySubmit,
                 'topicFound'=>$topicFound,
@@ -112,10 +113,10 @@ class HomeController extends Controller {
                 'topicSelected'=>$topicSelected,
                 'topicFinal'=>$topicFinal,
             ])->throw()->json();
+        Session::put('userInput', $arr['message']);
         Session::put('readySubmit', $arr['readySubmit']);
         Session::put('topicFound', $arr['topicFound']);
         Session::put('fileSubmit', $arr['fileSubmit']);
-        Session::put('classifiedMsg', $arr['classifiedMsg']);
         Session::put('classifiedMsg', $arr['classifiedMsg']);
         Session::put('topicSelected', $arr['topicSelected']);
         Session::put('topicFinal', $arr['topicFinal']);

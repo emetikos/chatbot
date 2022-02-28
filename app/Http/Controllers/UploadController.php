@@ -54,6 +54,7 @@ class UploadController extends Controller {
             // variables
             if (move_uploaded_file($PDF["tmp_name"], $availableFilePath)) {
                 Session::put("fileSubmit", "True");
+                Session::put("readySubmit", "False");
                 Session::put("file", realpath($availableFilePath));
 
                 return true;

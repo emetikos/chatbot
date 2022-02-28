@@ -34,6 +34,7 @@
                                     text: res.data.response,
                                     author: 'bot'
                                 })
+                                this.$emit("readyToSubmit", res.data.readySubmit)
                             })
                             .catch(error => {
                                 this.$emit("messages", {
