@@ -119,6 +119,7 @@ class HomeController extends Controller {
         Session::put('classifiedMsg', $arr['classifiedMsg']);
         Session::put('topicSelected', $arr['topicSelected']);
         Session::put('topicFinal', $arr['topicFinal']);
+        Session::put('file', $arr['fileUploaded']);
 
         return response($arr, 200);
         }

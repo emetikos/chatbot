@@ -49,11 +49,6 @@
                         this.message =  ''
                     },
                 },
-                watch: {
-                    // sendMessagesToWindow() {
-                    //     this.$emit("messages", this.messages)
-                    // }
-                }
             }
         </script>
 
