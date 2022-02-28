@@ -26,7 +26,7 @@
                     </div>
 
                 </div>
-                <TextInputField @messages="getMessages" @readyToSubmit="isFileUploaded"/>
+                <TextInputField @messages="getMessages" @readyToSubmit="isFileUploaded" @scroll="scrollDown"/>
             </div>
         </div>
     </section>
@@ -53,6 +53,9 @@ export default {
         isFileUploaded(values) {
             if (values === 'False') this.showFileUpload = false
             if (values === 'True') this.showFileUpload = true
+        },
+        scrollDown(values) {
+            if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight
         }
     },
     components: {
@@ -85,7 +88,7 @@ export default {
 }
 
 .main-list__container {
-    overflow: scroll;
+    //overflow: scroll;
     ul {
         margin-block-start: unset;
         margin-block-end: unset;
