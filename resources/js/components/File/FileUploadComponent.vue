@@ -1,5 +1,5 @@
 <template>
-	<div class="chatbot-file-upload-container" v-if="remove === false">
+	<div class="chatbot-file-upload-container">
         <AttachFileComponent ref="attach-file"
                              v-if="currentState === State.ATTACH_FILE" />
         <FileAttachedComponent ref="file-attached"
@@ -158,7 +158,7 @@
      *
      * @param response  the response from the http request
      */
-    function onFileAnalysed(response) {
+    async function onFileAnalysed(response) {
         let topics = response.data["possibleTopics"];
 
         // Displays the topics returned and remove this component
@@ -166,10 +166,13 @@
             this.$refs["analyse-file"].setText("File analysed!");
             this.isFileAnalysed = true;
 
+            this.$parent.showTopics = true;
+
+            await this.$nextTick();
+
             this.$parent.$refs["topics"].topics.topicsFound = topics;
 
-            // Remove this component
-            setTimeout(() => { this.remove = true; }, 1000);
+            this.$parent.showFileUpload = false;
         }
         // Displays an error if the topics array was not returned
         else {
@@ -301,8 +304,6 @@
                 isFileUploaded: false,
                 isFileAnalysed: false,
                 fileUploadProgress: 0,
-
-                remove: false,
             }
         }
     }
