@@ -19,11 +19,6 @@ class TableController extends Controller
     }
 
 
-    public function store(){
-        $query = '1';
-        $link = 'asdf';
-        $storequery = DB::insert('INSERT INTO queries (name) VALUES (?)', [$query]);
-        $storequery = DB::insert('INSERT INTO resources (query_id, path_name) VALUES ((SELECT MAX(id) FROM queries), ?)', [$link]);
     public function store($query, $link){
         try {
             $check = DB::select('SELECT path_name FROM resources r JOIN queries q ON r.query_id=q.id WHERE q.name = ?', [$query]);

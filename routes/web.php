@@ -30,7 +30,7 @@ Route::get('/flash', [HomeController::class, 'flashSession']);
 Route::get('/topicFound', [HomeController::class, 'api']);
 //Route::get('/store', [TableController::class, 'store']);
 //Route::get('/same', [TableController::class, 'retrieve_same']);
-//Route::get('/test', [TableController::class, 'test']);
+Route::get('/test', [TableController::class, 'test']);
 //Route::post('query', [HomeController::class, 'query']);
 //Route::post('/query', [HomeController::class, 'ajaxQuery']);
 //Route::get('/', function () {

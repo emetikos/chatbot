@@ -18,7 +18,7 @@
             $links = TableController::retrieve_same($input);
             if($links == 'NULL') {
                 // runs python script
-                $process = new Process(['python', '/path/to/your_script.py']);
+                $process = new Process(['python', '../public/python-scrips/TextAnalysis/resourceGathering.py']);
                 $process->run();
                 if (!$process->isSuccessful()) {
                     throw new ProcessFailedException($process);
