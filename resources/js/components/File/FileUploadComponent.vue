@@ -163,16 +163,21 @@
 
         // Displays the topics returned and remove this component
         if (Array.isArray(topics)) {
-            this.$refs["analyse-file"].setText("File analysed!");
-            this.isFileAnalysed = true;
+            if (topics.length > 0) {
+                this.$refs["analyse-file"].setText("File analysed!");
+                this.isFileAnalysed = true;
 
-            this.$parent.showTopics = true;
+                this.$parent.showTopics = true;
 
-            await this.$nextTick();
+                await this.$nextTick();
 
-            this.$parent.$refs["topics"].topics.topicsFound = topics;
+                this.$parent.$refs["topics"].topics.topicsFound = topics;
 
-            this.$parent.showFileUpload = false;
+                this.$parent.showFileUpload = false;
+            }
+            else {
+                this.$refs["analyse-file"].setText("No topics found!");
+            }
         }
         // Displays an error if the topics array was not returned
         else {
