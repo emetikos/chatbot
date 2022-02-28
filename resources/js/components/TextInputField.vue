@@ -48,6 +48,10 @@
                             })
                         //clear message space after text is sent
                         this.message =  ''
+
+                        this.$nextTick(() => {
+                            this.$emit("scroll", true)
+                        })
                     },
                 },
             }

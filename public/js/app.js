@@ -2972,6 +2972,9 @@ __webpack_require__.r(__webpack_exports__);
       }); //clear message space after text is sent
 
       this.message = '';
+      this.$nextTick(function () {
+        _this.$emit("scroll", true);
+      });
     }
   }
 });
@@ -3164,6 +3167,9 @@ __webpack_require__.r(__webpack_exports__);
     isFileUploaded: function isFileUploaded(values) {
       if (values === 'False') this.showFileUpload = false;
       if (values === 'True') this.showFileUpload = true;
+    },
+    scrollDown: function scrollDown(values) {
+      if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight;
     }
   },
   components: {
@@ -23778,6 +23784,7 @@ var render = function () {
             on: {
               messages: _vm.getMessages,
               readyToSubmit: _vm.isFileUploaded,
+              scroll: _vm.scrollDown,
             },
           }),
         ],
@@ -36136,7 +36143,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunkchatbot"] = self["webpackChunkchatbot"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
