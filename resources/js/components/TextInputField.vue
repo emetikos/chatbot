@@ -18,7 +18,6 @@
                 }),
                 mounted() {
                     this.welcomeMessage()
-                    this.load()
                 },
                 methods: {
                     welcomeMessage(){
