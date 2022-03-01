@@ -241,17 +241,17 @@ If you would like to make a link or bookmark to this page, the URL is:<BR> https
     function showChatBot(){
         document.getElementById('showChatBot').className = "btn-hidden";
         document.getElementById('div-frame').className = "show";
-        document.getElementById('frame').className = "show";
-        document.getElementById('header-div').className = "header-div-show";
+        // document.getElementById('frame').className = "show";
+        // document.getElementById('header-div').className = "header-div-show";
 
     }
 
     function hideChatBot(){
         document.getElementById('div-frame').className = "hidden";
-        document.getElementById('frame').className = "hidden";
+        // document.getElementById('frame').className = "hidden";
         document.getElementById('showChatBot').className = "btn-show";
-        document.getElementById('header-div').className = "header-div-hide";
-        document.getElementById('frame').contentWindow.location.reload();
+        // document.getElementById('header-div').className = "header-div-hide";
+        // document.getElementById('frame').contentWindow.location.reload();
     }
 
     window.setTimeout(function () {
