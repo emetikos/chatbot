@@ -3003,14 +3003,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     welcomeMessage: function welcomeMessage() {
-      this.$emit('messages', {
-        text: 'Hello ! I am a sophisticated ( Intelligent) bot',
-        author: 'bot'
-      });
+      var _this = this;
+
+      setTimeout(function () {
+        return _this.$emit('messages', {
+          text: 'Hello ! I am a sophisticated ( Intelligent) bot',
+          author: 'bot'
+        });
+      }, 2000);
     },
     //send message to bot from user
     sendMessage: function sendMessage() {
-      var _this = this;
+      var _this2 = this;
 
       this.isDisabled = true;
       this.$emit("messages", {
@@ -3021,28 +3025,28 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.post('/query', {
         query: this.message
       }).then(function (res) {
-        _this.loading = false;
+        _this2.loading = false;
 
-        _this.$emit("messages", {
+        _this2.$emit("messages", {
           text: res.data.response,
           author: 'bot'
         });
 
-        _this.$emit("readyToSubmit", res.data.readySubmit);
+        _this2.$emit("readyToSubmit", res.data.readySubmit);
       })["catch"](function (error) {
-        _this.$emit("messages", {
+        _this2.$emit("messages", {
           text: 'Something went wrong. Try again.',
           author: 'bot'
         });
 
         console.log(error.response.data.errors);
       })["finally"](function () {
-        _this.isDisabled = false;
+        _this2.isDisabled = false;
       }); //clear message space after text is sent
 
       this.message = '';
       this.$nextTick(function () {
-        _this.$emit("scroll", true);
+        _this2.$emit("scroll", true);
       });
     }
   }

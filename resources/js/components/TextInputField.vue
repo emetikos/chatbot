@@ -22,10 +22,12 @@
                 },
                 methods: {
                     welcomeMessage(){
-                        this.$emit('messages', {
+
+                        setTimeout( () => this.$emit('messages', {
                             text: 'Hello ! I am a sophisticated ( Intelligent) bot',
                             author:'bot'
-                        })
+                        }), 2000)
+
                     },
                     //send message to bot from user
                     sendMessage(){
