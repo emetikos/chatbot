@@ -196,7 +196,7 @@ If you would like to make a link or bookmark to this page, the URL is:<BR> https
         document.getElementById('iframe').className = "show";
     }
 
-    function hideChatBot(){
+    function hide_chat_bot(){
         document.getElementById('iframe').className = "iframe-hidden";
         // document.getElementById('showChatBot').className = "btn-show";
         // document.getElementById('showChatBot').contentWindow.location.reload();

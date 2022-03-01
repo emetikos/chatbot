@@ -64,7 +64,7 @@ export default {
             if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight
         },
         hideChatBot() {
-           parent.hideChatBot();
+           parent.hide_chat_bot();
 
            axios.get('/flash')
         }

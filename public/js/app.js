@@ -3250,7 +3250,7 @@ __webpack_require__.r(__webpack_exports__);
       if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight;
     },
     hideChatBot: function hideChatBot() {
-      parent.hideChatBot();
+      parent.hide_chat_bot();
       axios.get('/flash');
     }
   },
