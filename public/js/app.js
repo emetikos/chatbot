@@ -2993,10 +2993,21 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       message: '',
-      isDisabled: false
+      isDisabled: false,
+      loading: false
     };
   },
+  mounted: function mounted() {
+    this.welcomeMessage();
+    this.load();
+  },
   methods: {
+    welcomeMessage: function welcomeMessage() {
+      this.$emit('messages', {
+        text: 'Hello ! I am a sophisticated ( Intelligent) bot',
+        author: 'bot'
+      });
+    },
     //send message to bot from user
     sendMessage: function sendMessage() {
       var _this = this;
@@ -3010,6 +3021,8 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.post('/query', {
         query: this.message
       }).then(function (res) {
+        _this.loading = false;
+
         _this.$emit("messages", {
           text: res.data.response,
           author: 'bot'
@@ -3232,6 +3245,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     scrollDown: function scrollDown(values) {
       if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight;
+    },
+    hideChatBot: function hideChatBot() {
+      parent.hideChatBot();
+      axios.get('/flash');
     }
   },
   components: {
@@ -3547,7 +3564,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 435px;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  overflow: auto;\n  scrollbar-width: none;\n  /* Firefox */\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 449px;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #3c444f;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main_container_hide[data-v-9087fe26] {\n  display: none;\n}\n.main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 435px;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  overflow: auto;\n  scrollbar-width: none;\n  /* Firefox */\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 449px;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #3c444f;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23804,103 +23821,96 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "chat-bot" }, [
-    _c("div", { staticClass: "chat-bot__container" }, [
-      _c(
-        "div",
-        { staticClass: "header-div-show ", attrs: { id: "header-div" } },
-        [
-          _c("div", { attrs: { id: "header-icon" } }, [
-            _c("img", {
-              attrs: { src: (__webpack_require__(/*! ../../img/chatbot.png */ "./public/img/chatbot.png")["default"]), alt: "" },
-            }),
-          ]),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "header-title" } }, [_vm._v("Chatbot")]),
-          _vm._v(" "),
-          _vm._m(0),
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "chat-bot__main main-list" },
-        [
-          _c("div", { ref: "chatBot", staticClass: "main-list__container" }, [
-            _c(
-              "ul",
-              { staticClass: "main-list__messages" },
-              _vm._l(_vm.messages, function (message, index) {
-                return _c(
-                  "li",
-                  {
-                    key: index,
-                    staticClass: "main-list__message",
-                    class: message.author,
-                  },
-                  [_c("p", [_c("span", [_vm._v(_vm._s(message.text))])])]
-                )
+    _c(
+      "div",
+      { staticClass: "chat-bot__container", attrs: { id: "main_container" } },
+      [
+        _c(
+          "div",
+          { staticClass: "header-div-show ", attrs: { id: "header-div" } },
+          [
+            _c("div", { attrs: { id: "header-icon" } }, [
+              _c("img", {
+                attrs: { src: (__webpack_require__(/*! ../../img/chatbot.png */ "./public/img/chatbot.png")["default"]), alt: "" },
               }),
-              0
-            ),
+            ]),
             _vm._v(" "),
-            _vm.showFileUpload
-              ? _c(
-                  "div",
-                  { staticClass: "main-list__upload-file" },
-                  [_c("FileUploadComponent")],
-                  1
-                )
-              : _vm._e(),
+            _c("div", { attrs: { id: "header-title" } }, [_vm._v("Chatbot")]),
             _vm._v(" "),
-            _vm.showTopics
-              ? _c(
-                  "div",
-                  { staticClass: "main-list__show-topics" },
-                  [_c("Topics", { ref: "topics" })],
-                  1
-                )
-              : _vm._e(),
+            _c("div", { attrs: { id: "header-close-btn" } }, [
+              _c("input", {
+                attrs: { id: "hideChatBot", type: "button", value: "X" },
+                on: { click: _vm.hideChatBot },
+              }),
+            ]),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "chat-bot__main main-list" },
+          [
+            _c("div", { ref: "chatBot", staticClass: "main-list__container" }, [
+              _c(
+                "ul",
+                { staticClass: "main-list__messages" },
+                _vm._l(_vm.messages, function (message, index) {
+                  return _c(
+                    "li",
+                    {
+                      key: index,
+                      staticClass: "main-list__message",
+                      class: message.author,
+                    },
+                    [_c("p", [_c("span", [_vm._v(_vm._s(message.text))])])]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _vm.showFileUpload
+                ? _c(
+                    "div",
+                    { staticClass: "main-list__upload-file" },
+                    [_c("FileUploadComponent")],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.showTopics
+                ? _c(
+                    "div",
+                    { staticClass: "main-list__show-topics" },
+                    [_c("Topics", { ref: "topics" })],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.showLinks
+                ? _c(
+                    "div",
+                    { staticClass: "main-list__show-links" },
+                    [_c("LinksOut")],
+                    1
+                  )
+                : _vm._e(),
+            ]),
             _vm._v(" "),
-            _vm.showLinks
-              ? _c(
-                  "div",
-                  { staticClass: "main-list__show-links" },
-                  [_c("LinksOut")],
-                  1
-                )
-              : _vm._e(),
-          ]),
-          _vm._v(" "),
-          _c("TextInputField", {
-            on: {
-              messages: _vm.getMessages,
-              readyToSubmit: _vm.isFileUploaded,
-              scroll: _vm.scrollDown,
-            },
-          }),
-        ],
-        1
-      ),
-    ]),
+            _c("TextInputField", {
+              on: {
+                messages: _vm.getMessages,
+                readyToSubmit: _vm.isFileUploaded,
+                scroll: _vm.scrollDown,
+              },
+            }),
+          ],
+          1
+        ),
+      ]
+    ),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "header-close-btn" } }, [
-      _c("input", {
-        attrs: {
-          id: "hideChatBot",
-          type: "button",
-          value: "X",
-          onclick: "hideChatBot()",
-        },
-      }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -36071,7 +36081,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","F:\\\\MyCloud\\\\university\\\\Computing\\\\Stage 3\\\\CO600 - Group Project - Laravel"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"F:\\\\MyCloud\\\\university\\\\Computing\\\\Stage 3\\\\CO600 - Group Project - Laravel","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"C:\\\\Users\\\\Spyros\\\\Documents\\\\chatbot","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

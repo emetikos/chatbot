@@ -8,55 +8,12 @@
     <title>Document</title>
 
     <style>
-        .hidden{
+        .iframe-hidden{
             position: fixed;
             bottom: 0;
             right: 0;
             display: none;
             height: 300px;
-        }
-        .header-div-hide {
-            display: none;
-        }
-        .header-div-show {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            position: fixed;
-            width: 453px;
-            height: 50px;
-            bottom: 0;
-            right: 0;
-            border-radius: 12px 12px 0 0 ;
-            margin-right: 11px;
-            margin-bottom:564px;
-            background-color: #37424e;
-        }
-
-        #header-icon {
-            grid-column: 1/2;
-            margin: 0 auto;
-            line-height: 50px;
-
-        }
-        #header-title {
-            line-height: 50px;
-            grid-column: 2/6;
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-        }
-        #header-close-btn {
-            grid-column: 6/7;
-            line-height: 50px;
-
-            margin:0 auto;
-        }
-        #hideChatBot {
-            width: 30px;
-            height: 30px;
-            color: white;
-            background-color: #37424e;
-
         }
 
         .show{
@@ -71,7 +28,6 @@
             height: 600px;
             margin-right: 10px;
             margin-bottom:10px;
-            /*box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;*/
         }
 
         .btn-show{
@@ -80,12 +36,14 @@
             right: 0;
             margin-right: 20px;
             margin-bottom: 30px;
-            width: 200px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            font-size: 25px;
-            font-weight: bold;
-            transition-delay: 4s;
+        }
+
+        .btn-show:hover{
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
         }
 
         .btn-hidden{
@@ -223,42 +181,36 @@ Most HTML commands come in pairs: for example, "<H4>" marks the beginning of a s
 
 
 If you would like to make a link or bookmark to this page, the URL is:<BR> https://www.sheldonbrown.com/web_sample1.html
-
-<input id="showChatBot" class="btn-hidden" type="button" value="Chatbot icon" onclick="showChatBot()">
-
-{{--<div id="header-div" class="header-div-hide">--}}
-{{--    <div id="header-icon"> <img src="{{ url('/img/chatbot.png') }}" style="width: 45px; margin-right: 5px;"> </div>--}}
-{{--    <div id="header-title">Chatbot</div>--}}
-{{--    <div id="header-close-btn"><input id="hideChatBot" type="button" value="X" onclick="hideChatBot()"></div>--}}
-{{--</div>--}}
-
-    <iframe id="div-frame" class="hidden"  src="http://127.0.0.1:8000/"></iframe>
-
-
+<img id="showChatBot" class="btn-hidden" src="{{ url('/img/chatbot.png') }}" onclick="showChatBot()" alt="">
+<iframe id="iframe" class="iframe-hidden" src="http://127.0.0.1:8000/"></iframe>
 
 <script>
 
+    /**
+     * function to call the iframe and display the chatbot environment
+     *
+     * Hide the button so it will not be visible any more
+     */
     function showChatBot(){
         document.getElementById('showChatBot').className = "btn-hidden";
-        document.getElementById('div-frame').className = "show";
-        // document.getElementById('frame').className = "show";
-        // document.getElementById('header-div').className = "header-div-show";
-
+        document.getElementById('iframe').className = "show";
     }
 
     function hideChatBot(){
-        document.getElementById('div-frame').className = "hidden";
-        // document.getElementById('frame').className = "hidden";
-        document.getElementById('showChatBot').className = "btn-show";
-        // document.getElementById('header-div').className = "header-div-hide";
-        // document.getElementById('frame').contentWindow.location.reload();
+        document.getElementById('iframe').className = "iframe-hidden";
+        // document.getElementById('showChatBot').className = "btn-show";
+        // document.getElementById('showChatBot').contentWindow.location.reload();
+        // document.getElementById('showChatBot').src = loadIframe()
+
     }
 
+    // SET A DELAY FOR THE CHATBOT WHEN THE PAGE IS LOADED
     window.setTimeout(function () {
         var btn = document.getElementById('showChatBot');
         btn.setAttribute('class', 'btn-show');
 
-    }, 1000);
+    }, 3000);
+
 </script>
 </body>
 </html>

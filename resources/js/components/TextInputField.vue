@@ -14,8 +14,19 @@
                 data: () => ({
                     message: '',
                     isDisabled: false,
+                    loading:false,
                 }),
+                mounted() {
+                    this.welcomeMessage()
+                    this.load()
+                },
                 methods: {
+                    welcomeMessage(){
+                        this.$emit('messages', {
+                            text: 'Hello ! I am a sophisticated ( Intelligent) bot',
+                            author:'bot'
+                        })
+                    },
                     //send message to bot from user
                     sendMessage(){
                         this.isDisabled = true
@@ -30,6 +41,7 @@
                             query: this.message
                         })
                             .then(res=> {
+                                this.loading = false;
                                 this.$emit("messages", {
                                     text: res.data.response,
                                     author: 'bot'

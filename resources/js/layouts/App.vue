@@ -1,11 +1,11 @@
 <template>
     <section class="chat-bot">
 
-        <div class="chat-bot__container">
+        <div id="main_container" class="chat-bot__container">
             <div id="header-div" class="header-div-show ">
                 <div id="header-icon"> <img :src="require('/img/chatbot.png').default" alt="" ></div>
                 <div id="header-title">Chatbot</div>
-                <div id="header-close-btn"><input id="hideChatBot" type="button" value="X" onclick="hideChatBot()"></div>
+                <div id="header-close-btn"><input id="hideChatBot" type="button" value="X" v-on:click="hideChatBot"></div>
             </div>
 
             <div class="chat-bot__main main-list">
@@ -62,6 +62,11 @@ export default {
         },
         scrollDown(values) {
             if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight
+        },
+        hideChatBot() {
+           parent.hideChatBot();
+
+           axios.get('/flash')
         }
     },
     components: {
@@ -77,23 +82,21 @@ export default {
 
 <style scoped lang="scss">
 
+.main_container_hide{
+    display: none;
+}
 // Messages
 .main-list {
 
-    //border:1px solid #37424e;
     display: flex;
     flex-direction: column;
     list-style-type: none;
-    //margin-top: 50px;
-    //border: 1px solid lightgray;
     width: 435px;
     height: 533px;
     border-radius:0 0 4px 4px;
     position: fixed;
     left:5px;
     top:50px;
-    //margin-left: auto;
-    //margin-right: auto;
     justify-content: space-between;
 
 }
@@ -164,8 +167,6 @@ export default {
     position: fixed;
     top:0;
     left:0;
-    //border-radius: 12px 12px 0 0 ;
-    //margin-right: 11px;
     background-color: #3c444f;
 }
 
