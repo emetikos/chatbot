@@ -1,8 +1,14 @@
 <template>
     <section class="chat-bot">
-        <div class="chat-bot__container">
-            <div class="chat-bot__main main-list">
 
+        <div class="chat-bot__container">
+            <div id="header-div" class="header-div-show ">
+                <div id="header-icon"> <img :src="require('/img/chatbot.png').default" alt="" ></div>
+                <div id="header-title">Chatbot</div>
+                <div id="header-close-btn"><input id="hideChatBot" type="button" value="X" onclick="hideChatBot()"></div>
+            </div>
+
+            <div class="chat-bot__main main-list">
                 <div class="main-list__container" ref="chatBot">
                     <ul class="main-list__messages">
                         <li class="main-list__message"
@@ -73,22 +79,29 @@ export default {
 
 // Messages
 .main-list {
+
+    //border:1px solid #37424e;
     display: flex;
     flex-direction: column;
     list-style-type: none;
-    margin-top: 50px;
-    border: 1px solid lightgray;
-    width: 50vw;
-    height: 50vh;
-    border-radius: 4px;
-    margin-left: auto;
-    margin-right: auto;
+    //margin-top: 50px;
+    //border: 1px solid lightgray;
+    width: 435px;
+    height: 533px;
+    border-radius:0 0 4px 4px;
+    position: fixed;
+    left:5px;
+    top:50px;
+    //margin-left: auto;
+    //margin-right: auto;
     justify-content: space-between;
 
 }
 
 .main-list__container {
-    //overflow: scroll;
+    overflow: auto;
+    scrollbar-width: none;  /* Firefox */
+
     ul {
         margin-block-start: unset;
         margin-block-end: unset;
@@ -96,7 +109,6 @@ export default {
         margin-inline-end: unset;
         padding-inline-start: unset;
     }
-
 }
 
 .main-list__messages {
@@ -144,5 +156,36 @@ export default {
     justify-content: center;
 }
 
+.header-div-show {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: 449px;
+    height: 50px;
+    position: fixed;
+    top:0;
+    left:0;
+    //border-radius: 12px 12px 0 0 ;
+    //margin-right: 11px;
+    background-color: #3c444f;
+}
+
+#header-icon {
+    grid-column: 1/2;
+    margin: 0 auto;
+    line-height: 50px;
+    padding-top: 5px;
+}
+#header-title {
+    line-height: 50px;
+    grid-column: 2/6;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+#header-close-btn {
+    grid-column: 6/7;
+    line-height: 50px;
+    margin:0 auto;
+}
 
 </style>

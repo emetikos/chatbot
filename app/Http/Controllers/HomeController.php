@@ -104,6 +104,7 @@ class HomeController extends Controller {
         if(Session::has('topicFinal')) $topicFinal = Session::get('topicFinal');
 
         $arr = Http::get('https://chatbot-educ-api.herokuapp.com/',[
+//            $arr = Http::get('http://127.0.0.1:5000/',[
                 'message'=>$message,
                 'readySubmit'=>$readySubmit,
                 'topicFound'=>$topicFound,

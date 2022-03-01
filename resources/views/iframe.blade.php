@@ -15,16 +15,63 @@
             display: none;
             height: 300px;
         }
+        .header-div-hide {
+            display: none;
+        }
+        .header-div-show {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            position: fixed;
+            width: 453px;
+            height: 50px;
+            bottom: 0;
+            right: 0;
+            border-radius: 12px 12px 0 0 ;
+            margin-right: 11px;
+            margin-bottom:564px;
+            background-color: #37424e;
+        }
+
+        #header-icon {
+            grid-column: 1/2;
+            margin: 0 auto;
+            line-height: 50px;
+
+        }
+        #header-title {
+            line-height: 50px;
+            grid-column: 2/6;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+        #header-close-btn {
+            grid-column: 6/7;
+            line-height: 50px;
+
+            margin:0 auto;
+        }
+        #hideChatBot {
+            width: 30px;
+            height: 30px;
+            color: white;
+            background-color: #37424e;
+
+        }
 
         .show{
+            display: grid;
+            grid-template-rows: repeat(2, 1fr 1fr);
             position: fixed;
             bottom: 0;
             right: 0;
             background-color: #5f6368;
-            border-radius: 4px;
-            height: 300px;
+            border-radius: 12px 12px 12px 12px;
+            width:450px;
+            height: 600px;
             margin-right: 10px;
             margin-bottom:10px;
+            /*box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;*/
         }
 
         .btn-show{
@@ -54,10 +101,11 @@
             font-size: 25px;
             font-weight: bold;
         }
+
     </style>
 </head>
 <body>
-<input id="hideChatBot" type="button" value="close chatbot" onclick="hideChatBot()">
+
 
 
 
@@ -95,7 +143,7 @@ HTML doesn't normally use line breaks for ordinary text. A white space of any si
 
 
 
-    If you want to put a line break at a particular place, you can use the "<BR>" command, or, for a paragraph break, the "<P>" command, which will insert a blank line. The heading command ("<4></4>") puts a blank line above and below the heading text.
+    If you want to put a line break at a particular place, you can use the "<BR>" command, or, for a paragraph break, the "<P>" command, which will insert a blank line. The heading command puts a blank line above and below the heading text.
 
 
 
@@ -142,7 +190,7 @@ HTML doesn't normally use line breaks for ordinary text. A white space of any si
 
 
 
-    If you want to put a line break at a particular place, you can use the "<BR>" command, or, for a paragraph break, the "<P>" command, which will insert a blank line. The heading command ("<4></4>") puts a blank line above and below the heading text.
+    If you want to put a line break at a particular place, you can use the "<BR>" command, or, for a paragraph break, the "<P>" command, which will insert a blank line. The heading command  puts a blank line above and below the heading text.
 
 
 
@@ -173,18 +221,19 @@ Most HTML commands come in pairs: for example, "<H4>" marks the beginning of a s
 
 
 
-    <H4>Copyright © 1997, by
-        <A HREF="https://www.sheldonbrown.com/index.html">Sheldon Brown</A>
-    </H4>
 
 If you would like to make a link or bookmark to this page, the URL is:<BR> https://www.sheldonbrown.com/web_sample1.html
 
-<input id="showChatBot" class="btn-hidden" type="button" value="Load chatbot" onclick="showChatBot()">
+<input id="showChatBot" class="btn-hidden" type="button" value="Chatbot icon" onclick="showChatBot()">
 
+{{--<div id="header-div" class="header-div-hide">--}}
+{{--    <div id="header-icon"> <img src="{{ url('/img/chatbot.png') }}" style="width: 45px; margin-right: 5px;"> </div>--}}
+{{--    <div id="header-title">Chatbot</div>--}}
+{{--    <div id="header-close-btn"><input id="hideChatBot" type="button" value="X" onclick="hideChatBot()"></div>--}}
+{{--</div>--}}
 
-<div id="div-frame">
-    <iframe id="frame" class="hidden"  src="http://127.0.0.1:8000/"></iframe>
-</div>
+    <iframe id="div-frame" class="hidden"  src="http://127.0.0.1:8000/"></iframe>
+
 
 
 <script>
@@ -193,6 +242,7 @@ If you would like to make a link or bookmark to this page, the URL is:<BR> https
         document.getElementById('showChatBot').className = "btn-hidden";
         document.getElementById('div-frame').className = "show";
         document.getElementById('frame').className = "show";
+        document.getElementById('header-div').className = "header-div-show";
 
     }
 
@@ -200,6 +250,7 @@ If you would like to make a link or bookmark to this page, the URL is:<BR> https
         document.getElementById('div-frame').className = "hidden";
         document.getElementById('frame').className = "hidden";
         document.getElementById('showChatBot').className = "btn-show";
+        document.getElementById('header-div').className = "header-div-hide";
         document.getElementById('frame').contentWindow.location.reload();
     }
 
@@ -207,7 +258,7 @@ If you would like to make a link or bookmark to this page, the URL is:<BR> https
         var btn = document.getElementById('showChatBot');
         btn.setAttribute('class', 'btn-show');
 
-    }, 5000);
+    }, 1000);
 </script>
 </body>
 </html>

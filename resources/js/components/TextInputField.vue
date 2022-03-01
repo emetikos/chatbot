@@ -64,11 +64,11 @@
         }
 
         input {
-            flex-grow: 2;
+            flex-grow: 3;
             line-height: 3;
             border: 1px none lightgray;
             border-top-style: solid;
-            border-bottom-left-radius: 4px;
+            border-radius: 4px 0 0 4px;
             padding-left: 20px;
 
 
@@ -82,7 +82,7 @@
             cursor: pointer;
             color: white;
             background: #008cff;
-            border-bottom-right-radius: 4px;
+            border-radius: 0 4px 4px 0;
             border-width: unset;
             border-style: unset;
             border-color: unset;
