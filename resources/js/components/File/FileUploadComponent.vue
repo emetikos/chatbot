@@ -315,7 +315,7 @@
                     PDF: "application/pdf"
                 },
                 URL: {
-                    UPLOAD_FILE: "https://chatbot-educ-api.herokuapp.com/",
+                    UPLOAD_FILE: "https://chatbot-educ-api.herokuapp.com/upload/pdf",
                 },
                 URI: {
                     ANALYSE_FILE: "/analyse",
