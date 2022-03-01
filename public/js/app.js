@@ -2562,7 +2562,7 @@ function uploadFile() {
   }; // Upload the file with the progress, uploaded and error callback
   // functions
 
-  axios.post(this.URI.UPLOAD, formData, config).then(this.onFileUploaded)["catch"](this.onFileUploadError);
+  axios.post(this.URI.UPLOAD_FILE, formData, config).then(this.onFileUploaded)["catch"](this.onFileUploadError);
 }
 /**
  * Called when the file being uploaded progresses.
@@ -2582,6 +2582,9 @@ function onFileUploadProgress(progress) {
  *
  * Changes the component's state to file uploaded.
  *
+ * If an error occurred uploading the file, a file upload error will be
+ * displayed.
+ *
  * @param response  the response from the http request
  */
 
@@ -2600,21 +2603,37 @@ function onFileUploaded(_x2) {
 
 function _onFileUploaded() {
   _onFileUploaded = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(response) {
+    var filePath, formData;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            this.fileUploadProgress = 100;
-            this.isFileUploaded = true;
+            filePath = response.data;
+
+            if (!(!(filePath instanceof String) || !filePath.trim())) {
+              _context6.next = 4;
+              break;
+            }
+
             _context6.next = 4;
-            return this.setAnalyseFileState();
+            return this.onFileUploadError("Error uploading file!");
 
           case 4:
-            this.$refs["analyse-file"].setText("Analysing file!"); // Analyse the uploaded file
+            this.fileUploadProgress = 100;
+            this.isFileUploaded = true;
+            _context6.next = 8;
+            return this.setAnalyseFileState();
 
-            axios.post(this.URI.ANALYSE).then(this.onFileAnalysed)["catch"](this.onFileAnalyseError);
+          case 8:
+            this.$refs["analyse-file"].setText("Analysing file!"); // The form data containing the file to send via post
 
-          case 6:
+            formData = new FormData();
+            formData.append("pdf", response.data);
+            console.log(response.data); // Analyse the uploaded file
+
+            axios.post(this.URI.ANALYSE_FILE, formData).then(this.onFileAnalysed)["catch"](this.onFileAnalyseError);
+
+          case 13:
           case "end":
             return _context6.stop();
         }
@@ -2711,7 +2730,7 @@ function _onFileAnalysed() {
             break;
 
           case 15:
-            this.onFileAnalyseError("No topics returned!");
+            this.onFileAnalyseError("Topics array was not returned!");
 
           case 16:
           case "end":
@@ -2829,9 +2848,11 @@ function removeFile() {
       FileType: {
         PDF: "application/pdf"
       },
+      URL: {
+        UPLOAD_FILE: "https://chatbot-educ-api.herokuapp.com/"
+      },
       URI: {
-        UPLOAD: "/upload/pdf",
-        ANALYSE: "/query"
+        ANALYSE_FILE: "/analyse"
       },
       currentState: 0,
       file: null,

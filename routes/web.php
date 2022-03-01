@@ -25,7 +25,8 @@ if (App::environment('production')) {
 Route::get('/target-page', [HomeController::class, 'index']);
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::post('/query', [HomeController::class, 'api']);
-Route::post('/upload/pdf', [UploadController::class, 'pdf']);
+//Route::post('/upload/pdf', [UploadController::class, 'pdf']); <- moved to the api
+Route::post('/analyse', [HomeController::class, 'analyse']);
 Route::get('/flash', [HomeController::class, 'flashSession']);
 Route::get('/topicFound', [HomeController::class, 'api']);
 //Route::get('/store', [TableController::class, 'store']);

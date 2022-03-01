@@ -123,7 +123,26 @@ class HomeController extends Controller {
         Session::put('file', $arr['fileUploaded']);
 
         return response($arr, 200);
+    }
+
+    public function analyse(Request $request) {
+        $file = $_POST["pdf"] ?? null;
+
+        if ($file === null) {
+            return false;
         }
+
+        Session::put("file", $file);
+        Session::put("fileSubmit", "True");
+        Session::put("readySubmit", "False");
+
+        try {
+            return self::api($request);
+        }
+        catch (Exception $e) {
+            return false;
+        }
+    }
 
     /**
      * Method to flash the session

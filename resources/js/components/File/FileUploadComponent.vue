@@ -97,7 +97,7 @@
 
         // Upload the file with the progress, uploaded and error callback
         // functions
-        axios.post(this.URI.UPLOAD, formData, config)
+        axios.post(this.URI.UPLOAD_FILE, formData, config)
              .then(this.onFileUploaded)
              .catch(this.onFileUploadError);
     }
@@ -119,9 +119,18 @@
      *
      * Changes the component's state to file uploaded.
      *
+     * If an error occurred uploading the file, a file upload error will be
+     * displayed.
+     *
      * @param response  the response from the http request
      */
     async function onFileUploaded(response) {
+        let filePath = response.data;
+
+        if (!(filePath instanceof String) || !filePath.trim()) {
+            await this.onFileUploadError("Error uploading file!");
+        }
+
         this.fileUploadProgress = 100;
         this.isFileUploaded     = true;
 
@@ -129,8 +138,14 @@
 
         this.$refs["analyse-file"].setText("Analysing file!");
 
+        // The form data containing the file to send via post
+        let formData  = new FormData();
+        formData.append("pdf", response.data);
+
+        console.log(response.data);
+
         // Analyse the uploaded file
-        axios.post(this.URI.ANALYSE)
+        axios.post(this.URI.ANALYSE_FILE, formData)
              .then(this.onFileAnalysed)
              .catch(this.onFileAnalyseError);
     }
@@ -181,7 +196,7 @@
         }
         // Displays an error if the topics array was not returned
         else {
-            this.onFileAnalyseError("No topics returned!");
+            this.onFileAnalyseError("Topics array was not returned!");
         }
     }
 
@@ -299,9 +314,11 @@
                 FileType: {
                     PDF: "application/pdf"
                 },
+                URL: {
+                    UPLOAD_FILE: "https://chatbot-educ-api.herokuapp.com/",
+                },
                 URI: {
-                    UPLOAD: "/upload/pdf",
-                    ANALYSE: "/query",
+                    ANALYSE_FILE: "/analyse",
                 },
 
                 currentState: 0,
