@@ -97,7 +97,7 @@
 
         // Upload the file with the progress, uploaded and error callback
         // functions
-        axios.post(this.URI.UPLOAD_FILE, formData, config)
+        axios.post(this.URL.UPLOAD_FILE, formData, config)
              .then(this.onFileUploaded)
              .catch(this.onFileUploadError);
     }
