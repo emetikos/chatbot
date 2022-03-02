@@ -3343,10 +3343,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./public/img/chatbot.png":
-/*!********************************!*\
-  !*** ./public/img/chatbot.png ***!
-  \********************************/
+/***/ "./public/img/chatbot2.png":
+/*!*********************************!*\
+  !*** ./public/img/chatbot2.png ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3354,7 +3354,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/chatbot.png?2ff0b274468c3bd76cfcb0740c7051fe");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/chatbot2.png?5cf68ef8da5f07bdca177d7c7c8dbb11");
 
 /***/ }),
 
@@ -3567,7 +3567,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main_container_hide[data-v-9087fe26] {\n  display: none;\n}\n.main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 435px;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  overflow: auto;\n  scrollbar-width: none;\n  /* Firefox */\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 449px;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #3c444f;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main_container_hide[data-v-9087fe26] {\n  display: none;\n}\n.main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 435px;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  overflow: auto;\n  scrollbar-width: none;\n  /* Firefox */\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 449px;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #404650;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23834,7 +23834,7 @@ var render = function () {
           [
             _c("div", { attrs: { id: "header-icon" } }, [
               _c("img", {
-                attrs: { src: (__webpack_require__(/*! ../../img/chatbot.png */ "./public/img/chatbot.png")["default"]), alt: "" },
+                attrs: { src: (__webpack_require__(/*! ../../img/chatbot2.png */ "./public/img/chatbot2.png")["default"]), alt: "" },
               }),
             ]),
             _vm._v(" "),

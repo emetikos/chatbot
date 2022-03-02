@@ -3,7 +3,7 @@
 
         <div id="main_container" class="chat-bot__container">
             <div id="header-div" class="header-div-show ">
-                <div id="header-icon"> <img :src="require('/img/chatbot.png').default" alt="" ></div>
+                <div id="header-icon"> <img :src="require('/img/chatbot2.png').default" alt="" ></div>
                 <div id="header-title">Chatbot</div>
                 <div id="header-close-btn"><input id="hideChatBot" type="button" value="X" v-on:click="hideChatBot"></div>
             </div>
@@ -167,7 +167,7 @@ export default {
     position: fixed;
     top:0;
     left:0;
-    background-color: #3c444f;
+    background-color: #404650;
 }
 
 #header-icon {
