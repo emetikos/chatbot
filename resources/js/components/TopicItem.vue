@@ -1,8 +1,9 @@
 <template>
-<div class="topic-item">
-        <button class="btn" @click="$emit('print-topic', topic)" type="submit">{{ topic }}</button>
-</div>
-
+    <section>
+        <div class="topic-item">
+            <button class="btn" @click="$emit('print-topic', topic)" type="submit">{{ topic }}</button>
+        </div>
+    </section>
 </template>
 
 <script>
