@@ -3024,8 +3024,6 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.post('/query', {
         query: this.message
       }).then(function (res) {
-        _this2.loading = false;
-
         _this2.$emit("messages", {
           text: res.data.response,
           author: 'bot'

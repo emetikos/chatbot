@@ -42,7 +42,6 @@
                             query: this.message
                         })
                             .then(res=> {
-                                this.loading = false;
                                 this.$emit("messages", {
                                     text: res.data.response,
                                     author: 'bot'
