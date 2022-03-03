@@ -2562,7 +2562,7 @@ function uploadFile() {
   }; // Upload the file with the progress, uploaded and error callback
   // functions
 
-  axios.post(this.URI.UPLOAD, formData, config).then(this.onFileUploaded)["catch"](this.onFileUploadError);
+  axios.post(this.URL.UPLOAD_FILE, formData, config).then(this.onFileUploaded)["catch"](this.onFileUploadError);
 }
 /**
  * Called when the file being uploaded progresses.
@@ -2582,6 +2582,9 @@ function onFileUploadProgress(progress) {
  *
  * Changes the component's state to file uploaded.
  *
+ * If an error occurred uploading the file, a file upload error will be
+ * displayed.
+ *
  * @param response  the response from the http request
  */
 
@@ -2600,21 +2603,37 @@ function onFileUploaded(_x2) {
 
 function _onFileUploaded() {
   _onFileUploaded = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(response) {
+    var filePath, formData;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            this.fileUploadProgress = 100;
-            this.isFileUploaded = true;
+            filePath = response.data;
+
+            if (!(!(filePath instanceof String) || !filePath.trim())) {
+              _context6.next = 4;
+              break;
+            }
+
             _context6.next = 4;
-            return this.setAnalyseFileState();
+            return this.onFileUploadError("Error uploading file!");
 
           case 4:
-            this.$refs["analyse-file"].setText("Analysing file!"); // Analyse the uploaded file
+            this.fileUploadProgress = 100;
+            this.isFileUploaded = true;
+            _context6.next = 8;
+            return this.setAnalyseFileState();
 
-            axios.post(this.URI.ANALYSE).then(this.onFileAnalysed)["catch"](this.onFileAnalyseError);
+          case 8:
+            this.$refs["analyse-file"].setText("Analysing file!"); // The form data containing the file to send via post
 
-          case 6:
+            formData = new FormData();
+            formData.append("pdf", response.data);
+            console.log(response.data); // Analyse the uploaded file
+
+            axios.post(this.URI.ANALYSE_FILE, formData).then(this.onFileAnalysed)["catch"](this.onFileAnalyseError);
+
+          case 13:
           case "end":
             return _context6.stop();
         }
@@ -2660,23 +2679,8 @@ function _onFileUploadError() {
   return _onFileUploadError.apply(this, arguments);
 }
 
-function onFileAnalysed(response) {
-  var _this = this;
-
-  var topics = response.data["possibleTopics"]; // Displays the topics returned and remove this component
-
-  if (Array.isArray(topics)) {
-    this.$refs["analyse-file"].setText("File analysed!");
-    this.isFileAnalysed = true;
-    this.$parent.$refs["topics"].topics.topicsFound = topics; // Remove this component
-
-    setTimeout(function () {
-      _this.remove = true;
-    }, 1000);
-  } // Displays an error if the topics array was not returned
-  else {
-    this.onFileAnalyseError("No topics returned!");
-  }
+function onFileAnalysed(_x4) {
+  return _onFileAnalysed.apply(this, arguments);
 }
 /**
  * Called when the uploaded file being analysed encounters an error.
@@ -2686,6 +2690,57 @@ function onFileAnalysed(response) {
  * @param error  the error that occurred
  */
 
+
+function _onFileAnalysed() {
+  _onFileAnalysed = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(response) {
+    var topics;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            topics = response.data["possibleTopics"]; // Displays the topics returned and remove this component
+
+            if (!Array.isArray(topics)) {
+              _context8.next = 15;
+              break;
+            }
+
+            if (!(topics.length > 0)) {
+              _context8.next = 12;
+              break;
+            }
+
+            this.$refs["analyse-file"].setText("File analysed!");
+            this.isFileAnalysed = true;
+            this.$parent.showTopics = true;
+            _context8.next = 8;
+            return this.$nextTick();
+
+          case 8:
+            this.$parent.$refs["topics"].topics.topicsFound = topics;
+            this.$parent.showFileUpload = false;
+            _context8.next = 13;
+            break;
+
+          case 12:
+            this.$refs["analyse-file"].setText("No topics found!");
+
+          case 13:
+            _context8.next = 16;
+            break;
+
+          case 15:
+            this.onFileAnalyseError("Topics array was not returned!");
+
+          case 16:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8, this);
+  }));
+  return _onFileAnalysed.apply(this, arguments);
+}
 
 function onFileAnalyseError(error) {
   this.$refs["analyse-file"].setText("Error analysing file!", true);
@@ -2793,16 +2848,17 @@ function removeFile() {
       FileType: {
         PDF: "application/pdf"
       },
+      URL: {
+        UPLOAD_FILE: "https://chatbot-educ-api.herokuapp.com/upload/pdf"
+      },
       URI: {
-        UPLOAD: "/upload/pdf",
-        ANALYSE: "/query"
+        ANALYSE_FILE: "/analyse"
       },
       currentState: 0,
       file: null,
       isFileUploaded: false,
       isFileAnalysed: false,
-      fileUploadProgress: 0,
-      remove: false
+      fileUploadProgress: 0
     };
   }
 });
@@ -2937,13 +2993,27 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       message: '',
-      isDisabled: false
+      isDisabled: false,
+      loading: false
     };
   },
+  mounted: function mounted() {
+    this.welcomeMessage();
+  },
   methods: {
+    welcomeMessage: function welcomeMessage() {
+      var _this = this;
+
+      setTimeout(function () {
+        return _this.$emit('messages', {
+          text: 'Hello ! I am a sophisticated ( Intelligent) bot',
+          author: 'bot'
+        });
+      }, 2000);
+    },
     //send message to bot from user
     sendMessage: function sendMessage() {
-      var _this = this;
+      var _this2 = this;
 
       this.isDisabled = true;
       this.$emit("messages", {
@@ -2954,24 +3024,29 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.post('/query', {
         query: this.message
       }).then(function (res) {
-        _this.$emit("messages", {
+        _this2.loading = false;
+
+        _this2.$emit("messages", {
           text: res.data.response,
           author: 'bot'
         });
 
-        _this.$emit("readyToSubmit", res.data.readySubmit);
+        _this2.$emit("readyToSubmit", res.data.readySubmit);
       })["catch"](function (error) {
-        _this.$emit("messages", {
+        _this2.$emit("messages", {
           text: 'Something went wrong. Try again.',
           author: 'bot'
         });
 
         console.log(error.response.data.errors);
       })["finally"](function () {
-        _this.isDisabled = false;
+        _this2.isDisabled = false;
       }); //clear message space after text is sent
 
       this.message = '';
+      this.$nextTick(function () {
+        _this2.$emit("scroll", true);
+      });
     }
   }
 });
@@ -3143,6 +3218,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3164,6 +3245,13 @@ __webpack_require__.r(__webpack_exports__);
     isFileUploaded: function isFileUploaded(values) {
       if (values === 'False') this.showFileUpload = false;
       if (values === 'True') this.showFileUpload = true;
+    },
+    scrollDown: function scrollDown(values) {
+      if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight;
+    },
+    hideChatBot: function hideChatBot() {
+      parent.hide_chat_bot();
+      axios.get('/flash');
     }
   },
   components: {
@@ -3252,6 +3340,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./public/img/chatbot2.png":
+/*!*********************************!*\
+  !*** ./public/img/chatbot2.png ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/chatbot2.png?5cf68ef8da5f07bdca177d7c7c8dbb11");
 
 /***/ }),
 
@@ -3392,7 +3495,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.topic-item[data-v-e46213f2] {\n    margin: .3rem;\n    width: 100%;\n}\n.btn[data-v-e46213f2] {\n    background-color: white;\n    color: black;\n    border: none;\n    padding: 4px 4px;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    font-size: 12px;\n    font-style: italic;\n    font-family: \"Helvetica Neue\", sans-serif;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.topic-item[data-v-e46213f2] {\r\n    margin: .3rem;\r\n    width: 100%;\n}\n.btn[data-v-e46213f2] {\r\n    background-color: white;\r\n    color: black;\r\n    border: none;\r\n    padding: 4px 4px;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    display: inline-block;\r\n    font-size: 12px;\r\n    font-style: italic;\r\n    font-family: \"Helvetica Neue\", sans-serif;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3416,7 +3519,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.topics-found[data-v-49d1554f] {\n    display: block;\n}\n.topics[data-v-49d1554f] {\n    max-width: 12rem;\n    border:1px solid black;\n    border-radius: 4px;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.topics-found[data-v-49d1554f] {\r\n    display: block;\n}\n.topics[data-v-49d1554f] {\r\n    max-width: 12rem;\r\n    border:1px solid black;\r\n    border-radius: 4px;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3440,7 +3543,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main-list__input[data-v-4277e908] {\n  display: flex;\n}\ninput[data-v-4277e908] {\n  flex-grow: 2;\n  line-height: 3;\n  border: 1px none lightgray;\n  border-top-style: solid;\n  border-bottom-left-radius: 4px;\n  padding-left: 20px;\n}\ninput[data-v-4277e908]:focus {\n  outline: none;\n}\nbutton[data-v-4277e908] {\n  flex-grow: 1;\n  cursor: pointer;\n  color: white;\n  background: #008cff;\n  border-bottom-right-radius: 4px;\n  border-width: unset;\n  border-style: unset;\n  border-color: unset;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main-list__input[data-v-4277e908] {\n  display: flex;\n}\ninput[data-v-4277e908] {\n  flex-grow: 3;\n  line-height: 3;\n  border: 1px none lightgray;\n  border-top-style: solid;\n  border-radius: 4px 0 0 4px;\n  padding-left: 20px;\n}\ninput[data-v-4277e908]:focus {\n  outline: none;\n}\nbutton[data-v-4277e908] {\n  flex-grow: 1;\n  cursor: pointer;\n  color: white;\n  background: #008cff;\n  border-radius: 0 4px 4px 0;\n  border-width: unset;\n  border-style: unset;\n  border-color: unset;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3464,7 +3567,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  margin-top: 50px;\n  border: 1px solid lightgray;\n  width: 50vw;\n  height: 50vh;\n  border-radius: 4px;\n  margin-left: auto;\n  margin-right: auto;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  overflow: scroll;\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main_container_hide[data-v-9087fe26] {\n  display: none;\n}\n.main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 435px;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  overflow: auto;\n  scrollbar-width: none;\n  /* Firefox */\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 449px;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #404650;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23417,30 +23520,28 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.remove === false
-    ? _c(
-        "div",
-        { staticClass: "chatbot-file-upload-container" },
-        [
-          _vm.currentState === _vm.State.ATTACH_FILE
-            ? _c("AttachFileComponent", { ref: "attach-file" })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentState === _vm.State.FIlE_ATTACHED
-            ? _c("FileAttachedComponent", { ref: "file-attached" })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentState === _vm.State.FILE_UPLOADING
-            ? _c("FileUploadingComponent", { ref: "file-uploading" })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentState === _vm.State.ANALYSE_FILE
-            ? _c("AnalyseFileComponent", { ref: "analyse-file" })
-            : _vm._e(),
-        ],
-        1
-      )
-    : _vm._e()
+  return _c(
+    "div",
+    { staticClass: "chatbot-file-upload-container" },
+    [
+      _vm.currentState === _vm.State.ATTACH_FILE
+        ? _c("AttachFileComponent", { ref: "attach-file" })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentState === _vm.State.FIlE_ATTACHED
+        ? _c("FileAttachedComponent", { ref: "file-attached" })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentState === _vm.State.FILE_UPLOADING
+        ? _c("FileUploadingComponent", { ref: "file-uploading" })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentState === _vm.State.ANALYSE_FILE
+        ? _c("AnalyseFileComponent", { ref: "analyse-file" })
+        : _vm._e(),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -23723,67 +23824,93 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "chat-bot" }, [
-    _c("div", { staticClass: "chat-bot__container" }, [
-      _c(
-        "div",
-        { staticClass: "chat-bot__main main-list" },
-        [
-          _c("div", { ref: "chatBot", staticClass: "main-list__container" }, [
-            _c(
-              "ul",
-              { staticClass: "main-list__messages" },
-              _vm._l(_vm.messages, function (message, index) {
-                return _c(
-                  "li",
-                  {
-                    key: index,
-                    staticClass: "main-list__message",
-                    class: message.author,
-                  },
-                  [_c("p", [_c("span", [_vm._v(_vm._s(message.text))])])]
-                )
+    _c(
+      "div",
+      { staticClass: "chat-bot__container", attrs: { id: "main_container" } },
+      [
+        _c(
+          "div",
+          { staticClass: "header-div-show ", attrs: { id: "header-div" } },
+          [
+            _c("div", { attrs: { id: "header-icon" } }, [
+              _c("img", {
+                attrs: { src: (__webpack_require__(/*! ../../img/chatbot2.png */ "./public/img/chatbot2.png")["default"]), alt: "" },
               }),
-              0
-            ),
+            ]),
             _vm._v(" "),
-            _vm.showFileUpload
-              ? _c(
-                  "div",
-                  { staticClass: "main-list__upload-file" },
-                  [_c("FileUploadComponent")],
-                  1
-                )
-              : _vm._e(),
+            _c("div", { attrs: { id: "header-title" } }, [_vm._v("Chatbot")]),
             _vm._v(" "),
-            _vm.showTopics
-              ? _c(
-                  "div",
-                  { staticClass: "main-list__show-topics" },
-                  [_c("Topics", { ref: "topics" })],
-                  1
-                )
-              : _vm._e(),
+            _c("div", { attrs: { id: "header-close-btn" } }, [
+              _c("input", {
+                attrs: { id: "hideChatBot", type: "button", value: "X" },
+                on: { click: _vm.hideChatBot },
+              }),
+            ]),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "chat-bot__main main-list" },
+          [
+            _c("div", { ref: "chatBot", staticClass: "main-list__container" }, [
+              _c(
+                "ul",
+                { staticClass: "main-list__messages" },
+                _vm._l(_vm.messages, function (message, index) {
+                  return _c(
+                    "li",
+                    {
+                      key: index,
+                      staticClass: "main-list__message",
+                      class: message.author,
+                    },
+                    [_c("p", [_c("span", [_vm._v(_vm._s(message.text))])])]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _vm.showFileUpload
+                ? _c(
+                    "div",
+                    { staticClass: "main-list__upload-file" },
+                    [_c("FileUploadComponent")],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.showTopics
+                ? _c(
+                    "div",
+                    { staticClass: "main-list__show-topics" },
+                    [_c("Topics", { ref: "topics" })],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.showLinks
+                ? _c(
+                    "div",
+                    { staticClass: "main-list__show-links" },
+                    [_c("LinksOut")],
+                    1
+                  )
+                : _vm._e(),
+            ]),
             _vm._v(" "),
-            _vm.showLinks
-              ? _c(
-                  "div",
-                  { staticClass: "main-list__show-links" },
-                  [_c("LinksOut")],
-                  1
-                )
-              : _vm._e(),
-          ]),
-          _vm._v(" "),
-          _c("TextInputField", {
-            on: {
-              messages: _vm.getMessages,
-              readyToSubmit: _vm.isFileUploaded,
-            },
-          }),
-        ],
-        1
-      ),
-    ]),
+            _c("TextInputField", {
+              on: {
+                messages: _vm.getMessages,
+                readyToSubmit: _vm.isFileUploaded,
+                scroll: _vm.scrollDown,
+              },
+            }),
+          ],
+          1
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = []
@@ -35957,7 +36084,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"C:\\\\Users\\\\Spyros\\\\Documents\\\\chatbot","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 
@@ -36136,7 +36263,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunkchatbot"] = self["webpackChunkchatbot"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();

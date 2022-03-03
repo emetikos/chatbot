@@ -14,8 +14,20 @@
                 data: () => ({
                     message: '',
                     isDisabled: false,
+                    loading:false,
                 }),
+                mounted() {
+                    this.welcomeMessage()
+                },
                 methods: {
+                    welcomeMessage(){
+
+                        setTimeout( () => this.$emit('messages', {
+                            text: 'Hello ! I am a sophisticated ( Intelligent) bot',
+                            author:'bot'
+                        }), 2000)
+
+                    },
                     //send message to bot from user
                     sendMessage(){
                         this.isDisabled = true
@@ -30,6 +42,7 @@
                             query: this.message
                         })
                             .then(res=> {
+                                this.loading = false;
                                 this.$emit("messages", {
                                     text: res.data.response,
                                     author: 'bot'
@@ -48,6 +61,10 @@
                             })
                         //clear message space after text is sent
                         this.message =  ''
+
+                        this.$nextTick(() => {
+                            this.$emit("scroll", true)
+                        })
                     },
                 },
             }
@@ -60,11 +77,11 @@
         }
 
         input {
-            flex-grow: 2;
+            flex-grow: 3;
             line-height: 3;
             border: 1px none lightgray;
             border-top-style: solid;
-            border-bottom-left-radius: 4px;
+            border-radius: 4px 0 0 4px;
             padding-left: 20px;
 
 
@@ -78,7 +95,7 @@
             cursor: pointer;
             color: white;
             background: #008cff;
-            border-bottom-right-radius: 4px;
+            border-radius: 0 4px 4px 0;
             border-width: unset;
             border-style: unset;
             border-color: unset;

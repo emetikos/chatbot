@@ -1,5 +1,5 @@
 <template>
-	<div class="chatbot-file-upload-container" v-if="remove === false">
+	<div class="chatbot-file-upload-container">
         <AttachFileComponent ref="attach-file"
                              v-if="currentState === State.ATTACH_FILE" />
         <FileAttachedComponent ref="file-attached"
@@ -97,7 +97,7 @@
 
         // Upload the file with the progress, uploaded and error callback
         // functions
-        axios.post(this.URI.UPLOAD, formData, config)
+        axios.post(this.URL.UPLOAD_FILE, formData, config)
              .then(this.onFileUploaded)
              .catch(this.onFileUploadError);
     }
@@ -119,9 +119,18 @@
      *
      * Changes the component's state to file uploaded.
      *
+     * If an error occurred uploading the file, a file upload error will be
+     * displayed.
+     *
      * @param response  the response from the http request
      */
     async function onFileUploaded(response) {
+        let filePath = response.data;
+
+        if (!(filePath instanceof String) || !filePath.trim()) {
+            await this.onFileUploadError("Error uploading file!");
+        }
+
         this.fileUploadProgress = 100;
         this.isFileUploaded     = true;
 
@@ -129,8 +138,14 @@
 
         this.$refs["analyse-file"].setText("Analysing file!");
 
+        // The form data containing the file to send via post
+        let formData  = new FormData();
+        formData.append("pdf", response.data);
+
+        console.log(response.data);
+
         // Analyse the uploaded file
-        axios.post(this.URI.ANALYSE)
+        axios.post(this.URI.ANALYSE_FILE, formData)
              .then(this.onFileAnalysed)
              .catch(this.onFileAnalyseError);
     }
@@ -158,22 +173,30 @@
      *
      * @param response  the response from the http request
      */
-    function onFileAnalysed(response) {
+    async function onFileAnalysed(response) {
         let topics = response.data["possibleTopics"];
 
         // Displays the topics returned and remove this component
         if (Array.isArray(topics)) {
-            this.$refs["analyse-file"].setText("File analysed!");
-            this.isFileAnalysed = true;
+            if (topics.length > 0) {
+                this.$refs["analyse-file"].setText("File analysed!");
+                this.isFileAnalysed = true;
 
-            this.$parent.$refs["topics"].topics.topicsFound = topics;
+                this.$parent.showTopics = true;
 
-            // Remove this component
-            setTimeout(() => { this.remove = true; }, 1000);
+                await this.$nextTick();
+
+                this.$parent.$refs["topics"].topics.topicsFound = topics;
+
+                this.$parent.showFileUpload = false;
+            }
+            else {
+                this.$refs["analyse-file"].setText("No topics found!");
+            }
         }
         // Displays an error if the topics array was not returned
         else {
-            this.onFileAnalyseError("No topics returned!");
+            this.onFileAnalyseError("Topics array was not returned!");
         }
     }
 
@@ -291,9 +314,11 @@
                 FileType: {
                     PDF: "application/pdf"
                 },
+                URL: {
+                    UPLOAD_FILE: "https://chatbot-educ-api.herokuapp.com/upload/pdf",
+                },
                 URI: {
-                    UPLOAD: "/upload/pdf",
-                    ANALYSE: "/query",
+                    ANALYSE_FILE: "/analyse",
                 },
 
                 currentState: 0,
@@ -301,8 +326,6 @@
                 isFileUploaded: false,
                 isFileAnalysed: false,
                 fileUploadProgress: 0,
-
-                remove: false,
             }
         }
     }
