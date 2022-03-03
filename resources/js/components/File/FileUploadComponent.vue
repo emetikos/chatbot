@@ -97,9 +97,10 @@
 
         // Upload the file with the progress, uploaded and error callback
         // functions
-        axios.post(this.URL.UPLOAD_FILE, formData, config)
+        /*axios.post(this.URL.UPLOAD_FILE, formData, config)
              .then(this.onFileUploaded)
-             .catch(this.onFileUploadError);
+             .catch(this.onFileUploadError);*/
+        this.onFileUploaded({"data": "pdf_files/Individual Neurons.pdf"});
     }
 
     /**
@@ -136,7 +137,7 @@
 
         await this.setAnalyseFileState();
 
-        this.$refs["analyse-file"].setText("Analysing file!");
+        this.$refs["analyse-file"].setText("Analysing file...");
 
         // The form data containing the file to send via post
         let formData  = new FormData();
