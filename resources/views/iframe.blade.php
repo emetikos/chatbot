@@ -41,6 +41,8 @@
         }
 
         .btn-show{
+            visibility: visible;
+            animation: fade-in 0.5s;
             position: fixed;
             bottom: 0;
             right: 0;
@@ -57,7 +59,9 @@
         }
 
         .btn-hidden{
-            display: none;
+            visibility: hidden;
+            transform: scale(0);
+            opacity: 0;
             position: fixed;
             bottom: 0;
             right: 0;
@@ -101,6 +105,29 @@
             background-color: #0099cc;
         }
 
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: scale(0);
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+                -o-transform: scale(0);
+                -ms-transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: scale(1);
+                -moz-transform: scale(1);
+                -o-transform: scale(1);
+                -ms-transform: scale(1);
+                transform: scale(1);
+                -webkit-transition: 1s ease-in-out;
+                -moz-transition: 1s ease-in-out;
+                -o-transition: 1s ease-in-out;
+                -ms-transition: 1s ease-in-out;
+                transition: 1s ease-in-out;
+            }
+        }
     </style>
 </head>
 
