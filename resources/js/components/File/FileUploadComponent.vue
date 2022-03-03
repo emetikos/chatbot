@@ -97,10 +97,9 @@
 
         // Upload the file with the progress, uploaded and error callback
         // functions
-        /*axios.post(this.URL.UPLOAD_FILE, formData, config)
+        axios.post(this.URL.UPLOAD_FILE, formData, config)
              .then(this.onFileUploaded)
-             .catch(this.onFileUploadError);*/
-        this.onFileUploaded({"data": "pdf_files/Individual Neurons.pdf"});
+             .catch(this.onFileUploadError);
     }
 
     /**
@@ -126,7 +125,7 @@
      * @param response  the response from the http request
      */
     async function onFileUploaded(response) {
-        let filePath = response.data;
+        let filePath = response.data["file"] ?? null;
 
         if (!(filePath instanceof String) || !filePath.trim()) {
             await this.onFileUploadError("Error uploading file!");
@@ -141,9 +140,9 @@
 
         // The form data containing the file to send via post
         let formData  = new FormData();
-        formData.append("pdf", response.data);
+        formData.append("pdf", filePath);
 
-        console.log(response.data);
+        console.log(filePath);
 
         // Analyse the uploaded file
         axios.post(this.URI.ANALYSE_FILE, formData)

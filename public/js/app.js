@@ -2562,13 +2562,7 @@ function uploadFile() {
   }; // Upload the file with the progress, uploaded and error callback
   // functions
 
-  /*axios.post(this.URL.UPLOAD_FILE, formData, config)
-       .then(this.onFileUploaded)
-       .catch(this.onFileUploadError);*/
-
-  this.onFileUploaded({
-    "data": "pdf_files/Individual Neurons.pdf"
-  });
+  axios.post(this.URL.UPLOAD_FILE, formData, config).then(this.onFileUploaded)["catch"](this.onFileUploadError);
 }
 /**
  * Called when the file being uploaded progresses.
@@ -2609,12 +2603,14 @@ function onFileUploaded(_x2) {
 
 function _onFileUploaded() {
   _onFileUploaded = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(response) {
+    var _response$data$file;
+
     var filePath, formData;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            filePath = response.data;
+            filePath = (_response$data$file = response.data["file"]) !== null && _response$data$file !== void 0 ? _response$data$file : null;
 
             if (!(!(filePath instanceof String) || !filePath.trim())) {
               _context6.next = 4;
@@ -2634,8 +2630,8 @@ function _onFileUploaded() {
             this.$refs["analyse-file"].setText("Analysing file..."); // The form data containing the file to send via post
 
             formData = new FormData();
-            formData.append("pdf", response.data);
-            console.log(response.data); // Analyse the uploaded file
+            formData.append("pdf", filePath);
+            console.log(filePath); // Analyse the uploaded file
 
             axios.post(this.URI.ANALYSE_FILE, formData).then(this.onFileAnalysed)["catch"](this.onFileAnalyseError);
 
