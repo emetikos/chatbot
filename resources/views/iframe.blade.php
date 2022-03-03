@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+{{--    log in/profile footer--}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
     <title>Document</title>
 
     <style>
@@ -100,9 +103,15 @@
 
     </style>
 </head>
+
+
 <body>
 <div class="header">
     <h1>GRAND ACADEMY STUDENT PORTAL</h1>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+    </ul>
 </div>
 
 <div class="row">
@@ -114,14 +123,22 @@
             <li>Marks</li>
         </ul>
     </div>
-<br>
     <h1>Student Portal</h1>
     <p>Welcome to your student portal,
         <br> please make sure you make good use of all materials and recordings provided. <br>
         EduBot chat system is also available to provide assistance </p>
+</div>
 
 
-    <!-- Grid -->
+    <div class="col-sm-9">
+    <div class="well">
+        <h4>Upcoming Deadlines</h4>
+        <h5>Marek:</h5>
+        <p>Please remember to submit your posters by *Wednesday 15th 11:55pm* for the upcoming poster fair!!<p>
+      </div>
+
+        <br>
+    <!-- Module Grid -->
     <div class="w3-row w3-container">
         <div class="w3-center w3-padding-64">
             <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">My Modules</span>
@@ -147,17 +164,25 @@
         </div>
     </div>
     <br><br>
+
+        <div class="col-sm-2 well" centre>
+                <h6>Upcoming Events:</h6>
+                <p><strong>Quiz</strong></p>
+                <p>Fri 27 April 2022</p>
+                <button class="btn btn-primary">Info</button>
+            <br>
+
+            <br>
+
+            <p><strong>CO652 Lecture Recording</strong></p>
+            <p>Fri 27 April 2022</p>
+            <button class="btn btn-primary">Watch</button>
+
 </div>
+    </div>
 
 
-<CENTER>
-    <H1>A Simple Sample Web Page</H1>
-    <IMG SRC="https://www.sheldonbrown.com/images/scb_eagle_contact.jpeg">
-
-    <H4>By Sheldon Brown</H4>
-
-    <H2>Demonstrating a few HTML features</H2>
-
+    <CENTER>
 </CENTER>
 
 <img id="showChatBot" class="btn-hidden" src="{{ url('/img/chatbot.png') }}" onclick="showChatBot()" alt="">
@@ -193,5 +218,4 @@
 
 </script>
 </body>
-
 {{--</html>--}}
