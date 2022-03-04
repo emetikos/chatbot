@@ -220,28 +220,38 @@
 
     /**
      * function to call the iframe and display the chatbot environment
-     *
      * Hide the button so it will not be visible any more
+     * It gets the button from the iframe so it can be used to close the iframe window
      */
     function showChatBot(){
         document.getElementById('showChatBot').className = "btn-hidden";
         document.getElementById('iframe').className = "show";
+
+        let close_btn
+        let iframe = document.getElementById('iframe');
+        close_btn = iframe.contentWindow.document.getElementById('hideChatBot')
+
+        closeIframe(close_btn)
     }
 
-    function hide_chat_bot(){
-        document.getElementById('iframe').className = "iframe-hidden";
-        // document.getElementById('showChatBot').className = "btn-show";
-        // document.getElementById('showChatBot').contentWindow.location.reload();
-        // document.getElementById('showChatBot').src = loadIframe()
-
+    /**
+     * Function to hide the iframe
+     * @param btn - has the value of the button in the iframe
+     */
+    function closeIframe(btn) {
+        btn.onclick = () => {
+            document.getElementById('iframe').className = "hide";
+        }
     }
 
     // SET A DELAY FOR THE CHATBOT WHEN THE PAGE IS LOADED
-    window.setTimeout(function () {
+    window.setTimeout( () => {
         var btn = document.getElementById('showChatBot');
         btn.setAttribute('class', 'btn-show');
-
     }, 3000);
+
+
+
 
 </script>
 </body>

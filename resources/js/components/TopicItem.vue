@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="topic-item">
-            <button class="btn" @click="$emit('print-topic', topic)" type="submit">{{ topic }}</button>
+            <p class="btn" @click="$emit('print-topic', topic)" >{{ topic }}</p>
         </div>
     </section>
 </template>
@@ -16,22 +16,23 @@
 
 <style scoped>
 
-.topic-item {
-    margin: .3rem;
-    width: 100%;
-
-}
-
 .btn {
-    background-color: white;
-    color: black;
-    border: none;
-    padding: 4px 4px;
-    text-align: center;
+    display: table;
+    background-color: #5f6368;
+    color: white;
+    text-align: left;
     text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
     font-style: italic;
     font-family: "Helvetica Neue", sans-serif;
+    margin-right: .1rem;
+    padding: .5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: #3c444f;
+    font-weight: bold;
 }
 </style>

@@ -2,7 +2,7 @@
     <section>
         <div>
             <div class="topics-found" v-if="topics['topicsFound'].length">
-                <h4>This is what I found</h4>
+                <p class="chosenTopic">This is what I found! Please select one of the topics</p>
                 <div class="topics" >
                     <ul>
                         <li v-for="topic in topics['topicsFound']">
@@ -59,7 +59,7 @@ export default {
                 // TODO: this should be displayed to the user chat area for confirmation.
                 this.topics['selectedTopic'] = topic
                 this.topics['isTopicSelected'] = true
-                console.log("Let me see what i can find about "+ "'"+ this.topics['chosenTopic'] +"'");
+                console.log("Let me see what i can find about "+ "'"+ topic+"'");
 
                 this.topics['topicsFound'] = [];
             }
@@ -94,14 +94,26 @@ export default {
 
 <style scoped>
 
-.topics-found {
-    display: block;
+
+ul {
+    list-style-type: none;
+    margin-left: -2rem;
 }
 
-.topics {
-    max-width: 12rem;
-    border:1px solid black;
+li {
+    float: left;
+}
+
+
+
+.chosenTopic{
+    display: table;
+    padding: .5rem;
+    background: green;
+    color: white;
+    font-size: 1rem;
     border-radius: 4px;
+    max-width: 100%;
 }
 
 </style>

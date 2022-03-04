@@ -3172,7 +3172,7 @@ var TOPICS_NOT_FOUND = 'No topics found';
         // TODO: this should be displayed to the user chat area for confirmation.
         this.topics['selectedTopic'] = topic;
         this.topics['isTopicSelected'] = true;
-        console.log("Let me see what i can find about " + "'" + this.topics['chosenTopic'] + "'");
+        console.log("Let me see what i can find about " + "'" + topic + "'");
         this.topics['topicsFound'] = [];
       }
     },
@@ -3285,7 +3285,6 @@ __webpack_require__.r(__webpack_exports__);
       if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight;
     },
     hideChatBot: function hideChatBot() {
-      parent.hide_chat_bot();
       axios.get('/flash');
     }
   },
@@ -3530,7 +3529,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#chosenTopic{\n    display: table;\n    margin-left: .5rem;\n    padding: .5rem;\n    background: green;\n    color: white;\n    font-size: 1rem;\n    border-radius: 4px;\n    max-width: 100%;\n}\n#topic{\n    font-weight: bold;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.chosenTopic{\n    display: table;\n    margin-left: .5rem;\n    padding: .5rem;\n    background: green;\n    color: white;\n    font-size: 1rem;\n    border-radius: 4px;\n    max-width: 100%;\n}\n#topic{\n    font-weight: bold;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3554,7 +3553,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.topic-item[data-v-e46213f2] {\n    margin: .3rem;\n    width: 100%;\n}\n.btn[data-v-e46213f2] {\n    background-color: white;\n    color: black;\n    border: none;\n    padding: 4px 4px;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    font-size: 12px;\n    font-style: italic;\n    font-family: \"Helvetica Neue\", sans-serif;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.btn[data-v-e46213f2] {\n    display: table;\n    background-color: #5f6368;\n    color: white;\n    text-align: left;\n    text-decoration: none;\n    font-style: italic;\n    font-family: \"Helvetica Neue\", sans-serif;\n    margin-right: .1rem;\n    padding: .5rem;\n    font-size: 1rem;\n    border-radius: 4px;\n}\n.btn[data-v-e46213f2]:hover {\n    cursor: pointer;\n    background-color: #3c444f;\n    font-weight: bold;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3578,7 +3577,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.topics-found[data-v-49d1554f] {\n    display: block;\n}\n.topics[data-v-49d1554f] {\n    max-width: 12rem;\n    border:1px solid black;\n    border-radius: 4px;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nul[data-v-49d1554f] {\n    list-style-type: none;\n    margin-left: -2rem;\n}\nli[data-v-49d1554f] {\n    float: left;\n}\n.chosenTopic[data-v-49d1554f]{\n    display: table;\n    padding: .5rem;\n    background: green;\n    color: white;\n    font-size: 1rem;\n    border-radius: 4px;\n    max-width: 100%;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23906,7 +23905,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", [
-    _c("p", { attrs: { id: "chosenTopic" } }, [
+    _c("p", { staticClass: "chosenTopic" }, [
       _vm._v(" Let me see what I can find about '"),
       _c("span", { attrs: { id: "topic" } }, [_vm._v(_vm._s(_vm.chosenTopic))]),
       _vm._v("' "),
@@ -23939,10 +23938,9 @@ var render = function () {
   return _c("section", [
     _c("div", { staticClass: "topic-item" }, [
       _c(
-        "button",
+        "p",
         {
           staticClass: "btn",
-          attrs: { type: "submit" },
           on: {
             click: function ($event) {
               return _vm.$emit("print-topic", _vm.topic)
@@ -23983,7 +23981,9 @@ var render = function () {
       _c("div", [
         _vm.topics["topicsFound"].length
           ? _c("div", { staticClass: "topics-found" }, [
-              _c("h4", [_vm._v("This is what I found")]),
+              _c("p", { staticClass: "chosenTopic" }, [
+                _vm._v("This is what I found! Please select one of the topics"),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "topics" }, [
                 _c(

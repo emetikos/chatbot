@@ -1,6 +1,6 @@
 <template>
     <section>
-        <p id="chosenTopic"> Let me see what I can find about '<span id="topic">{{chosenTopic}}</span>' </p>
+        <p class="chosenTopic"> Let me see what I can find about '<span id="topic">{{chosenTopic}}</span>' </p>
     </section>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 
 <style>
 
- #chosenTopic{
+ .chosenTopic{
      display: table;
      margin-left: .5rem;
      padding: .5rem;
