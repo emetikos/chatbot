@@ -1,14 +1,20 @@
 <template>
     <section>
         <p class="chosenTopic"> Let me see what I can find about '<span id="topic">{{chosenTopic}}</span>' </p>
+        <Links :topic="chosenTopic"/>
     </section>
 </template>
 
 
 <script>
+import Links from "./Links";
+
 export default {
     name:'topicHandler',
-    props:['chosenTopic']
+    props:['chosenTopic'],
+    components: {
+        Links
+    }
 }
 
 </script>

@@ -60,7 +60,7 @@ export default {
                 this.topics['selectedTopic'] = topic
                 this.topics['isTopicSelected'] = true
                 console.log("Let me see what i can find about "+ "'"+ topic+"'");
-
+                this.$parent.showLinks = true;
                 this.topics['topicsFound'] = [];
             }
         },

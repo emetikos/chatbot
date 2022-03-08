@@ -97,11 +97,19 @@ class HomeController extends Controller {
         $file = 'None';
         if(Session::has('file')) $file = Session::get('file');
         $classifiedMsg = '';
+
         if(Session::has('classifiedMsg')) $classifiedMsg = Session::get('classifiedMsg');
+
+
+
         $topicSelected = 'False';
-        if(Session::has('topicSelected')) $topicSelected = Session::get('topicSelected');
-        $topicFinal = 'Example topic';
+        $topicFinal = '';
         if(Session::has('topicFinal')) $topicFinal = Session::get('topicFinal');
+        if($request->input('topic')) {
+            $topicFinal = $request->input('topic');
+            $topicSelected = 'True';
+        }
+        if(Session::has('topicSelected')) $topicSelected = Session::get('topicSelected');
 
         $arr = Http::get('https://chatbot-educ-api.herokuapp.com/',[
                 'message'=>$message,

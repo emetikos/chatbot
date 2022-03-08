@@ -50,16 +50,18 @@ export default {
         messages:[],
         showFileUpload: false,
         showTopics: false,
-        showLinks: false,
+        showLinks: true,
     }),
     methods: {
         getMessages(values) {
             this.messages.push(values)
+            this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight
         },
         isFileUploaded(values) {
             if (values === 'False') this.showFileUpload = false
             if (values === 'True') this.showFileUpload = true
         },
+
         scrollDown(values) {
             if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight
         },
