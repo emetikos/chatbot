@@ -14,7 +14,7 @@ class TableController extends Controller
             return $samequery;
         }
         catch (Exception $e) {
-            return "NULL";
+            return ["NULL"];
         }
     }
 

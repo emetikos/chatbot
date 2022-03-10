@@ -1,19 +1,19 @@
 <template>
     <section>
         <p class="chosenTopic"> Let me see what I can find about '<span id="topic">{{chosenTopic}}</span>' </p>
-        <Links :topic="chosenTopic"/>
+        <LinksOut :topic="chosenTopic"/>
     </section>
 </template>
 
 
 <script>
-import Links from "./Links";
+import LinksOut from "./LinksOut";
 
 export default {
     name:'topicHandler',
     props:['chosenTopic'],
     components: {
-        Links
+        LinksOut
     }
 }
 

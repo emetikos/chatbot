@@ -1,8 +1,8 @@
 <template>
     <div>
         <div v-for="link in links">
-            <a href="url">{{link}}</a>
-            <link-prevue :url="link" />
+            <a href="url" >{{link}}</a>
+            <link-prevue :url="link" cardWidth="200px"></link-prevue>
         </div>
 
     </div>
@@ -12,53 +12,24 @@
     import LinkPrevue from 'link-prevue'
     export default {
         name: 'Links',
-
         props: [
-            'topic',
             'links'
         ],
         components: {
             LinkPrevue
-        },
-        methods: {
-            sendTopic(topic){
-
-                this.$emit("messages", {
-                    text: this.message,
-                    author: 'user'
-                })
-
-                //get a response from bot
-                this.axios
-                    .post('/query', {
-                        topic: this.topic
-                    })
-                    .then(res=> {
-                        this.$emit("messages", {
-                            text: res.data.response,
-                            author: 'bot'
-                        })
-                        this.$emit("readyToSubmit", res.data.readySubmit)
-                    })
-                    .catch(error => {
-                        this.$emit("messages", {
-                            text: 'Something went wrong. Try again.',
-                            author: 'bot'
-                        })
-                        console.log(error.response.data.errors)
-                    })
-                    .finally(() => {
-
-                    })
-                //clear message space after text is sent
-                this.message =  ''
-
-                this.$nextTick(() => {
-                    this.$emit("scroll", true)
-                })
-            },
-
         }
-
 }
 </script>
+
+<style>
+ a {
+     display: table;
+     margin-left: .5rem;
+     padding: .5rem;
+     background: green;
+     color: blue;
+     font-size: 1rem;
+     border-radius: 4px;
+     max-width: 100%;
+ }
+</style>

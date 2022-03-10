@@ -27,9 +27,6 @@
                     <div v-if="showTopics" class="main-list__show-topics">
                         <Topics ref="topics" />
                     </div>
-                    <div v-if="showLinks" class="main-list__show-links">
-                        <LinksOut/>
-                    </div>
 
                 </div>
                 <TextInputField @messages="getMessages" @readyToSubmit="isFileUploaded" @scroll="scrollDown"/>
@@ -41,7 +38,6 @@
 <script>
 import Topics from '../components/Topics';
 import FileUploadComponent from '../components/File/FileUploadComponent';
-import LinksOut from '../components/LinksOut';
 import TextInputField from "../components/TextInputField";
 
 export default {
@@ -73,7 +69,6 @@ export default {
         Topics,
         TextInputField,
 	    FileUploadComponent,
-        LinksOut,
   },
 
 }

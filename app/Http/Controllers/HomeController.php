@@ -107,7 +107,7 @@ class HomeController extends Controller {
         if(Session::has('topicFinal')) $topicFinal = Session::get('topicFinal');
         if($request->input('topic')) {
             $topicFinal = $request->input('topic');
-            $topicSelected = 'True';
+            Session::put('topicSelected','True');
         }
         if(Session::has('topicSelected')) $topicSelected = Session::get('topicSelected');
 
