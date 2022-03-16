@@ -2922,6 +2922,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Links',
@@ -3561,7 +3562,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na {\n    display: table;\n    margin-left: .5rem;\n    padding: .5rem;\n    background: green;\n    color: blue;\n    font-size: 1rem;\n    border-radius: 4px;\n    max-width: 100%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\na {\n    display: table;\n    margin-left: .5rem;\n    padding: .5rem;\n    background: green;\n    color: blue;\n    font-size: 1rem;\n    border-radius: 4px;\n    max-width: 100%;\n}\n.scrolling-wrapper {\n    overflow-x: scroll;\n    overflow-y: hidden;\n    white-space: nowrap;\n    display: inline-block;\n}\n.card {\n    display: inline-block;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23882,18 +23883,24 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.links, function (link) {
-      return _c(
-        "div",
-        [
+    { staticClass: "scrolling-wrapper" },
+    [
+      _vm._l(_vm.links, function (link) {
+        return _c(
+          "div",
+          { staticClass: "card" },
+          [_c("link-prevue", { attrs: { url: link, cardWidth: "200px" } })],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.links, function (link) {
+        return _c("div", [
           _c("a", { attrs: { href: link } }, [_vm._v(_vm._s(link))]),
-          _vm._v(" "),
-          _c("link-prevue", { attrs: { url: link, cardWidth: "200px" } }),
-        ],
-        1
-      )
-    }),
-    0
+        ])
+      }),
+    ],
+    2
   )
 }
 var staticRenderFns = []

@@ -1,10 +1,11 @@
 <template>
-    <div>
-        <div v-for="link in links">
-            <a v-bind:href="link" >{{link}}</a>
+    <div class="scrolling-wrapper">
+        <div class="card" v-for="link in links">
             <link-prevue :url="link" cardWidth="200px"></link-prevue>
         </div>
-
+        <div v-for="link in links">
+            <a v-bind:href="link" >{{link}}</a>
+        </div>
     </div>
 </template>
 
@@ -22,14 +23,23 @@
 </script>
 
 <style>
- a {
-     display: table;
-     margin-left: .5rem;
-     padding: .5rem;
-     background: green;
-     color: blue;
-     font-size: 1rem;
-     border-radius: 4px;
-     max-width: 100%;
- }
+    a {
+        display: table;
+        margin-left: .5rem;
+        padding: .5rem;
+        background: green;
+        color: blue;
+        font-size: 1rem;
+        border-radius: 4px;
+        max-width: 100%;
+    }
+    .scrolling-wrapper {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        display: inline-block;
+    }
+    .card {
+        display: inline-block;
+    }
 </style>
