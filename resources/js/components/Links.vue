@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="link in links">
-            <a href="url" >{{link}}</a>
+            <a v-bind:href="link" >{{link}}</a>
             <link-prevue :url="link" cardWidth="200px"></link-prevue>
         </div>
 

@@ -23886,7 +23886,7 @@ var render = function () {
       return _c(
         "div",
         [
-          _c("a", { attrs: { href: "url" } }, [_vm._v(_vm._s(link))]),
+          _c("a", { attrs: { href: link } }, [_vm._v(_vm._s(link))]),
           _vm._v(" "),
           _c("link-prevue", { attrs: { url: link, cardWidth: "200px" } }),
         ],
