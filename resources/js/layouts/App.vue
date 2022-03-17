@@ -184,4 +184,11 @@ export default {
     margin:0 auto;
 }
 
+.main-list__show-topics {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: inline-block;
+}
+
 </style>
