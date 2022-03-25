@@ -67,6 +67,20 @@ class HomeController extends Controller {
         // check the session value for selected topic and append a value to it if it's exists
         if(Session::has('topicFinal')) $topicFinal = Session::get('topicFinal');
 
+        // stores the links from the web based on the user final topic
+        $resource = "";
+        // check the session stored links and append a data to it if it's exists
+        if(Session::has('resource')) $resource = Session::get('resource');
+
+        // flag to support if the file has been analyzed or not
+        $analysedFile = 'False';
+        if(Session::has('fileAnalysed')) $analysedFile = Session::get('fileAnalysed');
+
+        // flag to support if the web resources has been provided or not
+        $providedResources = 'False';
+        if(Session::has('resourcesProvided')) $providedResources = Session::get('resourcesProvided');
+
+
         // listening for a user input with a name 'topic' from the input request , if exists replacing the 'topicFinal' with this input  value
         if($request->input('topic')) {
             $topicFinal = $request->input('topic');
@@ -81,15 +95,19 @@ class HomeController extends Controller {
          Sends the response from a chatbot back to the user
          Stores data from the response in the session
         */
-        $arr = Http::get('http://127.0.0.1:5000/',[
+        $arr = Http::get('https://chatbot-educ-api.herokuapp.com/',[
                 'message'=>$message,
                 'readySubmit'=>$readySubmit,
                 'topicFound'=>$topicFound,
                 'fileSubmit'=>$fileSubmit,
-                'file'=>$file,
                 'classifiedMsg'=>$classifiedMsg,
                 'topicSelected'=>$topicSelected,
                 'topicFinal'=>$topicFinal,
+                'file'=>$file,
+                'resource'=>$resource,
+                'fileAnalysed'=>$analysedFile,
+                'resourcesProvided'=>$providedResources,
+
             ])->throw()->json();
         Session::put('userInput', $arr['message']);
         Session::put('readySubmit', $arr['readySubmit']);
@@ -99,7 +117,9 @@ class HomeController extends Controller {
         Session::put('topicSelected', $arr['topicSelected']);
         Session::put('topicFinal', $arr['topicFinal']);
         Session::put('file', $arr['fileUploaded']);
-
+        Session::put('resource', $arr['resource']);
+        Session::put('fileAnalysed', $arr['fileAnalysed']);
+        Session::put('providedResources', $arr['resourcesProvided']);
         return response($arr, 200);
     }
 
@@ -115,7 +135,6 @@ class HomeController extends Controller {
 
         Session::put("file", $file);
         Session::put("fileSubmit", "True");
-        Session::put("readySubmit", "False");
 
         try {
             return self::api($request);
