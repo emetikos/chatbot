@@ -213,6 +213,7 @@
 </CENTER>
 
 <img id="showChatBot" class="btn-hidden" src="{{ url('/img/chatbot.png') }}" onclick="showChatBot()" alt="">
+{{--<iframe id="iframe" class="iframe-hidden" src="http://127.0.0.1:8000"></iframe>--}}
 <iframe id="iframe" class="iframe-hidden" src="https://chat-bot-educ.herokuapp.com/"></iframe>
 
 
@@ -230,7 +231,6 @@
         let close_btn
         let iframe = document.getElementById('iframe');
         close_btn = iframe.contentWindow.document.getElementById('hideChatBot')
-
         closeIframe(close_btn)
     }
 
@@ -241,6 +241,7 @@
     function closeIframe(btn) {
         btn.onclick = () => {
             document.getElementById('iframe').className = "hide";
+            document.getElementById('showChatBot').className = "btn-show";
         }
     }
 

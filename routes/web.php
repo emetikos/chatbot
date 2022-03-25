@@ -25,8 +25,6 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/target-page', [HomeController::class, 'index']);
 
-Route::post('/query', [HomeController::class, 'api']);
-
 Route::post('/analyse', [HomeController::class, 'analyse']);
 
 Route::get('/topicFound', [HomeController::class, 'api']);

@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller {
     public function index() {
-//        Session::flush();
-
         return view('iframe');
     }
 
@@ -48,8 +46,9 @@ class HomeController extends Controller {
             Session::put('topicSelected','True');
         }
         if(Session::has('topicSelected')) $topicSelected = Session::get('topicSelected');
-
-        $arr = Http::get('https://chatbot-educ-api.herokuapp.com/',[
+//        http://127.0.0.1:5000/
+//        https://chatbot-educ-api.herokuapp.com/
+        $arr = Http::get('http://127.0.0.1:5000/',[
                 'message'=>$message,
                 'readySubmit'=>$readySubmit,
                 'topicFound'=>$topicFound,
