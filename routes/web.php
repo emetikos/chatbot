@@ -26,18 +26,13 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/target-page', [HomeController::class, 'index']);
 
 Route::post('/query', [HomeController::class, 'api']);
-//Route::post('/upload/pdf', [UploadController::class, 'pdf']); <- moved to the api
+
 Route::post('/analyse', [HomeController::class, 'analyse']);
 
 Route::get('/topicFound', [HomeController::class, 'api']);
-//Route::get('/store', [TableController::class, 'store']);
-//Route::get('/same', [TableController::class, 'retrieve_same']);
+
 Route::get('/test', [TableController::class, 'test']);
-//Route::post('query', [HomeController::class, 'query']);
-//Route::post('/query', [HomeController::class, 'ajaxQuery']);
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
 Route::get('/flash', [HomeController::class, 'flashSession']);
 Route:: get ('/delete', [TableController::class,'delete_function']);
 
