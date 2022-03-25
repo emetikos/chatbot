@@ -152,6 +152,7 @@ class HomeController extends Controller {
     public function flashSession(){
         Session::flush();
         return redirect()->route('home');
+
     }
 
 }

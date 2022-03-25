@@ -11,7 +11,7 @@ class Resources extends Model
 
 
     protected $fillable =  [
-        'query_name',
+        'query_id',
         'path_name'
         ];
 
