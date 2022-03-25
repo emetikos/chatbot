@@ -81,7 +81,7 @@ class HomeController extends Controller {
          Sends the response from a chatbot back to the user
          Stores data from the response in the session
         */
-        $arr = Http::get('http://127.0.0.1:5000/',[
+        $arr = Http::get('https://chatbot-educ-api.herokuapp.com/',[
                 'message'=>$message,
                 'readySubmit'=>$readySubmit,
                 'topicFound'=>$topicFound,
