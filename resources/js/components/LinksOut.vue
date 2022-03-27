@@ -31,7 +31,7 @@
             //if(this.links == ["NULL"]) {
             this.axios
                 .post('/query', {
-                    topic: 'neuron',
+                    topic: this.topic,
                 })
                 .then(res=> {
                     //console.log(res)

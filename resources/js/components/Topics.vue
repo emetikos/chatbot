@@ -62,6 +62,8 @@ export default {
                 console.log("Let me see what i can find about "+ "'"+ topic+"'");
                 this.$parent.showLinks = true;
                 this.topics['topicsFound'] = [];
+
+                this.$emit('chosenTopic' , topic)
             }
         },
 

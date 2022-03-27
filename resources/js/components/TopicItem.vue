@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="topic-item">
-            <p class="btn" @click="$emit('print-topic', topic)" >{{ topic }}</p>
+            <p class="btn" @click="$emit('print-topic', topic)">{{ topic }}</p>
         </div>
     </section>
 </template>

@@ -25,10 +25,10 @@
                         <FileUploadComponent />
                     </div>
                     <div v-if="showTopics" class="main-list__show-topics">
-                        <Topics ref="topics" />
+                        <Topics ref="topics" @chosenTopic="sendChosenTopic"/>
                     </div>
                     <div v-if="showLinks" class="main-list__show-links">
-                        <LinksOut ref="topic"/>
+                        <LinksOut :topic="this.chosenTopic"/>
                     </div>
                     <div v-if="showFeedback" class="main-list__show-feedback">
                         <FeedbackComponent @showFeedback="isShowFeedback" />
@@ -55,7 +55,8 @@ export default {
         showFileUpload: false,
         showTopics: false,
         showLinks: false,
-        showFeedback: false
+        showFeedback: false,
+        chosenTopic: ''
     }),
     methods: {
         getMessages(values) {
@@ -76,6 +77,9 @@ export default {
         },
         hideChatBot() {
            axios.get('/flash')
+        },
+        sendChosenTopic(chosenTopic){
+            this.chosenTopic = chosenTopic
         }
     },
     components: {
