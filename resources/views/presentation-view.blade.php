@@ -77,7 +77,7 @@
           id="form"
           class="feedback-form__body">
         @csrf
-        <img src="{{ URL('img/chatbot.png') }}" alt="burger-logo">
+        <img src="{{ URL('img/chatbot.png') }}">
         <h1 class="form__title"> Educational ChatBot </h1>
 
         <div class="form__item">
