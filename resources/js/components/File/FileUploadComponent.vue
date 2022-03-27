@@ -343,9 +343,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 320px;
-        height: max-content;
-        margin: 8px;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        max-height: 180px;
+        margin: 8px auto 8px 8px;
         overflow: hidden;
         box-sizing: border-box;
     }
