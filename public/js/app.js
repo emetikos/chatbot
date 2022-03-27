@@ -2765,38 +2765,39 @@ function _onFileAnalysed() {
             topics = response.data["possibleTopics"]; // Displays the topics returned and remove this component
 
             if (!Array.isArray(topics)) {
-              _context8.next = 15;
+              _context8.next = 16;
               break;
             }
 
             if (!(topics.length > 0)) {
-              _context8.next = 12;
+              _context8.next = 13;
               break;
             }
 
+            this.$emit('messages', response.data.response);
             this.$refs["analyse-file"].setText("File analysed!");
             this.isFileAnalysed = true;
             this.$parent.showTopics = true;
-            _context8.next = 8;
+            _context8.next = 9;
             return this.$nextTick();
 
-          case 8:
+          case 9:
             this.$parent.$refs["topics"].topics.topicsFound = topics;
             this.$parent.showFileUpload = false;
-            _context8.next = 13;
+            _context8.next = 14;
             break;
-
-          case 12:
-            this.$refs["analyse-file"].setText("No topics found!");
 
           case 13:
-            _context8.next = 16;
+            this.$refs["analyse-file"].setText("No topics found!");
+
+          case 14:
+            _context8.next = 17;
             break;
 
-          case 15:
+          case 16:
             this.onFileAnalyseError("Topics array was not returned!");
 
-          case 16:
+          case 17:
           case "end":
             return _context8.stop();
         }
@@ -3254,7 +3255,8 @@ var TOPICS_NOT_FOUND = 'No topics found';
         // THIS WILL STORE TOPICS AFTER FETCHING FROM THE API
         topicsFound: [],
         selectedTopic: '',
-        isTopicSelected: false
+        isTopicSelected: false,
+        response: ''
       }
     };
   },
@@ -3278,30 +3280,36 @@ var TOPICS_NOT_FOUND = 'No topics found';
         this.topics['topicsFound'] = [];
         this.$emit('chosenTopic', topic);
       }
-    },
-
+    }
     /**
      *
      * @axios will call the route for the API to get the topics after the given file has been upload and analyzed.
      *
      * @return list of topics relevant to the user's query for him to use one.
      */
-    fetchTopics: function fetchTopics() {
-      var _this = this;
+    // fetchTopics() {
+    //
+    //     axios.get('/topicFound')
+    //          .then(res => {
+    //              var topicsFound = res.data['topicFound']
+    //
+    //
+    //              this.$emit("messages", {
+    //                  text: res.data.response,
+    //                  author: 'bot'
+    //              })
+    //
+    //              console.log(topicsFound)
+    //              if(topicsFound === 'False') {
+    //                  this.topics['topicsFound'] = [TOPICS_NOT_FOUND]
+    //              }else{
+    //                  this.topics['topicsFound'] = topicsFound
+    //              }
+    //          }).catch(e => {
+    //              this.topics['topicsFound'] = e.error;
+    //     })
+    // }
 
-      axios.get('/topicFound').then(function (res) {
-        var topicsFound = res.data['topicFound'];
-        console.log(topicsFound);
-
-        if (topicsFound === 'False') {
-          _this.topics['topicsFound'] = [TOPICS_NOT_FOUND];
-        } else {
-          _this.topics['topicsFound'] = topicsFound;
-        }
-      })["catch"](function (e) {
-        _this.topics['topicsFound'] = e.error;
-      });
-    }
   }
 });
 
@@ -3528,7 +3536,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.feedback__img[data-v-4eb4081d] {\r\n    width: 80px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.feedback__buttons[data-v-4eb4081d]{\r\n    display: flex;\r\n    justify-content: space-evenly;\r\n    align-items: center;\n}\n.feedback__img[data-v-4eb4081d] {\r\n    width: 50px;\r\n    cursor: pointer;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24364,10 +24372,6 @@ var render = function () {
       _c("div", [
         _vm.topics["topicsFound"].length
           ? _c("div", { staticClass: "topics-found" }, [
-              _c("p", { staticClass: "chosenTopic" }, [
-                _vm._v("This is what I found! Please select one of the topics"),
-              ]),
-              _vm._v(" "),
               _c("div", { staticClass: "topics" }, [
                 _c(
                   "ul",
@@ -24476,7 +24480,11 @@ var render = function () {
                 ? _c(
                     "div",
                     { staticClass: "main-list__upload-file" },
-                    [_c("FileUploadComponent")],
+                    [
+                      _c("FileUploadComponent", {
+                        on: { messages: _vm.getMessages },
+                      }),
+                    ],
                     1
                   )
                 : _vm._e(),

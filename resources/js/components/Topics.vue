@@ -2,7 +2,7 @@
     <section>
         <div>
             <div class="topics-found" v-if="topics['topicsFound'].length">
-                <p class="chosenTopic">This is what I found! Please select one of the topics</p>
+<!--                <p class="chosenTopic">This is what I found! Please select one of the topics</p>-->
                 <div class="topics" >
                     <ul>
                         <li v-for="topic in topics['topicsFound']">
@@ -37,7 +37,8 @@ export default {
                 // THIS WILL STORE TOPICS AFTER FETCHING FROM THE API
                 topicsFound: [],
                 selectedTopic: '',
-                isTopicSelected: false
+                isTopicSelected: false,
+                response: ''
             }
         }
     },
@@ -73,22 +74,28 @@ export default {
          *
          * @return list of topics relevant to the user's query for him to use one.
          */
-        fetchTopics() {
-
-            axios.get('/topicFound')
-                 .then(res => {
-                     var topicsFound = res.data['topicFound']
-
-                     console.log(topicsFound)
-                     if(topicsFound === 'False') {
-                         this.topics['topicsFound'] = [TOPICS_NOT_FOUND]
-                     }else{
-                         this.topics['topicsFound'] = topicsFound
-                     }
-                 }).catch(e => {
-                     this.topics['topicsFound'] = e.error;
-            })
-        }
+        // fetchTopics() {
+        //
+        //     axios.get('/topicFound')
+        //          .then(res => {
+        //              var topicsFound = res.data['topicFound']
+        //
+        //
+        //              this.$emit("messages", {
+        //                  text: res.data.response,
+        //                  author: 'bot'
+        //              })
+        //
+        //              console.log(topicsFound)
+        //              if(topicsFound === 'False') {
+        //                  this.topics['topicsFound'] = [TOPICS_NOT_FOUND]
+        //              }else{
+        //                  this.topics['topicsFound'] = topicsFound
+        //              }
+        //          }).catch(e => {
+        //              this.topics['topicsFound'] = e.error;
+        //     })
+        // }
     }
 }
 

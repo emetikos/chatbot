@@ -22,10 +22,10 @@
                         </li>
                     </ul>
                     <div v-if="showFileUpload" class="main-list__upload-file">
-                        <FileUploadComponent />
+                        <FileUploadComponent @messages="getMessages"/>
                     </div>
                     <div v-if="showTopics" class="main-list__show-topics">
-                        <Topics ref="topics" @chosenTopic="sendChosenTopic"/>
+                        <Topics ref="topics" @chosenTopic="sendChosenTopic" />
                     </div>
                     <div v-if="showLinks" class="main-list__show-links">
                         <LinksOut :topic="this.chosenTopic"/>
