@@ -4,7 +4,7 @@
             <link-prevue :url="link" cardWidth="200px"></link-prevue>
         </div>
         <div v-for="link in links">
-            <a v-bind:href="link" >{{link}}</a>
+            <a v-bind:href="link" target="_blank">{{link}}</a>
         </div>
     </div>
 </template>

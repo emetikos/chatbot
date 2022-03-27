@@ -3018,7 +3018,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['topic'],
   data: function data() {
     return {
-      links: ["Please wait..."]
+      links: []
     };
   },
   components: {
@@ -24169,7 +24169,9 @@ var render = function () {
       _vm._v(" "),
       _vm._l(_vm.links, function (link) {
         return _c("div", [
-          _c("a", { attrs: { href: link } }, [_vm._v(_vm._s(link))]),
+          _c("a", { attrs: { href: link, target: "_blank" } }, [
+            _vm._v(_vm._s(link)),
+          ]),
         ])
       }),
     ],
