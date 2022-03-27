@@ -1,24 +1,18 @@
 <template>
     <div class="main-list__feedback feedback">
         <div class="feedback__buttons">
-            <button type="button"
-                    class="feedback__btn"
-                    @click="sendFeedback"
+                <img class="feedback__img"
+                     @click="sendFeedback"
+                     :disabled="isDisabled"
+                     data-value="positive"
+                     src="img/positive.png">
+
+                <img @click="sendFeedback"
                     :disabled="isDisabled"
-                    data-value="positive">
-                <img class="feedback__img" src="img/positive.png">
-            </button>
-            <button type="button"
-                    class="feedback__btn"
-                    @click="sendFeedback"
-                    :disabled="isDisabled"
-                    data-value="negative">
-                <img class="feedback__img" src="/img/negative.png">
-            </button>
+                    data-value="negative"
+                    class="feedback__img"
+                     src="/img/negative.png">
         </div>
-
-
-
     </div>
 </template>
 
