@@ -27,10 +27,12 @@
                     <div v-if="showTopics" class="main-list__show-topics">
                         <Topics ref="topics" />
                     </div>
+                    <div v-if="showLinks" class="main-list__show-links">
+                        <Links />
+                    </div>
                     <div v-if="showFeedback" class="main-list__show-feedback">
                         <FeedbackComponent @showFeedback="isShowFeedback" />
                     </div>
-
 
                 </div>
                 <TextInputField @messages="getMessages" @readyToSubmit="isFileUploaded" @scroll="scrollDown"/>
@@ -44,6 +46,7 @@ import Topics from '../components/Topics';
 import FileUploadComponent from '../components/File/FileUploadComponent';
 import TextInputField from "../components/TextInputField";
 import FeedbackComponent from "../components/FeedbackComponent";
+import Links from "../components/Links";
 
 export default {
     name: "MainWindowComponent",
@@ -52,7 +55,7 @@ export default {
         showFileUpload: false,
         showTopics: false,
         showLinks: false,
-        showFeedback: true
+        showFeedback: false
     }),
     methods: {
         getMessages(values) {
@@ -79,7 +82,8 @@ export default {
         Topics,
         TextInputField,
 	    FileUploadComponent,
-        FeedbackComponent
+        FeedbackComponent,
+        Links
   },
 
 }
