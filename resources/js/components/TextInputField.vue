@@ -24,7 +24,8 @@
 
                         setTimeout( () => this.$emit('messages', {
                             text: 'Hello ! I am a sophisticated ( Intelligent) bot',
-                            author:'bot'
+                            author:'bot',
+                            type: 'text'
                         }), 2000)
 
                     },
@@ -33,7 +34,8 @@
                         this.isDisabled = true
                         this.$emit("messages", {
                             text: this.message,
-                            author: 'user'
+                            author: 'user',
+                            type: 'text'
                         })
 
                         //get a response from bot
@@ -44,14 +46,16 @@
                             .then(res=> {
                                 this.$emit("messages", {
                                     text: res.data.response,
-                                    author: 'bot'
+                                    author: 'bot',
+                                    type: 'text'
                                 })
                                 this.$emit("readyToSubmit", res.data.readySubmit)
                             })
                             .catch(error => {
                                 this.$emit("messages", {
                                     text: 'Something went wrong. Try again.',
-                                    author: 'bot'
+                                    author: 'bot',
+                                    type: 'text'
                                 })
                                 console.log(error.response.data.errors)
                             })

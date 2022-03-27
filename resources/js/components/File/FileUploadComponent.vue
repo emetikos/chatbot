@@ -181,7 +181,8 @@
             if (topics.length > 0) {
                 this.$emit("messages", {
                     text: response.data["response"],
-                    author: 'bot'
+                    author: 'bot',
+                    type: 'text'
                 })
                 this.$refs["analyse-file"].setText("File analysed!");
                 this.isFileAnalysed = true;

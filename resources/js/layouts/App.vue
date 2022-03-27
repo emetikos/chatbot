@@ -14,11 +14,24 @@
                         <li class="main-list__message"
                             v-for="(message, index) in messages"
                             :key="index"
-                            :class="message.author"
+                            :class="(message.type ==='link')? message.author + ' message__links': message.author"
                         >
-                            <p>
+                            <p v-if="message.type === 'text'">
                                 <span>{{ message.text }}</span>
                             </p>
+
+                                <p  v-if="message.type === 'link'"
+                                    class="message__link"
+                                    v-for="link in  message.text"
+                                >
+
+                                    <link-prevue class="message__link-prevue" :url="link" cardWidth="200px"></link-prevue>
+                                    <a class="message__link-target" v-bind:href="link" target="_blank">{{ link }}</a>
+
+                                </p>
+
+
+
                         </li>
                     </ul>
                     <div v-if="showFileUpload" class="main-list__upload-file">
@@ -28,7 +41,7 @@
                         <Topics ref="topics" @chosenTopic="sendChosenTopic" />
                     </div>
                     <div v-if="showLinks" class="main-list__show-links">
-                        <LinksOut :topic="this.chosenTopic"/>
+                        <LinksOut :topic="this.chosenTopic" @messages="getMessages" />
                     </div>
                     <div v-if="showFeedback" class="main-list__show-feedback">
                         <FeedbackComponent @showFeedback="isShowFeedback" />
@@ -47,6 +60,7 @@ import FileUploadComponent from '../components/File/FileUploadComponent';
 import TextInputField from "../components/TextInputField";
 import FeedbackComponent from "../components/FeedbackComponent";
 import LinksOut from "../components/LinksOut";
+import LinkPrevue from 'link-prevue';
 
 export default {
     name: "MainWindowComponent",
@@ -87,7 +101,8 @@ export default {
         TextInputField,
 	    FileUploadComponent,
         FeedbackComponent,
-        LinksOut
+        LinksOut,
+        LinkPrevue
   },
 
 }
@@ -208,6 +223,19 @@ export default {
     overflow-y: hidden;
     white-space: nowrap;
     display: inline-block;
+}
+
+// Links
+.message__links {
+    display: flex;
+    overflow: auto;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+.message__link {
+    margin-right: 1em;
 }
 
 </style>

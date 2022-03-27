@@ -23,17 +23,17 @@
 </script>
 
 <style>
-    a {
-        display: table;
-        margin-left: .5rem;
-        padding: .5rem;
-        background: green;
-        color: blue;
-        font-size: 1rem;
-        border-radius: 4px;
-        max-width: 100%;
-    }
-    .card {
-        display: inline-block;
-    }
+    /*a {*/
+    /*    display: table;*/
+    /*    margin-left: .5rem;*/
+    /*    padding: .5rem;*/
+    /*    background: green;*/
+    /*    color: blue;*/
+    /*    font-size: 1rem;*/
+    /*    border-radius: 4px;*/
+    /*    max-width: 100%;*/
+    /*}*/
+    /*.card {*/
+    /*    display: inline-block;*/
+    /*}*/
 </style>

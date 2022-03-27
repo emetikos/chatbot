@@ -1,5 +1,5 @@
 <template>
-    <Links :links="links" />
+<!--    <Links :links="links" />-->
 </template>
 
 <script>
@@ -19,39 +19,44 @@
         },
         created(){
             //get a response from bot
-            /** - checks database for topic
-            this.axios
-                .post('/retrieve_same', {
-                    in: this.topic
-                })
-                .then(res=> {
-                    this.links = res.data["links"]
-                })
-            */
-            //if(this.links == ["NULL"]) {
             this.axios
                 .post('/query', {
                     topic: this.topic,
                 })
                 .then(res=> {
-                    //console.log(res)
-                    //console.log(res.data.resource)
                     this.links = res.data.resource
+                    // for (let link in this.links) {
+                    //     this.$emit("messages", {
+                    //         text: this.links[link],
+                    //         author: 'bot',
+                    //         type: 'link'
+                    //     })
+                    // }
+
+                    this.$emit("messages", {
+                                text: this.links,
+                                author: 'bot',
+                                type: 'link'
+                            })
+
+                    this.$emit("messages", {
+                        text: res.data.response,
+                        author: 'bot',
+                        type: 'text'
+                    })
+
+
+                    // this.links = res.data.resource
                 }).finally(() => {
-                this.$parent.showTopics = false
+
+                    this.$parent.showTopics = false
+
+
                 })
 
             this.$nextTick(() => {
                 this.$emit("scroll", true)
             })
-            //}
-            /**
-            this.axios
-                .post('/store', {
-                    query: this.topic,
-                    link: this.links
-                })
-            */
         }
     }
 </script>
