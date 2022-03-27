@@ -179,7 +179,10 @@
         // Displays the topics returned and remove this component
         if (Array.isArray(topics)) {
             if (topics.length > 0) {
-                this.$emit('messages',  response.data.response)
+                this.$emit("messages", {
+                    text: response.data["response"],
+                    author: 'bot'
+                })
                 this.$refs["analyse-file"].setText("File analysed!");
                 this.isFileAnalysed = true;
 
