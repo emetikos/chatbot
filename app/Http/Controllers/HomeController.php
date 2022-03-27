@@ -80,6 +80,10 @@ class HomeController extends Controller {
         $providedResources = 'False';
         if(Session::has('resourcesProvided')) $providedResources = Session::get('resourcesProvided');
 
+        // flag to support if the conversation finished or not
+        $conversationFinished = 'False';
+        if(Session::has('conversationFinished')) $conversationFinished = Session::get('conversationFinished');
+
 
         // listening for a user input with a name 'topic' from the input request , if exists replacing the 'topicFinal' with this input  value
         if($request->input('topic')) {
@@ -107,6 +111,7 @@ class HomeController extends Controller {
                 'resource'=>$resource,
                 'fileAnalysed'=>$analysedFile,
                 'resourcesProvided'=>$providedResources,
+                'conversationFinished'=>$conversationFinished,
 
             ])->throw()->json();
         Session::put('userInput', $arr['message']);
@@ -120,6 +125,7 @@ class HomeController extends Controller {
         Session::put('resource', $arr['resource']);
         Session::put('fileAnalysed', $arr['fileAnalysed']);
         Session::put('resourcesProvided', $arr['resourcesProvided']);
+        Session::put('conversationFinished', $arr['conversationFinished']);
         return response($arr, 200);
     }
 

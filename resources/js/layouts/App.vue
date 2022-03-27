@@ -44,7 +44,7 @@
                         <LinksOut :topic="this.chosenTopic" @messages="getMessages" />
                     </div>
                     <div v-if="showFeedback" class="main-list__show-feedback">
-                        <FeedbackComponent  />
+                        <FeedbackComponent  @showFeedback="isShowFeedback" @messages="getMessages"/>
                     </div>
 
                 </div>

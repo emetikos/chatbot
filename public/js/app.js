@@ -2094,6 +2094,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "FeedbackComponent",
   data: function data() {
@@ -2104,23 +2108,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sendFeedback: function sendFeedback(event) {
+      var _this = this;
+
       this.isDisabled = true;
-      var value = event.target.getAttribute('data-value');
-      console.log(value);
-      this.isDisabled = false; // this.axios
-      //     .post('/save', {
-      //         query: this.feedback
-      //     })
-      //     .then(res=> {
-      //
-      //     })
-      //     .catch(error => {
-      //
-      //         console.log(error.response.data.errors)
-      //     })
-      //     .finally(() => {
-      //         this.isDisabled = false
-      //     })
+      this.feedback = event.target.getAttribute('data-value');
+      this.axios.post('/save', {
+        query: this.feedback
+      }).then(function (res) {
+        if (res) {
+          _this.$emit("showFeedback", 'False');
+
+          _this.$emit("messages", {
+            text: 'Thanks for your feedback',
+            author: 'bot',
+            type: 'text'
+          });
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      })["finally"](function () {
+        _this.isDisabled = false;
+      });
     }
   }
 });
@@ -3576,7 +3584,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.feedback__buttons[data-v-4eb4081d]{\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n}\n.feedback__img[data-v-4eb4081d] {\n    width: 50px;\n    cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.feedback[data-v-4eb4081d] {\n    position: absolute;\n    padding: 0;\n    margin: 0;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: white;\n}\n.feedback__buttons[data-v-4eb4081d]{\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    height: 100%;\n    margin-top: -3em;\n}\n.feedback__img[data-v-4eb4081d] {\n    width: 80px;\n    cursor: pointer;\n}\n.feedback__text h1[data-v-4eb4081d] {\n    text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23902,6 +23910,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "main-list__feedback feedback" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "feedback__buttons" }, [
       _c("img", {
         staticClass: "feedback__img",
@@ -23925,7 +23935,16 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "feedback__text" }, [
+      _c("h1", [_vm._v("Provide a feedback please")]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -24601,7 +24620,14 @@ var render = function () {
                 ? _c(
                     "div",
                     { staticClass: "main-list__show-feedback" },
-                    [_c("FeedbackComponent")],
+                    [
+                      _c("FeedbackComponent", {
+                        on: {
+                          showFeedback: _vm.isShowFeedback,
+                          messages: _vm.getMessages,
+                        },
+                      }),
+                    ],
                     1
                   )
                 : _vm._e(),

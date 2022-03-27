@@ -40,7 +40,7 @@ class TableController extends Controller
         }
 
         # CHECK IF THE USER WILL LEAVE A POSITIVE FEEDBACK FOR THE RESOURCES
-        $feedback = 'positive';
+//        $feedback = 'positive';
 
         if($feedback === 'positive'){
 
@@ -65,7 +65,10 @@ class TableController extends Controller
                     Resources::where('path_name', $resource)->update(['path_name' => $resource]);
                 }
             }
+
         }
+        Session::put('conversationFinished', 'False');
+        return response('True', 200);
     }
 
     public function retrieve_same($in){
