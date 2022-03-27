@@ -142,7 +142,7 @@
         let formData  = new FormData();
         formData.append("pdf", filePath);
 
-        console.log(filePath);
+        // console.log(filePath);
 
         // Analyse the uploaded file
         axios.post(this.URI.ANALYSE_FILE, formData)

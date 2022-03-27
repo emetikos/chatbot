@@ -38,7 +38,7 @@
                         <FileUploadComponent @messages="getMessages"/>
                     </div>
                     <div v-if="showTopics" class="main-list__show-topics">
-                        <Topics ref="topics" @chosenTopic="sendChosenTopic" />
+                        <Topics ref="topics" @chosenTopic="sendChosenTopic" @messages="getMessages" />
                     </div>
                     <div v-if="showLinks" class="main-list__show-links">
                         <LinksOut :topic="this.chosenTopic" @messages="getMessages" />

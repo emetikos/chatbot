@@ -119,7 +119,7 @@ class HomeController extends Controller {
         Session::put('file', $arr['fileUploaded']);
         Session::put('resource', $arr['resource']);
         Session::put('fileAnalysed', $arr['fileAnalysed']);
-        Session::put('providedResources', $arr['resourcesProvided']);
+        Session::put('resourcesProvided', $arr['resourcesProvided']);
         return response($arr, 200);
     }
 

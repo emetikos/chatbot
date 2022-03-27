@@ -1,7 +1,19 @@
 <template>
     <section>
         <div class="topic-item">
-            <p class="btn" @click="$emit('print-topic', topic)">{{ topic }}</p>
+            <p class="btn" @click="$emit('print-topic', topic);
+                            $parent.$emit('messages', {
+                            text: 'Great! You have selected my favorite topic!',
+                            author:'bot',
+                            type: 'text'
+                        });
+                            $parent.$emit('messages', {
+                            text: 'Let me see what I can find about ' + topic + '....',
+                            author:'bot',
+                            type: 'text'
+                        });
+
+                        ">{{ topic }}</p>
         </div>
     </section>
 </template>

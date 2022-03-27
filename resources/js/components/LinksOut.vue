@@ -50,6 +50,7 @@
                 }).finally(() => {
 
                     this.$parent.showTopics = false
+                    this.$parent.showLinks = false
 
 
                 })

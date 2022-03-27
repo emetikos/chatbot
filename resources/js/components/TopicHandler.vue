@@ -1,7 +1,6 @@
 <template>
     <section>
-        <p class="chosenTopic"> Let me see what I can find about '<span id="topic">{{chosenTopic}}</span>' </p>
-<!--        <LinksOut :topic="chosenTopic"/>-->
+<!--        <p class="chosenTopic"> Let me see what I can find about '<span id="topic">{{chosenTopic}}</span>'.... </p>-->
     </section>
 </template>
 

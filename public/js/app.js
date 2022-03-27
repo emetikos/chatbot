@@ -2692,12 +2692,12 @@ function _onFileUploaded() {
             this.$refs["analyse-file"].setText("Analysing file..."); // The form data containing the file to send via post
 
             formData = new FormData();
-            formData.append("pdf", filePath);
-            console.log(filePath); // Analyse the uploaded file
+            formData.append("pdf", filePath); // console.log(filePath);
+            // Analyse the uploaded file
 
             axios.post(this.URI.ANALYSE_FILE, formData).then(this.onFileAnalysed)["catch"](this.onFileAnalyseError);
 
-          case 13:
+          case 12:
           case "end":
             return _context6.stop();
         }
@@ -2774,7 +2774,11 @@ function _onFileAnalysed() {
               break;
             }
 
-            this.$emit('messages', response.data.response);
+            this.$emit("messages", {
+              text: response.data["response"],
+              author: 'bot',
+              type: 'text'
+            });
             this.$refs["analyse-file"].setText("File analysed!");
             this.isFileAnalysed = true;
             this.$parent.showTopics = true;
@@ -3029,37 +3033,36 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //get a response from bot
-
-    /** - checks database for topic
-    this.axios
-        .post('/retrieve_same', {
-            in: this.topic
-        })
-        .then(res=> {
-            this.links = res.data["links"]
-        })
-    */
-    //if(this.links == ["NULL"]) {
     this.axios.post('/query', {
       topic: this.topic
     }).then(function (res) {
-      //console.log(res)
-      //console.log(res.data.resource)
-      _this.links = res.data.resource;
+      _this.links = res.data.resource; // for (let link in this.links) {
+      //     this.$emit("messages", {
+      //         text: this.links[link],
+      //         author: 'bot',
+      //         type: 'link'
+      //     })
+      // }
+
+      _this.$emit("messages", {
+        text: _this.links,
+        author: 'bot',
+        type: 'link'
+      });
+
+      _this.$emit("messages", {
+        text: res.data.response,
+        author: 'bot',
+        type: 'text'
+      }); // this.links = res.data.resource
+
     })["finally"](function () {
       _this.$parent.showTopics = false;
+      _this.$parent.showLinks = false;
     });
     this.$nextTick(function () {
       _this.$emit("scroll", true);
-    }); //}
-
-    /**
-    this.axios
-        .post('/store', {
-            query: this.topic,
-            link: this.links
-        })
-    */
+    });
   }
 });
 
@@ -3105,7 +3108,8 @@ __webpack_require__.r(__webpack_exports__);
       setTimeout(function () {
         return _this.$emit('messages', {
           text: 'Hello ! I am a sophisticated ( Intelligent) bot',
-          author: 'bot'
+          author: 'bot',
+          type: 'text'
         });
       }, 2000);
     },
@@ -3116,7 +3120,8 @@ __webpack_require__.r(__webpack_exports__);
       this.isDisabled = true;
       this.$emit("messages", {
         text: this.message,
-        author: 'user'
+        author: 'user',
+        type: 'text'
       }); //get a response from bot
 
       this.axios.post('/query', {
@@ -3124,14 +3129,16 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         _this2.$emit("messages", {
           text: res.data.response,
-          author: 'bot'
+          author: 'bot',
+          type: 'text'
         });
 
         _this2.$emit("readyToSubmit", res.data.readySubmit);
       })["catch"](function (error) {
         _this2.$emit("messages", {
           text: 'Something went wrong. Try again.',
-          author: 'bot'
+          author: 'bot',
+          type: 'text'
         });
 
         console.log(error.response.data.errors);
@@ -3168,7 +3175,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'topicHandler',
@@ -3191,6 +3197,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3275,7 +3293,6 @@ var TOPICS_NOT_FOUND = 'No topics found';
         // TODO: this should be displayed to the user chat area for confirmation.
         this.topics['selectedTopic'] = topic;
         this.topics['isTopicSelected'] = true;
-        console.log("Let me see what i can find about " + "'" + topic + "'");
         this.$parent.showLinks = true;
         this.topics['topicsFound'] = [];
         this.$emit('chosenTopic', topic);
@@ -3331,6 +3348,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_TextInputField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/TextInputField */ "./resources/js/components/TextInputField.vue");
 /* harmony import */ var _components_FeedbackComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/FeedbackComponent */ "./resources/js/components/FeedbackComponent.vue");
 /* harmony import */ var _components_LinksOut__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/LinksOut */ "./resources/js/components/LinksOut.vue");
+/* harmony import */ var link_prevue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! link-prevue */ "./node_modules/link-prevue/dist/link-prevue.umd.min.js");
+/* harmony import */ var link_prevue__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(link_prevue__WEBPACK_IMPORTED_MODULE_5__);
 //
 //
 //
@@ -3374,6 +3393,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3419,7 +3452,8 @@ __webpack_require__.r(__webpack_exports__);
     TextInputField: _components_TextInputField__WEBPACK_IMPORTED_MODULE_2__["default"],
     FileUploadComponent: _components_File_FileUploadComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
     FeedbackComponent: _components_FeedbackComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
-    LinksOut: _components_LinksOut__WEBPACK_IMPORTED_MODULE_4__["default"]
+    LinksOut: _components_LinksOut__WEBPACK_IMPORTED_MODULE_4__["default"],
+    LinkPrevue: (link_prevue__WEBPACK_IMPORTED_MODULE_5___default())
   }
 });
 
@@ -3536,7 +3570,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.feedback__buttons[data-v-4eb4081d]{\r\n    display: flex;\r\n    justify-content: space-evenly;\r\n    align-items: center;\n}\n.feedback__img[data-v-4eb4081d] {\r\n    width: 50px;\r\n    cursor: pointer;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.feedback__buttons[data-v-4eb4081d]{\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n}\n.feedback__img[data-v-4eb4081d] {\n    width: 50px;\n    cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3680,7 +3714,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na {\n    display: table;\n    margin-left: .5rem;\n    padding: .5rem;\n    background: green;\n    color: blue;\n    font-size: 1rem;\n    border-radius: 4px;\n    max-width: 100%;\n}\n.card {\n    display: inline-block;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*a {*/\n/*    display: table;*/\n/*    margin-left: .5rem;*/\n/*    padding: .5rem;*/\n/*    background: green;*/\n/*    color: blue;*/\n/*    font-size: 1rem;*/\n/*    border-radius: 4px;*/\n/*    max-width: 100%;*/\n/*}*/\n/*.card {*/\n/*    display: inline-block;*/\n/*}*/\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3800,7 +3834,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main_container_hide[data-v-9087fe26] {\n  display: none;\n}\n.main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 435px;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  overflow: auto;\n  scrollbar-width: none;\n  /* Firefox */\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 449px;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #404650;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}\n.main-list__show-topics[data-v-9087fe26] {\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap;\n  display: inline-block;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main_container_hide[data-v-9087fe26] {\n  display: none;\n}\n.main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 435px;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  overflow: auto;\n  scrollbar-width: none;\n  /* Firefox */\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 449px;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #404650;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}\n.main-list__show-topics[data-v-9087fe26] {\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap;\n  display: inline-block;\n}\n.message__links[data-v-9087fe26] {\n  display: flex;\n  overflow: auto;\n  flex-wrap: nowrap;\n  align-content: center;\n  justify-content: flex-start;\n}\n.message__link[data-v-9087fe26] {\n  margin-right: 1em;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24209,7 +24243,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("Links", { attrs: { links: _vm.links } })
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -24295,13 +24329,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _c("p", { staticClass: "chosenTopic" }, [
-      _vm._v(" Let me see what I can find about '"),
-      _c("span", { attrs: { id: "topic" } }, [_vm._v(_vm._s(_vm.chosenTopic))]),
-      _vm._v("' "),
-    ]),
-  ])
+  return _c("section")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -24334,7 +24362,17 @@ var render = function () {
           staticClass: "btn",
           on: {
             click: function ($event) {
-              return _vm.$emit("print-topic", _vm.topic)
+              _vm.$emit("print-topic", _vm.topic)
+              _vm.$parent.$emit("messages", {
+                text: "Great! You have selected my favorite topic!",
+                author: "bot",
+                type: "text",
+              })
+              _vm.$parent.$emit("messages", {
+                text: "Let me see what I can find about " + _vm.topic + "....",
+                author: "bot",
+                type: "text",
+              })
             },
           },
         },
@@ -24439,7 +24477,7 @@ var render = function () {
           [
             _c("div", { attrs: { id: "header-icon" } }, [
               _c("img", {
-                attrs: { src: (__webpack_require__(/*! ../../img/chatbot2.png */ "./public/img/chatbot2.png")["default"]), alt: "" },
+                attrs: { src: (__webpack_require__(/*! ../../../../../../img/chatbot2.png */ "./public/img/chatbot2.png")["default"]), alt: "" },
               }),
             ]),
             _vm._v(" "),
@@ -24468,9 +24506,42 @@ var render = function () {
                     {
                       key: index,
                       staticClass: "main-list__message",
-                      class: message.author,
+                      class:
+                        message.type === "link"
+                          ? message.author + " message__links"
+                          : message.author,
                     },
-                    [_c("p", [_c("span", [_vm._v(_vm._s(message.text))])])]
+                    [
+                      message.type === "text"
+                        ? _c("p", [_c("span", [_vm._v(_vm._s(message.text))])])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm._l(message.text, function (link) {
+                        return message.type === "link"
+                          ? _c(
+                              "p",
+                              { staticClass: "message__link" },
+                              [
+                                _c("link-prevue", {
+                                  staticClass: "message__link-prevue",
+                                  attrs: { url: link, cardWidth: "200px" },
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "message__link-target",
+                                    attrs: { href: link, target: "_blank" },
+                                  },
+                                  [_vm._v(_vm._s(link))]
+                                ),
+                              ],
+                              1
+                            )
+                          : _vm._e()
+                      }),
+                    ],
+                    2
                   )
                 }),
                 0
@@ -24496,7 +24567,10 @@ var render = function () {
                     [
                       _c("Topics", {
                         ref: "topics",
-                        on: { chosenTopic: _vm.sendChosenTopic },
+                        on: {
+                          chosenTopic: _vm.sendChosenTopic,
+                          messages: _vm.getMessages,
+                        },
                       }),
                     ],
                     1
@@ -24507,7 +24581,12 @@ var render = function () {
                 ? _c(
                     "div",
                     { staticClass: "main-list__show-links" },
-                    [_c("LinksOut", { attrs: { topic: this.chosenTopic } })],
+                    [
+                      _c("LinksOut", {
+                        attrs: { topic: this.chosenTopic },
+                        on: { messages: _vm.getMessages },
+                      }),
+                    ],
                     1
                   )
                 : _vm._e(),
@@ -36711,7 +36790,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"C:\\\\Users\\\\Spyros\\\\Documents\\\\chatbot","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
 
 /***/ })
 

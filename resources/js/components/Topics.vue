@@ -60,7 +60,6 @@ export default {
                 // TODO: this should be displayed to the user chat area for confirmation.
                 this.topics['selectedTopic'] = topic
                 this.topics['isTopicSelected'] = true
-                console.log("Let me see what i can find about "+ "'"+ topic+"'");
                 this.$parent.showLinks = true;
                 this.topics['topicsFound'] = [];
 
