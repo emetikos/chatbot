@@ -51,7 +51,14 @@ export default {
 </script>
 
 <style scoped>
+
+.feedback__buttons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
 .feedback__img {
-    width: 80px;
+    width: 50px;
+    cursor: pointer;
 }
 </style>
