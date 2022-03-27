@@ -44,11 +44,15 @@
                         <LinksOut :topic="this.chosenTopic" @messages="getMessages" />
                     </div>
                     <div v-if="showFeedback" class="main-list__show-feedback">
-                        <FeedbackComponent @showFeedback="isShowFeedback" />
+                        <FeedbackComponent  />
                     </div>
 
                 </div>
-                <TextInputField @messages="getMessages" @readyToSubmit="isFileUploaded" @scroll="scrollDown"/>
+                <TextInputField @messages="getMessages"
+                                @readyToSubmit="isFileUploaded"
+                                @scroll="scrollDown"
+                                @showFeedback="isShowFeedback"
+                />
             </div>
         </div>
     </section>

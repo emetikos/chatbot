@@ -3134,6 +3134,8 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this2.$emit("readyToSubmit", res.data.readySubmit);
+
+        _this2.$emit("showFeedback", res.data.conversationFinished);
       })["catch"](function (error) {
         _this2.$emit("messages", {
           text: 'Something went wrong. Try again.',
@@ -3350,6 +3352,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_LinksOut__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/LinksOut */ "./resources/js/components/LinksOut.vue");
 /* harmony import */ var link_prevue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! link-prevue */ "./node_modules/link-prevue/dist/link-prevue.umd.min.js");
 /* harmony import */ var link_prevue__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(link_prevue__WEBPACK_IMPORTED_MODULE_5__);
+//
+//
+//
+//
 //
 //
 //
@@ -24595,11 +24601,7 @@ var render = function () {
                 ? _c(
                     "div",
                     { staticClass: "main-list__show-feedback" },
-                    [
-                      _c("FeedbackComponent", {
-                        on: { showFeedback: _vm.isShowFeedback },
-                      }),
-                    ],
+                    [_c("FeedbackComponent")],
                     1
                   )
                 : _vm._e(),
@@ -24610,6 +24612,7 @@ var render = function () {
                 messages: _vm.getMessages,
                 readyToSubmit: _vm.isFileUploaded,
                 scroll: _vm.scrollDown,
+                showFeedback: _vm.isShowFeedback,
               },
             }),
           ],

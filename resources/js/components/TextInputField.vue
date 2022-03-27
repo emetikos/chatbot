@@ -50,6 +50,7 @@
                                     type: 'text'
                                 })
                                 this.$emit("readyToSubmit", res.data.readySubmit)
+                                this.$emit("showFeedback", res.data.conversationFinished)
                             })
                             .catch(error => {
                                 this.$emit("messages", {
