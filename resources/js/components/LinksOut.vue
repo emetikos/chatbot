@@ -31,13 +31,16 @@
             //if(this.links == ["NULL"]) {
             this.axios
                 .post('/query', {
-                    topic: this.topic,
+                    topic: 'neuron',
                 })
                 .then(res=> {
                     //console.log(res)
                     //console.log(res.data.resource)
                     this.links = res.data.resource
+                }).finally(() => {
+                this.$parent.showTopics = false
                 })
+
             this.$nextTick(() => {
                 this.$emit("scroll", true)
             })

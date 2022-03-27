@@ -28,7 +28,7 @@
                         <Topics ref="topics" />
                     </div>
                     <div v-if="showLinks" class="main-list__show-links">
-                        <Links />
+                        <LinksOut ref="topic"/>
                     </div>
                     <div v-if="showFeedback" class="main-list__show-feedback">
                         <FeedbackComponent @showFeedback="isShowFeedback" />
@@ -46,7 +46,7 @@ import Topics from '../components/Topics';
 import FileUploadComponent from '../components/File/FileUploadComponent';
 import TextInputField from "../components/TextInputField";
 import FeedbackComponent from "../components/FeedbackComponent";
-import Links from "../components/Links";
+import LinksOut from "../components/LinksOut";
 
 export default {
     name: "MainWindowComponent",
@@ -83,7 +83,7 @@ export default {
         TextInputField,
 	    FileUploadComponent,
         FeedbackComponent,
-        Links
+        LinksOut
   },
 
 }
