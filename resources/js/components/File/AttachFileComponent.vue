@@ -169,7 +169,7 @@
         justify-content: center;
         gap: 8px;
         width: 100%;
-        height: 180px;
+        height: 100%;
         margin: 0;
         padding: 8px;
         background-color: var(--background-colour);
