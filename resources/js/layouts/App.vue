@@ -26,7 +26,7 @@
                                 >
 
                                     <LinkPreview class="message__link-prevue" :url="link"></LinkPreview>
-                                    <a class="message__link-target" v-bind:href="link" target="_blank">{{ link }}</a>
+                                    <a class="message__link-target" v-bind:href="link" target="_blank">Find out more</a>
 
                                 </p>
 
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+
 import Topics from '../components/Topics';
 import FileUploadComponent from '../components/File/FileUploadComponent';
 import TextInputField from "../components/TextInputField";
@@ -248,5 +249,7 @@ export default {
 .message__link {
     margin-right: 1em;
 }
+
+
 
 </style>

@@ -159,8 +159,6 @@ class HomeController extends Controller {
     public function flashSession(){
         Session::forget(['userInput', 'readySubmit', 'topicFound', 'fileSubmit',
             'classifiedMsg', 'topicSelected','topicFinal', 'file', 'resource', 'fileAnalysed', 'resourcesProvided', 'conversationFinished' ]);
-        return redirect()->route('home');
-
     }
 
 

@@ -3060,13 +3060,7 @@ __webpack_require__.r(__webpack_exports__);
     this.axios.post('/query', {
       topic: this.topic
     }).then(function (res) {
-      _this.links = res.data.resource; // for (let link in this.links) {
-      //     this.$emit("messages", {
-      //         text: this.links[link],
-      //         author: 'bot',
-      //         type: 'link'
-      //     })
-      // }
+      _this.links = res.data.resource;
 
       _this.$emit("messages", {
         text: _this.links,
@@ -3078,14 +3072,10 @@ __webpack_require__.r(__webpack_exports__);
         text: res.data.response,
         author: 'bot',
         type: 'text'
-      }); // this.links = res.data.resource
-
+      });
     })["finally"](function () {
       _this.$parent.showTopics = false;
       _this.$parent.showLinks = false;
-    });
-    this.$nextTick(function () {
-      _this.$emit("scroll", true);
     });
   }
 });
@@ -3790,7 +3780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.btn[data-v-e46213f2] {\n    display: table;\n    background-color: #5f6368;\n    color: white;\n    text-align: left;\n    text-decoration: none;\n    font-style: italic;\n    font-family: \"Helvetica Neue\", sans-serif;\n    margin-right: .1rem;\n    padding: .5rem;\n    font-size: 1rem;\n    border-radius: 4px;\n}\n.btn[data-v-e46213f2]:hover {\n    cursor: pointer;\n    background-color: #3c444f;\n    font-weight: bold;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.btn[data-v-e46213f2] {\n    display: table;\n    background-color: #c99d30;\n    color: white;\n    text-align: left;\n    text-decoration: none;\n    font-style: italic;\n    font-family: \"Helvetica Neue\", sans-serif;\n    margin-right: 1rem;\n    padding: .5rem;\n    font-size: 1rem;\n    border-radius: 4px;\n}\n.btn[data-v-e46213f2]:hover {\n    cursor: pointer;\n    background-color: #3c444f;\n    font-weight: bold;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24249,11 +24239,7 @@ var render = function () {
       }),
       _vm._v(" "),
       _vm._l(_vm.links, function (link) {
-        return _c("div", [
-          _c("a", { attrs: { href: link, target: "_blank" } }, [
-            _vm._v(_vm._s(link)),
-          ]),
-        ])
+        return _c("div")
       }),
     ],
     2
@@ -24282,7 +24268,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("Links", { attrs: { links: _vm.links } })
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -24568,7 +24554,7 @@ var render = function () {
                                     staticClass: "message__link-target",
                                     attrs: { href: link, target: "_blank" },
                                   },
-                                  [_vm._v(_vm._s(link))]
+                                  [_vm._v("Find out more")]
                                 ),
                               ],
                               1

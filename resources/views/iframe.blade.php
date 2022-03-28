@@ -27,6 +27,7 @@
         }
 
         .show{
+
             display: grid;
             grid-template-rows: repeat(2, 1fr 1fr);
             position: fixed;
@@ -38,7 +39,12 @@
             height: 600px;
             margin-right: 10px;
             margin-bottom:10px;
+
+
+
         }
+
+
 
         .btn-show{
             visibility: visible;
@@ -128,6 +134,9 @@
                 transition: 1s ease-in-out;
             }
         }
+
+
+
     </style>
 </head>
 
@@ -213,8 +222,8 @@
 </CENTER>
 
 <img id="showChatBot" class="btn-hidden" src="{{ url('/img/chatbot.png') }}" onclick="showChatBot()" alt="">
-{{--<iframe id="iframe" class="iframe-hidden" src="http://127.0.0.1:8000/chatbot"></iframe>--}}
-<iframe id="iframe" class="iframe-hidden" src="https://chat-bot-educ.herokuapp.com/chatbot"></iframe>
+<iframe id="iframe" class="iframe-hidden" src="http://127.0.0.1:8000/chatbot"></iframe>
+{{--<iframe id="iframe" class="iframe-hidden" src="https://chat-bot-educ.herokuapp.com/chatbot"></iframe>--}}
 
 
 
