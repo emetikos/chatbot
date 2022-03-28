@@ -13,6 +13,5 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        'https://chatbot-educ-api.herokuapp.com/query'
     ];
 }

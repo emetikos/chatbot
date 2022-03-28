@@ -34,7 +34,7 @@ Route::get('/topicFound', [HomeController::class, 'api']);
 Route::get('/test', [TableController::class, 'test']);
 
 Route::get('/flash', [HomeController::class, 'flashSession']);
-Route::get('/flashFromTargetPage', [HomeController::class, 'flashSessionFromTargetPage']);
+
 Route::get('/delete', [TableController::class,'delete_function']);
 
 Route::post('/save', [TableController::class,'saveLink']);

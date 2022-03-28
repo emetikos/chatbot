@@ -156,19 +156,12 @@ class HomeController extends Controller {
      * @return \Illuminate\Http\RedirectResponse
      */
     public function flashSession(){
-        Session::flush();
+        Session::forget(['userInput', 'readySubmit', 'topicFound', 'fileSubmit',
+            'classifiedMsg', 'topicSelected','topicFinal', 'file', 'resource', 'fileAnalysed', 'resourcesProvided', 'conversationFinished' ]);
         return redirect()->route('home');
 
     }
 
-    /**
-     * Method to flash the session from a iframe
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function flashSessionFromTargetPage(){
-       session()->flush();
-
-    }
 
 }
 
