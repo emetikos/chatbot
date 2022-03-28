@@ -25,7 +25,7 @@
                                     v-for="link in  message.text"
                                 >
 
-                                    <link-prevue class="message__link-prevue" :url="link"></link-prevue>
+                                    <LinkPreview> class="message__link-prevue" :url="link"></LinkPreview>
                                     <a class="message__link-target" v-bind:href="link" target="_blank">{{ link }}</a>
 
                                 </p>
@@ -63,7 +63,7 @@ import FileUploadComponent from '../components/File/FileUploadComponent';
 import TextInputField from "../components/TextInputField";
 import FeedbackComponent from "../components/FeedbackComponent";
 import LinksOut from "../components/LinksOut";
-import LinkPrevue from 'link-prevue';
+import LinkPreview from '@ashwamegh/vue-link-preview';
 
 
 export default {
@@ -110,7 +110,7 @@ export default {
 	    FileUploadComponent,
         FeedbackComponent,
         LinksOut,
-        LinkPrevue,
+        LinkPreview,
 
 
   },
