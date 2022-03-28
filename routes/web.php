@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\URL;
 if (App::environment('production')) {
     URL::forceScheme('https');
 }
-Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/target-page', [HomeController::class, 'index']);
+//Route::get('/target-page', [HomeController::class, 'index']);
 
 Route::post('/query', [HomeController::class, 'api']);
 
