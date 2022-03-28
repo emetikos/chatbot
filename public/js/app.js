@@ -2827,7 +2827,7 @@ function _onFileAnalysed() {
                 author: 'bot',
                 type: 'text'
               });
-            }, 500);
+            }, 1000);
 
           case 15:
             _context8.next = 18;

@@ -85,6 +85,14 @@ class HomeController extends Controller {
         $conversationFinished = 'False';
         if(Session::has('conversationFinished')) $conversationFinished = Session::get('conversationFinished');
 
+        $isClarify = 'False';
+        if(Session::has('isClarify')) $isClarify = Session::get('isClarify');
+
+        $isAnswered = 'False';
+        if(Session::has('isAnswered')) $isAnswered = Session::get('isAnswered');
+
+
+
 
         // listening for a user input with a name 'topic' from the input request , if exists replacing the 'topicFinal' with this input  value
         if($request->input('topic')) {
@@ -113,6 +121,8 @@ class HomeController extends Controller {
                 'fileAnalysed'=>$analysedFile,
                 'resourcesProvided'=>$providedResources,
                 'conversationFinished'=>$conversationFinished,
+                'isClarify'=>$isClarify,
+                'isAnswered'=>$isAnswered,
 
             ])->throw()->json();
         Session::put('userInput', $arr['message']);
@@ -127,6 +137,8 @@ class HomeController extends Controller {
         Session::put('fileAnalysed', $arr['fileAnalysed']);
         Session::put('resourcesProvided', $arr['resourcesProvided']);
         Session::put('conversationFinished', $arr['conversationFinished']);
+        Session::put('isClarify', $arr['isClarify']);
+        Session::put('isAnswered', $arr['isAnswered']);
         return response($arr, 200);
     }
 

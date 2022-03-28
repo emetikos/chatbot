@@ -197,14 +197,15 @@
             }
             else {
                 this.$refs["analyse-file"].setText("File analysed!");
-
-                setTimeout(() => {
+                 setTimeout(() => {
                     this.$parent.showFileUpload = false;
                     this.$emit("messages", {
-                    text: response.data["response"],
-                    author: 'bot',
-                    type: 'text'
-                }) }, 500)
+                        text: response.data["response"],
+                        author: 'bot',
+                        type: 'text'
+                    })
+                }, 1000)
+
 
             }
         }
