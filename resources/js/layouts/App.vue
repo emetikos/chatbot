@@ -25,7 +25,7 @@
                                     v-for="link in  message.text"
                                 >
 
-                                    <link-prevue class="message__link-prevue" :url="link" cardWidth="200px"></link-prevue>
+                                    <link-prevue class="message__link-prevue" :url="link"></link-prevue>
                                     <a class="message__link-target" v-bind:href="link" target="_blank">{{ link }}</a>
 
                                 </p>
@@ -64,6 +64,7 @@ import TextInputField from "../components/TextInputField";
 import FeedbackComponent from "../components/FeedbackComponent";
 import LinksOut from "../components/LinksOut";
 import LinkPrevue from 'link-prevue';
+
 
 export default {
     name: "MainWindowComponent",
@@ -109,7 +110,9 @@ export default {
 	    FileUploadComponent,
         FeedbackComponent,
         LinksOut,
-        LinkPrevue
+        LinkPrevue,
+
+
   },
 
 }

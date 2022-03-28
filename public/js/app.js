@@ -24552,7 +24552,7 @@ var render = function () {
                               [
                                 _c("link-prevue", {
                                   staticClass: "message__link-prevue",
-                                  attrs: { url: link, cardWidth: "200px" },
+                                  attrs: { url: link },
                                 }),
                                 _vm._v(" "),
                                 _c(
