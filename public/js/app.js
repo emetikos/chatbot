@@ -2781,6 +2781,8 @@ function onFileAnalysed(_x4) {
 
 function _onFileAnalysed() {
   _onFileAnalysed = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(response) {
+    var _this = this;
+
     var topics;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
       while (1) {
@@ -2789,7 +2791,7 @@ function _onFileAnalysed() {
             topics = response.data["possibleTopics"]; // Displays the topics returned and remove this component
 
             if (!Array.isArray(topics)) {
-              _context8.next = 16;
+              _context8.next = 17;
               break;
             }
 
@@ -2812,20 +2814,29 @@ function _onFileAnalysed() {
           case 9:
             this.$parent.$refs["topics"].topics.topicsFound = topics;
             this.$parent.showFileUpload = false;
-            _context8.next = 14;
+            _context8.next = 15;
             break;
 
           case 13:
-            this.$refs["analyse-file"].setText("No topics found!");
+            this.$refs["analyse-file"].setText("File analysed!");
+            setTimeout(function () {
+              _this.$parent.showFileUpload = false;
 
-          case 14:
-            _context8.next = 17;
+              _this.$emit("messages", {
+                text: response.data["response"],
+                author: 'bot',
+                type: 'text'
+              });
+            }, 500);
+
+          case 15:
+            _context8.next = 18;
             break;
 
-          case 16:
+          case 17:
             this.onFileAnalyseError("Topics array was not returned!");
 
-          case 17:
+          case 18:
           case "end":
             return _context8.stop();
         }

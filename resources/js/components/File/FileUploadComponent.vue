@@ -196,7 +196,16 @@
                 this.$parent.showFileUpload = false;
             }
             else {
-                this.$refs["analyse-file"].setText("No topics found!");
+                this.$refs["analyse-file"].setText("File analysed!");
+
+                setTimeout(() => {
+                    this.$parent.showFileUpload = false;
+                    this.$emit("messages", {
+                    text: response.data["response"],
+                    author: 'bot',
+                    type: 'text'
+                }) }, 500)
+
             }
         }
         // Displays an error if the topics array was not returned
