@@ -217,7 +217,7 @@
 </CENTER>
 
 <img id="showChatBot" class="btn-hidden" src="{{ url('/img/chatbot.png') }}" onclick="showChatBot()" alt="">
-<iframe id="iframe" class="iframe-hidden" src="https://chat-bot-educ.herokuapp.com/chabot"></iframe>
+<iframe id="iframe" class="iframe-hidden" src="https://chat-bot-educ.herokuapp.com/chatbot"></iframe>
 
 
 
