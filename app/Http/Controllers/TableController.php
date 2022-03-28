@@ -65,7 +65,6 @@ class TableController extends Controller
                     Resources::where('path_name', $resource)->update(['path_name' => $resource]);
                 }
             }
-
         }
         Session::put('conversationFinished', 'False');
         return response('True', 200);
