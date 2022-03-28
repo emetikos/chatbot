@@ -15,7 +15,7 @@
 {{--    log in/profile footer--}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-    <title>Document</title>
+    <title>Chatbot</title>
 
     <style>
         .iframe-hidden{
@@ -39,12 +39,7 @@
             height: 600px;
             margin-right: 10px;
             margin-bottom:10px;
-
-
-
         }
-
-
 
         .btn-show{
             visibility: visible;
@@ -222,8 +217,8 @@
 </CENTER>
 
 <img id="showChatBot" class="btn-hidden" src="{{ url('/img/chatbot.png') }}" onclick="showChatBot()" alt="">
-<iframe id="iframe" class="iframe-hidden" src="http://127.0.0.1:8000/chatbot"></iframe>
-{{--<iframe id="iframe" class="iframe-hidden" src="https://chat-bot-educ.herokuapp.com/chatbot"></iframe>--}}
+<iframe id="iframe" class="iframe-hidden" src="https://chat-bot-educ.herokuapp.com/chabot"></iframe>
+
 
 
 
