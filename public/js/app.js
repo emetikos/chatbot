@@ -3157,9 +3157,6 @@ __webpack_require__.r(__webpack_exports__);
       }); //clear message space after text is sent
 
       this.message = '';
-      this.$nextTick(function () {
-        _this2.$emit("scroll", true);
-      });
     }
   }
 });
@@ -3419,7 +3416,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -3438,10 +3434,16 @@ __webpack_require__.r(__webpack_exports__);
       chosenTopic: ''
     };
   },
+  updated: function updated() {
+    var _this = this;
+
+    this.$nextTick(function () {
+      return _this.scrollToEnd();
+    });
+  },
   methods: {
     getMessages: function getMessages(values) {
       this.messages.push(values);
-      this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight;
     },
     isFileUploaded: function isFileUploaded(values) {
       if (values === 'False') this.showFileUpload = false;
@@ -3451,14 +3453,15 @@ __webpack_require__.r(__webpack_exports__);
       if (values === 'False') this.showFeedback = false;
       if (values === 'True') this.showFeedback = true;
     },
-    scrollDown: function scrollDown(values) {
-      if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight;
-    },
     hideChatBot: function hideChatBot() {
-      axios.get('/flash');
+      this.axios.get('/flash');
     },
     sendChosenTopic: function sendChosenTopic(chosenTopic) {
       this.chosenTopic = chosenTopic;
+    },
+    scrollToEnd: function scrollToEnd() {
+      // scroll to the start of the last message
+      this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight;
     }
   },
   components: {
@@ -3848,7 +3851,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main_container_hide[data-v-9087fe26] {\n  display: none;\n}\n.main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 435px;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  overflow: auto;\n  scrollbar-width: none;\n  /* Firefox */\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 449px;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #404650;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}\n.main-list__show-topics[data-v-9087fe26] {\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap;\n  display: inline-block;\n}\n.message__links[data-v-9087fe26] {\n  display: flex;\n  overflow: auto;\n  flex-wrap: nowrap;\n  align-content: center;\n  justify-content: flex-start;\n}\n.message__link[data-v-9087fe26] {\n  margin-right: 1em;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main_container_hide[data-v-9087fe26] {\n  display: none;\n}\n.main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 435px;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  scrollbar-width: none;\n  /* Firefox */\n  overflow-y: scroll;\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 449px;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #404650;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}\n.main-list__show-topics[data-v-9087fe26] {\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap;\n  display: inline-block;\n}\n.message__links[data-v-9087fe26] {\n  display: flex;\n  overflow: auto;\n  flex-wrap: nowrap;\n  align-content: center;\n  justify-content: flex-start;\n}\n.message__link[data-v-9087fe26] {\n  margin-right: 1em;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24637,7 +24640,6 @@ var render = function () {
               on: {
                 messages: _vm.getMessages,
                 readyToSubmit: _vm.isFileUploaded,
-                scroll: _vm.scrollDown,
                 showFeedback: _vm.isShowFeedback,
               },
             }),

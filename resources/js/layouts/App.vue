@@ -1,14 +1,14 @@
 <template>
-    <section class="chat-bot">
+    <section class="chat-bot" >
 
-        <div id="main_container" class="chat-bot__container">
+        <div id="main_container" class="chat-bot__container" >
             <div id="header-div" class="header-div-show ">
                 <div id="header-icon"> <img :src="require('/img/chatbot2.png').default" alt="" ></div>
                 <div id="header-title">Chatbot</div>
-                <div id="header-close-btn"><input id="hideChatBot" type="button" value="X" v-on:click="hideChatBot"></div>
+                <div id="header-close-btn"><input id="hideChatBot" type="button" value="X" @click="hideChatBot"></div>
             </div>
 
-            <div class="chat-bot__main main-list">
+            <div class="chat-bot__main main-list" >
                 <div class="main-list__container" ref="chatBot">
                     <ul class="main-list__messages">
                         <li class="main-list__message"
@@ -50,7 +50,6 @@
                 </div>
                 <TextInputField @messages="getMessages"
                                 @readyToSubmit="isFileUploaded"
-                                @scroll="scrollDown"
                                 @showFeedback="isShowFeedback"
                 />
             </div>
@@ -76,28 +75,32 @@ export default {
         showFeedback: false,
         chosenTopic: ''
     }),
+    updated() {
+        this.$nextTick(() => this.scrollToEnd());
+    },
     methods: {
         getMessages(values) {
             this.messages.push(values)
-            this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight
         },
         isFileUploaded(values) {
             if (values === 'False') this.showFileUpload = false
             if (values === 'True') this.showFileUpload = true
+
         },
         isShowFeedback(values) {
             if (values === 'False') this.showFeedback = false
             if (values === 'True') this.showFeedback = true
         },
 
-        scrollDown(values) {
-            if (values) this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight
-        },
         hideChatBot() {
-           axios.get('/flash')
+           this.axios.get('/flash')
         },
         sendChosenTopic(chosenTopic){
             this.chosenTopic = chosenTopic
+        },
+        scrollToEnd () {
+            // scroll to the start of the last message
+            this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight
         }
     },
     components: {
@@ -120,7 +123,7 @@ export default {
 }
 // Messages
 .main-list {
-
+    //overflow-y: scroll;
     display: flex;
     flex-direction: column;
     list-style-type: none;
@@ -135,8 +138,9 @@ export default {
 }
 
 .main-list__container {
-    overflow: auto;
+    //overflow: auto;
     scrollbar-width: none;  /* Firefox */
+    overflow-y: scroll;
 
     ul {
         margin-block-start: unset;

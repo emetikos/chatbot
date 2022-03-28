@@ -99,7 +99,7 @@ class HomeController extends Controller {
          Sends the response from a chatbot back to the user
          Stores data from the response in the session
         */
-        $arr = Http::get('https://chatbot-educ-api.herokuapp.com/',[
+        $arr = Http::get('http://chatbot-educ-api.herokuapp.com/',[
                 'message'=>$message,
                 'readySubmit'=>$readySubmit,
                 'topicFound'=>$topicFound,
@@ -158,6 +158,15 @@ class HomeController extends Controller {
     public function flashSession(){
         Session::flush();
         return redirect()->route('home');
+
+    }
+
+    /**
+     * Method to flash the session from a iframe
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function flashSessionFromTargetPage(){
+       session()->flush();
 
     }
 
