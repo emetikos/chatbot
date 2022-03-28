@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 class TableController extends Controller
 {
-
+    
     /**
      * Function to save the user query and the relevant resources into the database
      * The function checks if the sessions for the classifiedMsg and resource are set
@@ -71,8 +71,10 @@ class TableController extends Controller
         return response('True', 200);
     }
 
-    public function retrieve_same($in){
+    /*
+    public function retrieve_same(Request $request){
         try {
+            $in = $request->input('topic');
             $samequery = DB::select('SELECT path_name FROM resources r JOIN queries q ON r.query_id=q.id WHERE q.name = ?', [$in]);
             return $samequery;
         }
@@ -82,8 +84,9 @@ class TableController extends Controller
     }
 
 
-    public function store($query, $link){
+    public function store(Request $request, $link){
         try {
+            $query = $request->input('topic');
             $check = DB::select('SELECT path_name FROM resources r JOIN queries q ON r.query_id=q.id WHERE q.name = ?', [$query]);
             return;
         }
@@ -91,7 +94,7 @@ class TableController extends Controller
             $storequery = DB::insert('INSERT INTO queries (name) VALUES (?)', [$query]);
             $storequery = DB::insert('INSERT INTO resources (query_id, path_name) VALUES ((SELECT MAX(id) FROM queries), ?)', [$link]);
         }
-    }
+    }*/
 
 
 

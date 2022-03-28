@@ -1,5 +1,5 @@
 <template>
-<!--    <Links :links="links" />-->
+    <Links :links="links" />
 </template>
 
 <script>
