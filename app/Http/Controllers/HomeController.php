@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller {
-    public function index() {
+
+    public function home() {
         return view('iframe');
     }
 
-    public function home() {
+    public function chatbot() {
         return view('home');
     }
 

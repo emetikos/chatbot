@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\URL;
 if (App::environment('production')) {
     URL::forceScheme('https');
 }
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'home']);
+Route::get('/chatbot', [HomeController::class, 'chatbot']);
 
 //Route::get('/target-page', [HomeController::class, 'index']);
 
