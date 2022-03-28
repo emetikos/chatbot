@@ -41,4 +41,3 @@ const app = new Vue({
 });
 
 Vue.prototype.axios = axios
-
