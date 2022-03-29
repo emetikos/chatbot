@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="card" v-for="link in links">
-            <link-prevue :url="link" cardWidth="200px"></link-prevue>
+<!--            <link-prevue :url="link" cardWidth="200px"></link-prevue>-->
         </div>
         <div v-for="link in links">
 <!--            <a v-bind:href="link" target="_blank">{{link}}</a>-->
@@ -10,14 +10,14 @@
 </template>
 
 <script>
-    import LinkPrevue from 'link-prevue'
+    // import LinkPrevue from 'link-prevue'
     export default {
         name: 'Links',
         props: [
             'links'
         ],
         components: {
-            LinkPrevue
+            // LinkPrevue
         }
 }
 </script>
