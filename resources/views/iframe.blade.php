@@ -130,6 +130,21 @@
             }
         }
 
+        @media screen and (max-device-width: 480px){
+            .show{
+                display: grid;
+                grid-template-rows: repeat(2, 1fr 1fr);
+                position: fixed;
+                bottom: 2px;
+                right: 0;
+                background-color: #5f6368;
+                border-radius: 12px 12px 12px 12px;
+                width:400px;
+                height: 600px;
+                margin-right: 10px;
+                margin-bottom:10px;
+            }
+        }
 
 
     </style>
@@ -215,6 +230,7 @@
 
     <CENTER>
 </CENTER>
+
 
 <img id="showChatBot" class="btn-hidden" src="{{ url('/img/chatbot.png') }}" onclick="showChatBot()" alt="">
 <iframe id="iframe" class="iframe-hidden" src="https://chat-bot-educ.herokuapp.com/chatbot"></iframe>

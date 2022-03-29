@@ -254,6 +254,22 @@ export default {
     line-height: 3em;
 }
 
+@media screen and (max-device-width: 480px){
+    .main-list {
+        //overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        width: 390px;
+        height: 533px;
+        border-radius:0 0 4px 4px;
+        position: fixed;
+        left:5px;
+        top:50px;
+        justify-content: space-between;
+
+    }
+}
 
 
 </style>
