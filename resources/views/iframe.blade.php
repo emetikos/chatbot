@@ -27,7 +27,6 @@
         }
 
         .show{
-
             display: grid;
             grid-template-rows: repeat(2, 1fr 1fr);
             position: fixed;
@@ -136,16 +135,13 @@
                 grid-template-rows: repeat(2, 1fr 1fr);
                 position: fixed;
                 bottom: 2px;
-                right: 0;
+                right: 2px;
                 background-color: #5f6368;
                 border-radius: 12px 12px 12px 12px;
-                width:400px;
-                height: 600px;
-                margin-right: 10px;
+                margin-left: 10px;
                 margin-bottom:10px;
             }
         }
-
 
     </style>
 </head>
@@ -233,10 +229,7 @@
 
 
 <img id="showChatBot" class="btn-hidden" src="{{ url('/img/chatbot.png') }}" onclick="showChatBot()" alt="">
-<iframe id="iframe" class="iframe-hidden" src="https://chat-bot-educ.herokuapp.com/chatbot"></iframe>
-
-
-
+<iframe id="iframe" class="show" src="https://chat-bot-educ.herokuapp.com/chatbot" allowfullscreen></iframe>
 
 <script>
 
@@ -270,7 +263,7 @@
     window.setTimeout( () => {
         var btn = document.getElementById('showChatBot');
         btn.setAttribute('class', 'btn-show');
-    }, 3000);
+    }, 1000);
 
 
 

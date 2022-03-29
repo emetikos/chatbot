@@ -131,7 +131,7 @@ export default {
     display: flex;
     flex-direction: column;
     list-style-type: none;
-    width: 435px;
+    width: 100%;
     height: 533px;
     border-radius:0 0 4px 4px;
     position: fixed;
@@ -203,7 +203,7 @@ export default {
 .header-div-show {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    width: 449px;
+    width: 100%;
     height: 50px;
     position: fixed;
     top:0;
@@ -260,7 +260,7 @@ export default {
         display: flex;
         flex-direction: column;
         list-style-type: none;
-        width: 390px;
+        width: 100%;
         height: 533px;
         border-radius:0 0 4px 4px;
         position: fixed;
@@ -270,6 +270,5 @@ export default {
 
     }
 }
-
 
 </style>
