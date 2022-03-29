@@ -17,7 +17,7 @@
                             :class="(message.type ==='link')? message.author + ' message__links': message.author"
                         >
                             <p v-if="message.type === 'text'">
-                                <span>{{ message.text }}</span>
+                                <span class="message__text-span">{{ message.text }}</span>
                             </p>
 
                                 <p  v-if="message.type === 'link'"
@@ -248,6 +248,10 @@ export default {
 
 .message__link {
     margin-right: 1em;
+}
+
+.message__text-span {
+    line-height: 3em;
 }
 
 
