@@ -91,6 +91,9 @@ class HomeController extends Controller {
         $isAnswered = 'False';
         if(Session::has('isAnswered')) $isAnswered = Session::get('isAnswered');
 
+        $possibleTopics = [];
+        if(Session::has('possibleTopics')) $possibleTopics = Session::get('possibleTopics');
+
 
 
 
@@ -123,6 +126,7 @@ class HomeController extends Controller {
                 'conversationFinished'=>$conversationFinished,
                 'isClarify'=>$isClarify,
                 'isAnswered'=>$isAnswered,
+                'possibleTopics'=>$possibleTopics
 
             ])->throw()->json();
         Session::put('userInput', $arr['message']);
@@ -139,6 +143,7 @@ class HomeController extends Controller {
         Session::put('conversationFinished', $arr['conversationFinished']);
         Session::put('isClarify', $arr['isClarify']);
         Session::put('isAnswered', $arr['isAnswered']);
+        Session::put('possibleTopics', $arr['possibleTopics']);
         return response($arr, 200);
     }
 
