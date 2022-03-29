@@ -51,9 +51,13 @@
                                 })
                                 this.$emit("readyToSubmit", res.data.readySubmit)
                                 this.$emit("showFeedback", res.data.conversationFinished)
-                                if(res.data.possibleTopics && res.data.possibleTopics.length() > 0) {
-                                    this.$parent.showTopics = true;
-                                    this.$parent.$refs["topics"].topics.topicsFound = topics;
+                                let topics = res.data["possibleTopics"];
+                                if (Array.isArray(topics))
+                                {
+                                    if (topics.length > 0) {
+                                        this.$parent.showTopics = true;
+                                        this.$parent.$refs["topics"].topics.topicsFound = topics;
+                                    }
                                 }
                             })
                             .catch(error => {
