@@ -3157,15 +3157,15 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.$emit("readyToSubmit", res.data.readySubmit);
 
-        _this2.$emit("showFeedback", res.data.conversationFinished);
+        _this2.$emit("showFeedback", res.data.conversationFinished); //qwert
 
-        var topics = res.data["possibleTopics"];
 
-        if (Array.isArray(topics)) {
-          if (topics.length > 0) {
-            _this2.$parent.showTopics = true;
-            _this2.$parent.$refs["topics"].topics.topicsFound = topics;
-          }
+        if (res.data.possibleTopics.length > 0) {
+          _this2.$parent.showTopics = true;
+
+          _this2.$parent.$nextTick(function () {
+            return _this2.$parent.$refs["topics"].topics.topicsFound = res.data.possibleTopics;
+          });
         }
       })["catch"](function (error) {
         _this2.$emit("messages", {
@@ -3177,6 +3177,10 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error.response.data.errors);
       })["finally"](function () {
         _this2.isDisabled = false;
+
+        _this2.$parent.$nextTick(function () {
+          return _this2.$parent.scrollToEnd();
+        });
       }); //clear message space after text is sent
 
       this.message = '';
@@ -3878,7 +3882,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main-list__input[data-v-4277e908] {\n  display: flex;\n}\ninput[data-v-4277e908] {\n  flex-grow: 3;\n  line-height: 3;\n  border: 1px none lightgray;\n  border-top-style: solid;\n  border-radius: 4px 0 0 4px;\n  padding-left: 20px;\n}\ninput[data-v-4277e908]:focus {\n  outline: none;\n}\nbutton[data-v-4277e908] {\n  flex-grow: 1;\n  cursor: pointer;\n  color: white;\n  background: #008cff;\n  border-radius: 0 4px 4px 0;\n  border-width: unset;\n  border-style: unset;\n  border-color: unset;\n}", "",{"version":3,"sources":["webpack://./resources/js/components/TextInputField.vue"],"names":[],"mappings":"AAmFA;EACI,aAAA;AAlFJ;AAqFA;EACI,YAAA;EACA,cAAA;EACA,0BAAA;EACA,uBAAA;EACA,0BAAA;EACA,kBAAA;AAlFJ;AAsFA;EACI,aAAA;AAnFJ;AAsFA;EACI,YAAA;EACA,eAAA;EACA,YAAA;EACA,mBAAA;EACA,0BAAA;EACA,mBAAA;EACA,mBAAA;EACA,mBAAA;AAnFJ","sourcesContent":["\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.main-list__input {\n    display: flex;\n}\n\ninput {\n    flex-grow: 3;\n    line-height: 3;\n    border: 1px none lightgray;\n    border-top-style: solid;\n    border-radius: 4px 0 0 4px;\n    padding-left: 20px;\n\n\n}\ninput:focus {\n    outline: none;\n}\n\nbutton {\n    flex-grow: 1;\n    cursor: pointer;\n    color: white;\n    background: #008cff;\n    border-radius: 0 4px 4px 0;\n    border-width: unset;\n    border-style: unset;\n    border-color: unset;\n}\n\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main-list__input[data-v-4277e908] {\n  display: flex;\n}\ninput[data-v-4277e908] {\n  flex-grow: 3;\n  line-height: 3;\n  border: 1px none lightgray;\n  border-top-style: solid;\n  border-radius: 4px 0 0 4px;\n  padding-left: 20px;\n}\ninput[data-v-4277e908]:focus {\n  outline: none;\n}\nbutton[data-v-4277e908] {\n  flex-grow: 1;\n  cursor: pointer;\n  color: white;\n  background: #008cff;\n  border-radius: 0 4px 4px 0;\n  border-width: unset;\n  border-style: unset;\n  border-color: unset;\n}", "",{"version":3,"sources":["webpack://./resources/js/components/TextInputField.vue"],"names":[],"mappings":"AAsFA;EACI,aAAA;AArFJ;AAwFA;EACI,YAAA;EACA,cAAA;EACA,0BAAA;EACA,uBAAA;EACA,0BAAA;EACA,kBAAA;AArFJ;AAyFA;EACI,aAAA;AAtFJ;AAyFA;EACI,YAAA;EACA,eAAA;EACA,YAAA;EACA,mBAAA;EACA,0BAAA;EACA,mBAAA;EACA,mBAAA;EACA,mBAAA;AAtFJ","sourcesContent":["\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.main-list__input {\n    display: flex;\n}\n\ninput {\n    flex-grow: 3;\n    line-height: 3;\n    border: 1px none lightgray;\n    border-top-style: solid;\n    border-radius: 4px 0 0 4px;\n    padding-left: 20px;\n\n\n}\ninput:focus {\n    outline: none;\n}\n\nbutton {\n    flex-grow: 1;\n    cursor: pointer;\n    color: white;\n    background: #008cff;\n    border-radius: 0 4px 4px 0;\n    border-width: unset;\n    border-style: unset;\n    border-color: unset;\n}\n\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

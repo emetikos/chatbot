@@ -51,14 +51,16 @@
                                 })
                                 this.$emit("readyToSubmit", res.data.readySubmit)
                                 this.$emit("showFeedback", res.data.conversationFinished)
-                                let topics = res.data["possibleTopics"];
-                                if (Array.isArray(topics))
-                                {
-                                    if (topics.length > 0) {
+                                //qwert
+                                    if (res.data.possibleTopics.length > 0) {
                                         this.$parent.showTopics = true;
-                                        this.$parent.$refs["topics"].topics.topicsFound = topics;
-                                    }
-                                }
+                                        this.$parent.$nextTick(() => this.$parent.$refs["topics"]
+                                            .topics.topicsFound = res.data.possibleTopics)
+
+
+                                        }
+
+
                             })
                             .catch(error => {
                                 this.$emit("messages", {
@@ -70,6 +72,7 @@
                             })
                             .finally(() => {
                                 this.isDisabled = false
+                                this.$parent.$nextTick(() =>  this.$parent.scrollToEnd())
                             })
                         //clear message space after text is sent
                         this.message =  ''
