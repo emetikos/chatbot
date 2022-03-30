@@ -55,7 +55,8 @@ import FileUploadComponent from '../components/File/FileUploadComponent';
 import TextInputField from "../components/TextInputField";
 import FeedbackComponent from "../components/FeedbackComponent";
 import LinksOut from "../components/LinksOut";
-import LinkPreview from '@ashwamegh/vue-link-preview'
+import LinkPreviewComponent from "../components/LinkPreviewComponent";
+import LinkPreviewsComponent from "../components/LinkPreviewsComponent";
 
 
 export default {
@@ -102,7 +103,8 @@ export default {
 	    FileUploadComponent,
         FeedbackComponent,
         LinksOut,
-        LinkPreview,
+        LinkPreviewsComponent,
+        LinkPreviewComponent,
 
 
   },
