@@ -14,24 +14,15 @@
                         <li class="main-list__message"
                             v-for="(message, index) in messages"
                             :key="index"
-                            :class="(message.type ==='link')? message.author + ' message__links': message.author"
-                        >
+                            :class="(message.type ==='link') ? message.author + ' message__links': message.author">
+
                             <p v-if="message.type === 'text'">
                                 <span class="message__text-span">{{ message.text }}</span>
                             </p>
 
-                                <p  v-if="message.type === 'link'"
-                                    class="message__link"
-                                    v-for="link in  message.text"
-                                >
-
-                                    <LinkPreview class="message__link-prevue" :url="link"></LinkPreview>
-                                    <a class="message__link-target" v-bind:href="link" target="_blank">Find out more</a>
-
-                                </p>
-
-
-
+                            <LinkPreviewsComponent v-if="message.type === 'link'">
+                                <LinkPreviewComponent v-for="link in message.text" v-bind:url="link" />
+                            </LinkPreviewsComponent>
                         </li>
                     </ul>
                     <div v-if="showFileUpload" class="main-list__upload-file">

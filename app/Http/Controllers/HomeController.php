@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PythonModel;
+use DOMDocument;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -148,7 +149,7 @@ class HomeController extends Controller {
     }
 
     /**
-     * Methof for the file analysis
+     * Method for the file analysis
     */
     public function analyse(Request $request) {
         $file = $_POST["pdf"] ?? null;
@@ -180,5 +181,3 @@ class HomeController extends Controller {
 
 
 }
-
-

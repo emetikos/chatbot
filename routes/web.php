@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TableController;
-use App\Http\Controllers\UploadController;
+use App\Http\Controllers\LinkPreviewController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
@@ -30,6 +30,8 @@ Route::get('/chatbot', [HomeController::class, 'chatbot']);
 Route::post('/query', [HomeController::class, 'api']);
 
 Route::post('/analyse', [HomeController::class, 'analyse']);
+
+Route::any('/linkPreviewData', [LinkPreviewController::class, 'getLinkPreviewData']);
 
 Route::get('/topicFound', [HomeController::class, 'api']);
 
