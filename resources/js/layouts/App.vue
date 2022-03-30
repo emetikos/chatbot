@@ -263,5 +263,27 @@ export default {
 
     }
 }
+</style>
+
+<style>
+
+    :root {
+        --grey: #404650;
+        --grey-rgb: 64, 70, 80;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 0;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--grey);
+        border-radius: 0;
+    }
 
 </style>
