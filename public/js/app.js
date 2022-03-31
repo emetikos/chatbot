@@ -1,22 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@ashwamegh/vue-link-preview/dist/vuelinkpreview.esm.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@ashwamegh/vue-link-preview/dist/vuelinkpreview.esm.js ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var e={name:"VueLinkPreview",props:{url:{type:String,required:!0},width:{type:String,default:"90%"},maxWidth:{type:String,default:"700px"},marginTop:{type:String,default:"18px"},marginBottom:{type:String,default:"18px"},marginRight:{type:String,default:"auto"},marginLeft:{type:String,default:"auto"},canOpenLink:{type:Boolean,default:!0}},data:function(){return{loading:!1,preview:null,api:"https://lpdg.herokuapp.com/parse/link",validUrl:!1}},computed:{style:function(){var e=this.width,i=this.maxWidth,t=this.marginRight,n=this.marginLeft;return{width:e,maxWidth:i,marginTop:this.marginTop,marginBottom:this.marginBottom,marginRight:t,marginLeft:n}}},mounted:function(){var e=this;this.loading=!0,this.loadUrlPreviewData().then((function(i){e.preview=i,e.loading=!1}))},methods:{isValidUrl:function(e){return this.validUrl=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi.test(e),this.validUrl},loadUrlPreviewData:function(){var e=this,i=this.url,t=this.api;return new Promise((function(n,a){e.isValidUrl(i)&&fetch(t,{method:"POST",headers:{Accept:"application/json","Content-Type":"application/json"},body:JSON.stringify({url:i})}).then((function(e){return e.json()})).then((function(e){n(e)})).catch((function(e){return a(e)}))}))},onClick:function(){if(this.canOpenLink){var e=this.url;window.open(e,"_blank")}this.$emit("click",this.preview)}}};var i=function(e,i,t,n,a,o,r,s,l,d){"boolean"!=typeof r&&(l=s,s=r,r=!1);var c,p="function"==typeof t?t.options:t;if(e&&e.render&&(p.render=e.render,p.staticRenderFns=e.staticRenderFns,p._compiled=!0,a&&(p.functional=!0)),n&&(p._scopeId=n),o?(c=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),i&&i.call(this,l(e)),e&&e._registeredComponents&&e._registeredComponents.add(o)},p._ssrRegister=c):i&&(c=r?function(){i.call(this,d(this.$root.$options.shadowRoot))}:function(e){i.call(this,s(e))}),c)if(p.functional){var f=p.render;p.render=function(e,i){return c.call(i),f(e,i)}}else{var v=p.beforeCreate;p.beforeCreate=v?[].concat(v,c):[c]}return t},t="undefined"!=typeof navigator&&/msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());var n=document.head||document.getElementsByTagName("head")[0],a={};var o=i({render:function(){var e=this,i=e.$createElement,t=e._self._c||i;return e.validUrl?t("div",[e.loading&&!e.preview?e._t("loader",[t("div",{staticClass:"link-preview-section",style:e.style},[e._m(0),e._v(" "),e._m(1)])]):e._t("default",[t("div",{staticClass:"link-preview-section",style:e.style,on:{click:e.onClick}},[t("div",{staticClass:"link-description"},[t("div",{staticClass:"domain"},[t("span",{staticClass:"link-url"},[e._v(e._s(e.preview.domain))])]),e._v(" "),t("div",{staticClass:"link-data"},[t("div",{staticClass:"link-title"},[e._v("\n            "+e._s(e.preview.title)+"\n          ")]),e._v(" "),t("div",{staticClass:"link-description"},[e._v("\n            "+e._s(e.preview.description)+"\n          ")])])]),e._v(" "),t("div",{staticClass:"link-image"},[e.preview.img?t("img",{attrs:{src:e.preview.img,alt:e.preview.description}}):e._e()])])],{title:e.preview.title,img:e.preview.img,description:e.preview.description,domain:e.preview.domain})],2):e._e()},staticRenderFns:[function(){var e=this.$createElement,i=this._self._c||e;return i("div",{staticClass:"link-description"},[i("div",{staticClass:"domain"},[i("span",{staticClass:"link-url-loader animated-background"},[this._v("facebook.com")])]),this._v(" "),i("div",{staticClass:"link-data-loader"},[i("div",{staticClass:"p1 animated-background"},[this._v("\n            Shashank Shekhar\n          ")]),this._v(" "),i("div",{staticClass:"p2 animated-background"},[this._v("\n            This is some description\n          ")])])])},function(){var e=this.$createElement,i=this._self._c||e;return i("div",{staticClass:"link-image-loader"},[i("div",{staticClass:"img"})])}]},(function(e){e&&e("data-v-40e896f3_0",{source:".link-preview-section[data-v-40e896f3]{display:flex;flex-direction:row;justify-content:space-between;padding:14px;border-radius:5px;margin:20px 0;box-shadow:0 0 0 1px rgba(0,0,0,.1),0 -4px 24px 2px rgba(0,0,0,.03);line-height:1.5;cursor:pointer}.link-preview-section .animated-background[data-v-40e896f3],.link-preview-section .link-image-loader .img[data-v-40e896f3]{animation-duration:2.25s;animation-fill-mode:forwards;animation-iteration-count:infinite;animation-name:placeHolderShimmer-data-v-40e896f3;animation-timing-function:linear;background:#f6f6f6;background:linear-gradient(to right,#f6f6f6 8%,#f0f0f0 18%,#f6f6f6 33%);position:relative}@keyframes placeHolderShimmer-data-v-40e896f3{0%{background-position:-468px 0}100%{background-position:468px 0}}.link-preview-section .link-description[data-v-40e896f3]{display:flex;flex-direction:column}.link-preview-section .link-description .domain[data-v-40e896f3]{display:flex;flex-direction:row;align-items:center;margin-bottom:4px}.link-preview-section .link-description .domain img[data-v-40e896f3]{height:16px;width:16px}.link-preview-section .link-description .domain .link-url[data-v-40e896f3],.link-preview-section .link-description .domain .link-url-loader[data-v-40e896f3]{font-weight:600}.link-preview-section .link-description .domain .link-url-loader[data-v-40e896f3]{background-color:#f6f6f6;color:#f6f6f6;border-radius:10px}.link-preview-section .link-description .link-data .link-title[data-v-40e896f3]{color:#1364a2;font-weight:600;font-size:15px}.link-preview-section .link-description .link-data .link-description[data-v-40e896f3]{font-size:14px;text-align:left}.link-preview-section .link-description .link-data-loader .p1[data-v-40e896f3]{font-weight:600;font-size:15px}.link-preview-section .link-description .link-data-loader .p2[data-v-40e896f3]{font-size:14px}.link-preview-section .link-description .link-data-loader .p1[data-v-40e896f3],.link-preview-section .link-description .link-data-loader .p2[data-v-40e896f3]{background-color:#f6f6f6;color:#f6f6f6;border-radius:10px;margin-bottom:4px}.link-preview-section .link-image[data-v-40e896f3]{display:flex;align-content:center;align-items:center;height:100%}.link-preview-section .link-image img[data-v-40e896f3]{max-height:64px;object-fit:cover}.link-preview-section .link-image-loader[data-v-40e896f3]{display:flex;align-content:center;align-items:center}.link-preview-section .link-image-loader .img[data-v-40e896f3]{height:64px;width:64px}",map:void 0,media:void 0})}),e,"data-v-40e896f3",!1,void 0,(function(e){return function(e,i){return function(e,i){var o=t?i.media||"default":e,r=a[o]||(a[o]={ids:new Set,styles:[]});if(!r.ids.has(e)){r.ids.add(e);var s=i.source;if(i.map&&(s+="\n/*# sourceURL="+i.map.sources[0]+" */",s+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(i.map))))+" */"),r.element||(r.element=document.createElement("style"),r.element.type="text/css",i.media&&r.element.setAttribute("media",i.media),n.appendChild(r.element)),"styleSheet"in r.element)r.styles.push(s),r.element.styleSheet.cssText=r.styles.filter(Boolean).join("\n");else{var l=r.ids.size-1,d=document.createTextNode(s),c=r.element.childNodes;c[l]&&r.element.removeChild(c[l]),c.length?r.element.insertBefore(d,c[l]):r.element.appendChild(d)}}}(e,i)}}),void 0);function r(e){r.installed||(r.installed=!0,e.component("VueLinkPreview",o))}var s={install:r},l=null;"undefined"!=typeof window?l=window.Vue:"undefined"!=typeof __webpack_require__.g&&(l=__webpack_require__.g.vue),l&&l.use(s),o.install=r;/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (o);
-
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/regenerator/index.js":
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
@@ -3001,6 +2985,144 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/**
+ * Loads the preview data from the given URL.
+ *
+ * @param url  the url of the webpage
+ */
+function loadPreviewData(url) {
+  var formData = new FormData();
+  formData.append("url", url);
+  axios.post("/linkPreviewData", formData).then(this.onPreviewDataLoaded)["catch"](this.onPreviewDataError);
+}
+/**
+ * Updates the icon and title to the ones retrieved if they are not null.
+ *
+ * @param response  the response from the HTTP POST request
+ * @returns {Promise<void>}
+ */
+
+
+function onPreviewDataLoaded(_x) {
+  return _onPreviewDataLoaded.apply(this, arguments);
+}
+/**
+ * Logs the error that occurred whilst retrieving the preview data.
+ *
+ * @param error  the error that occurred
+ */
+
+
+function _onPreviewDataLoaded() {
+  _onPreviewDataLoaded = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(response) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (response.data.icon != null) {
+              this.icon = response.data.icon;
+            }
+
+            if (response.data.title != null) {
+              this.title = response.data.title;
+            }
+
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+  return _onPreviewDataLoaded.apply(this, arguments);
+}
+
+function onPreviewDataError(error) {
+  console.log("ERROR GETTING PREVIEW DATA");
+  console.log(error);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mounted: function mounted() {
+    this.loadPreviewData(this.$props.url);
+  },
+  methods: {
+    loadPreviewData: loadPreviewData,
+    onPreviewDataLoaded: onPreviewDataLoaded,
+    onPreviewDataError: onPreviewDataError
+  },
+  props: ["url"],
+  data: function data() {
+    return {
+      URL: this.$props.url,
+      icon: "/images/image-placeholder.svg",
+      title: null
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _LinkPreviewComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LinkPreviewComponent */ "./resources/js/components/LinkPreviewComponent.vue");
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    LinkPreviewComponent: _LinkPreviewComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Links.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Links.vue?vue&type=script&lang=js& ***!
@@ -3378,7 +3500,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_TextInputField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/TextInputField */ "./resources/js/components/TextInputField.vue");
 /* harmony import */ var _components_FeedbackComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/FeedbackComponent */ "./resources/js/components/FeedbackComponent.vue");
 /* harmony import */ var _components_LinksOut__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/LinksOut */ "./resources/js/components/LinksOut.vue");
-/* harmony import */ var _ashwamegh_vue_link_preview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ashwamegh/vue-link-preview */ "./node_modules/@ashwamegh/vue-link-preview/dist/vuelinkpreview.esm.js");
+/* harmony import */ var _components_LinkPreviewComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/LinkPreviewComponent */ "./resources/js/components/LinkPreviewComponent.vue");
+/* harmony import */ var _components_LinkPreviewsComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/LinkPreviewsComponent */ "./resources/js/components/LinkPreviewsComponent.vue");
 //
 //
 //
@@ -3429,15 +3552,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -3492,7 +3607,8 @@ __webpack_require__.r(__webpack_exports__);
     FileUploadComponent: _components_File_FileUploadComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
     FeedbackComponent: _components_FeedbackComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
     LinksOut: _components_LinksOut__WEBPACK_IMPORTED_MODULE_4__["default"],
-    LinkPreview: _ashwamegh_vue_link_preview__WEBPACK_IMPORTED_MODULE_5__["default"]
+    LinkPreviewsComponent: _components_LinkPreviewsComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
+    LinkPreviewComponent: _components_LinkPreviewComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 });
 
@@ -3612,7 +3728,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.feedback[data-v-4eb4081d] {\n    position: absolute;\n    padding: 0;\n    margin: 0;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: white;\n}\n.feedback__buttons[data-v-4eb4081d]{\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    height: 100%;\n    margin-top: -3em;\n}\n.feedback__img[data-v-4eb4081d] {\n    width: 80px;\n    cursor: pointer;\n}\n.feedback__text h1[data-v-4eb4081d] {\n    text-align: center;\n}\n", "",{"version":3,"sources":["webpack://./resources/js/components/FeedbackComponent.vue"],"names":[],"mappings":";AA+DA;IACA,kBAAA;IACA,UAAA;IACA,SAAA;IACA,MAAA;IACA,OAAA;IACA,WAAA;IACA,YAAA;IACA,iBAAA;AACA;AAEA;IACA,aAAA;IACA,6BAAA;IACA,mBAAA;IACA,YAAA;IACA,gBAAA;AAEA;AACA;IACA,WAAA;IACA,eAAA;AACA;AAEA;IACA,kBAAA;AACA","sourcesContent":["<template>\n    <div class=\"main-list__feedback feedback\">\n        <div class=\"feedback__text\">\n            <h1>Provide a feedback please</h1>\n        </div>\n        <div class=\"feedback__buttons\">\n\n                <img class=\"feedback__img\"\n                     @click=\"sendFeedback\"\n                     :disabled=\"isDisabled\"\n                     data-value=\"positive\"\n                     src=\"img/positive.png\">\n\n                <img @click=\"sendFeedback\"\n                    :disabled=\"isDisabled\"\n                    data-value=\"negative\"\n                    class=\"feedback__img\"\n                     src=\"/img/negative.png\">\n        </div>\n    </div>\n</template>\n\n<script>\nexport default {\n    name: \"FeedbackComponent\",\n    data: () => ({\n        feedback: '',\n        isDisabled: false\n    }),\n    methods: {\n        sendFeedback: function (event) {\n            this.isDisabled = true\n            this.feedback = event.target.getAttribute('data-value')\n\n            this.axios\n                .post('/save', {\n                    query: this.feedback\n                })\n                .then(res=> {\n                    if(res) {\n                        this.$emit(\"showFeedback\", 'False')\n                        this.$emit(\"messages\", {\n                            text: 'Thanks for your feedback',\n                            author: 'bot',\n                            type: 'text'\n                        })\n                    }\n\n                })\n                .catch(error => {\n\n                    console.log(error)\n                })\n                .finally(() => {\n                    this.isDisabled = false\n                })\n\n        }\n    }\n}\n</script>\n\n<style scoped>\n.feedback {\n    position: absolute;\n    padding: 0;\n    margin: 0;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: white;\n}\n\n.feedback__buttons{\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    height: 100%;\n    margin-top: -3em;\n\n}\n.feedback__img {\n    width: 80px;\n    cursor: pointer;\n}\n\n.feedback__text h1 {\n    text-align: center;\n}\n</style>\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.feedback[data-v-4eb4081d] {\r\n    position: absolute;\r\n    padding: 0;\r\n    margin: 0;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    background: white;\n}\n.feedback__buttons[data-v-4eb4081d]{\r\n    display: flex;\r\n    justify-content: space-evenly;\r\n    align-items: center;\r\n    height: 100%;\r\n    margin-top: -3em;\n}\n.feedback__img[data-v-4eb4081d] {\r\n    width: 80px;\r\n    cursor: pointer;\n}\n.feedback__text h1[data-v-4eb4081d] {\r\n    text-align: center;\n}\r\n", "",{"version":3,"sources":["webpack://./resources/js/components/FeedbackComponent.vue"],"names":[],"mappings":";AA+DA;IACA,kBAAA;IACA,UAAA;IACA,SAAA;IACA,MAAA;IACA,OAAA;IACA,WAAA;IACA,YAAA;IACA,iBAAA;AACA;AAEA;IACA,aAAA;IACA,6BAAA;IACA,mBAAA;IACA,YAAA;IACA,gBAAA;AAEA;AACA;IACA,WAAA;IACA,eAAA;AACA;AAEA;IACA,kBAAA;AACA","sourcesContent":["<template>\r\n    <div class=\"main-list__feedback feedback\">\r\n        <div class=\"feedback__text\">\r\n            <h1>Provide a feedback please</h1>\r\n        </div>\r\n        <div class=\"feedback__buttons\">\r\n\r\n                <img class=\"feedback__img\"\r\n                     @click=\"sendFeedback\"\r\n                     :disabled=\"isDisabled\"\r\n                     data-value=\"positive\"\r\n                     src=\"img/positive.png\">\r\n\r\n                <img @click=\"sendFeedback\"\r\n                    :disabled=\"isDisabled\"\r\n                    data-value=\"negative\"\r\n                    class=\"feedback__img\"\r\n                     src=\"/img/negative.png\">\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\nexport default {\r\n    name: \"FeedbackComponent\",\r\n    data: () => ({\r\n        feedback: '',\r\n        isDisabled: false\r\n    }),\r\n    methods: {\r\n        sendFeedback: function (event) {\r\n            this.isDisabled = true\r\n            this.feedback = event.target.getAttribute('data-value')\r\n\r\n            this.axios\r\n                .post('/save', {\r\n                    query: this.feedback\r\n                })\r\n                .then(res=> {\r\n                    if(res) {\r\n                        this.$emit(\"showFeedback\", 'False')\r\n                        this.$emit(\"messages\", {\r\n                            text: 'Thanks for your feedback',\r\n                            author: 'bot',\r\n                            type: 'text'\r\n                        })\r\n                    }\r\n\r\n                })\r\n                .catch(error => {\r\n\r\n                    console.log(error)\r\n                })\r\n                .finally(() => {\r\n                    this.isDisabled = false\r\n                })\r\n\r\n        }\r\n    }\r\n}\r\n</script>\r\n\r\n<style scoped>\r\n.feedback {\r\n    position: absolute;\r\n    padding: 0;\r\n    margin: 0;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    background: white;\r\n}\r\n\r\n.feedback__buttons{\r\n    display: flex;\r\n    justify-content: space-evenly;\r\n    align-items: center;\r\n    height: 100%;\r\n    margin-top: -3em;\r\n\r\n}\r\n.feedback__img {\r\n    width: 80px;\r\n    cursor: pointer;\r\n}\r\n\r\n.feedback__text h1 {\r\n    text-align: center;\r\n}\r\n</style>\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3720,7 +3836,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.chatbot-file-upload-container[data-v-2a1e22d0] {\n    --background-colour: #FFFFFF;\n    --background-colour-hover: #EFEFEF;\n    --foreground-colour: #8F8F8F;\n    --foreground-colour-hover: #6F6F6F;\n\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 100%;\n    max-width: 320px;\n    height: auto;\n    max-height: 180px;\n    margin: 8px auto 8px 8px;\n    overflow: hidden;\n    box-sizing: border-box;\n}\n*[data-v-2a1e22d0] {\n    font-family: Verdana, serif;\n    fill: var(--foreground-colour);\n    color: var(--foreground-colour);\n    outline: none;\n    box-sizing: border-box;\n}\n\n", "",{"version":3,"sources":["webpack://./resources/js/components/File/FileUploadComponent.vue"],"names":[],"mappings":";AA+VA;IACA,4BAAA;IACA,kCAAA;IACA,4BAAA;IACA,kCAAA;;IAEA,aAAA;IACA,mBAAA;IACA,uBAAA;IACA,WAAA;IACA,gBAAA;IACA,YAAA;IACA,iBAAA;IACA,wBAAA;IACA,gBAAA;IACA,sBAAA;AACA;AAEA;IACA,2BAAA;IACA,8BAAA;IACA,+BAAA;IACA,aAAA;IACA,sBAAA;AACA","sourcesContent":["<template>\n\t<div class=\"chatbot-file-upload-container\">\n        <AttachFileComponent ref=\"attach-file\"\n                             v-if=\"currentState === State.ATTACH_FILE\" />\n        <FileAttachedComponent ref=\"file-attached\"\n                               v-if=\"currentState === State.FIlE_ATTACHED\" />\n        <FileUploadingComponent ref=\"file-uploading\"\n                                v-if=\"currentState === State.FILE_UPLOADING\" />\n        <AnalyseFileComponent ref=\"analyse-file\"\n                              v-if=\"currentState === State.ANALYSE_FILE\" />\n\t</div>\n</template>\n\n<script>\n\n    import AttachFileComponent from \"./AttachFileComponent\";\n    import FileAttachedComponent from \"./FileAttachedComponent\";\n    import FileUploadingComponent from \"./FileUploadingComponent\";\n    import AnalyseFileComponent from \"./AnalyseFileComponent\";\n\n\n    /**\n     * Sets the state of this component to the one specified.\n     *\n     * Waits for the next tick so the component is rendered.\n     *\n     * @param state  the new state of this component\n     */\n    async function setState(state) {\n        if (Object.values(this.State).includes(state)) {\n            this.currentState = state;\n\n            // Wait for the component to render before continuing\n            await this.$nextTick();\n\n            return true;\n        }\n\n        return false;\n    }\n\n    /**\n     * Sets the state of this component to the attach file state.\n     */\n    async function setAttachFileState() {\n        return await this.setState(this.State.ATTACH_FILE);\n    }\n\n    /**\n     * Sets the state of this component to the file attached state.\n     */\n    async function setFileAttachedState() {\n        return await this.setState(this.State.FIlE_ATTACHED);\n    }\n\n    /**\n     * Sets the state of this component to the file uploading state.\n     */\n    async function setFileUploadingState() {\n        return await this.setState(this.State.FILE_UPLOADING);\n    }\n\n    /**\n     * Sets the state of this component to the file uploaded state.\n     */\n    async function setAnalyseFileState() {\n        return await this.setState(this.State.ANALYSE_FILE);\n    }\n\n    /**\n     * Uploads the file to the server, returning whether it was successful.\n     *\n     * If a file is not attached to this component, false will be returned\n     * without any attempt at uploading the file.\n     *\n     * @returns {boolean}  whether the file was uploaded to the server\n     */\n    function uploadFile() {\n        if (!this.hasFile()) {\n            return false;\n        }\n\n        // Change the component's state to file uploading\n        this.setFileUploadingState();\n\n        // Reference this component inside anonymous/embedded functions\n        let component = this;\n        // The form data containing the file to send via post\n        let formData  = new FormData();\n        formData.append(\"pdf\", this.file);\n        // The config data containing the file upload progress function\n        let config    = {\n            onUploadProgress(progressEvent) {\n                component.onFileUploadProgress(progressEvent);\n            },\n        };\n\n        // Upload the file with the progress, uploaded and error callback\n        // functions\n        axios.post(this.URL.UPLOAD_FILE, formData, config)\n             .then(this.onFileUploaded)\n             .catch(this.onFileUploadError);\n    }\n\n    /**\n     * Called when the file being uploaded progresses.\n     *\n     * Updates the progress bar to display how much of the file has been\n     * uploaded.\n     *\n     * @param progress  the progress event from the http request\n     */\n    function onFileUploadProgress(progress) {\n        this.fileUploadProgress = (progress.loaded / progress.total) * 100;\n    }\n\n    /**\n     * Called when the file has successfully been uploaded.\n     *\n     * Changes the component's state to file uploaded.\n     *\n     * If an error occurred uploading the file, a file upload error will be\n     * displayed.\n     *\n     * @param response  the response from the http request\n     */\n    async function onFileUploaded(response) {\n        let filePath = response.data[\"file\"] ?? null;\n\n        if (!(filePath instanceof String) || !filePath.trim()) {\n            await this.onFileUploadError(\"Error uploading file!\");\n        }\n\n        this.fileUploadProgress = 100;\n        this.isFileUploaded     = true;\n\n        await this.setAnalyseFileState();\n\n        this.$refs[\"analyse-file\"].setText(\"Analysing file...\");\n\n        // The form data containing the file to send via post\n        let formData  = new FormData();\n        formData.append(\"pdf\", filePath);\n\n        // console.log(filePath);\n\n        // Analyse the uploaded file\n        axios.post(this.URI.ANALYSE_FILE, formData)\n             .then(this.onFileAnalysed)\n             .catch(this.onFileAnalyseError);\n    }\n\n    /**\n     * Called when the file being uploaded encounters an error.\n     *\n     * Displays a file upload error, logging the error to the console.\n     *\n     * @param error  the error that occurred\n     */\n    async function onFileUploadError(error) {\n        await this.setAnalyseFileState();\n\n        this.$refs[\"analyse-file\"].setText(\"Error uploading file!\", true);\n\n        console.log(\"Error Uploading File: \", error);\n    }\n\n    /**\n     * Called when the uploaded file has been analysed.\n     *\n     * Displays the returned topics for the user to select, or an error if\n     * the topics array was not returned in the response.\n     *\n     * @param response  the response from the http request\n     */\n    async function onFileAnalysed(response) {\n        let topics = response.data[\"possibleTopics\"];\n\n        // Displays the topics returned and remove this component\n        if (Array.isArray(topics)) {\n            if (topics.length > 0) {\n                this.$emit(\"messages\", {\n                    text: response.data[\"response\"],\n                    author: 'bot',\n                    type: 'text'\n                })\n                this.$refs[\"analyse-file\"].setText(\"File analysed!\");\n                this.isFileAnalysed = true;\n\n                this.$parent.showTopics = true;\n\n                await this.$nextTick();\n\n                this.$parent.$refs[\"topics\"].topics.topicsFound = topics;\n\n                this.$parent.showFileUpload = false;\n            }\n            else {\n                this.$refs[\"analyse-file\"].setText(\"File analysed!\");\n                 setTimeout(() => {\n                    this.$parent.showFileUpload = false;\n                    this.$emit(\"messages\", {\n                        text: response.data[\"response\"],\n                        author: 'bot',\n                        type: 'text'\n                    })\n                }, 1000)\n\n\n            }\n        }\n        // Displays an error if the topics array was not returned\n        else {\n            this.onFileAnalyseError(\"Topics array was not returned!\");\n        }\n    }\n\n    /**\n     * Called when the uploaded file being analysed encounters an error.\n     *\n     * Displays a file analyse error, logging the error to the console\n     *\n     * @param error  the error that occurred\n     */\n    function onFileAnalyseError(error) {\n        this.$refs[\"analyse-file\"].setText(\"Error analysing file!\", true);\n\n        console.log(\"Error Analysing File: \", error);\n    }\n\n    /**\n     * Returns whether a file is attached to this component.\n     *\n     * @returns {boolean}  whether a file is attached to this component\n     */\n    function hasFile() {\n        return this.file !== null;\n    }\n\n    /**\n     * Returns whether the given file is a File object and a PDF.\n     *\n     * @param file         the file to check\n     * @returns {boolean}  whether the given file is valid\n     */\n    function isValidFile(file) {\n        return (file instanceof File) && (file.type === this.FileType.PDF);\n    }\n\n    /**\n     * Returns the name of the file attached to this component, or a file not\n     * found string if a file is not attached.\n     *\n     * @returns {string}  the name of the file attached, or a file not found\n     *                    string\n     */\n    function getFilename() {\n        return this.hasFile() ? this.file.name : \"File not found!\";\n    }\n\n    /**\n     * Sets the file for this component to the one given, changing the\n     * component's state to file attached.\n     *\n     * If the file is not a File object or is not a PDF, the file will not be\n     * set and false will be returned.\n     *\n     * @param file         the file to attach to this component\n     * @returns {boolean}  whether or not the file was attached\n     */\n    function setFile(file) {\n        if (!this.isValidFile(file)) {\n            alert(\"File must be a PDF!\");\n\n            return false;\n        }\n\n        this.file = file;\n        this.setFileAttachedState();\n\n        return true;\n    }\n\n    /**\n     * Removes the currently attached file from this component, changing the\n     * component's state back to attach file.\n     */\n    function removeFile() {\n        this.file = null;\n        this.setAttachFileState();\n    }\n\n\n    export default {\n        components: {\n            AttachFileComponent,\n            FileAttachedComponent,\n            FileUploadingComponent,\n            AnalyseFileComponent,\n        },\n\n        methods: {\n            setState,\n            setAttachFileState,\n            setFileAttachedState,\n            setFileUploadingState,\n            setAnalyseFileState,\n            uploadFile,\n            onFileUploaded,\n            onFileUploadProgress,\n            onFileUploadError,\n            onFileAnalysed,\n            onFileAnalyseError,\n            getFilename,\n            hasFile,\n            isValidFile,\n            setFile,\n            removeFile,\n        },\n\n        data() {\n            return {\n                State: {\n                    ATTACH_FILE: 0,\n                    FIlE_ATTACHED: 1,\n                    FILE_UPLOADING: 2,\n                    ANALYSE_FILE: 3,\n                },\n                FileType: {\n                    PDF: \"application/pdf\"\n                },\n                URL: {\n                    UPLOAD_FILE: \"https://chatbot-educ-api.herokuapp.com/upload/pdf\",\n                },\n                URI: {\n                    ANALYSE_FILE: \"/analyse\",\n                },\n\n                currentState: 0,\n                file: null,\n                isFileUploaded: false,\n                isFileAnalysed: false,\n                fileUploadProgress: 0,\n            }\n        }\n    }\n\n</script>\n\n<style scoped>\n\n    .chatbot-file-upload-container {\n        --background-colour: #FFFFFF;\n        --background-colour-hover: #EFEFEF;\n        --foreground-colour: #8F8F8F;\n        --foreground-colour-hover: #6F6F6F;\n\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        width: 100%;\n        max-width: 320px;\n        height: auto;\n        max-height: 180px;\n        margin: 8px auto 8px 8px;\n        overflow: hidden;\n        box-sizing: border-box;\n    }\n\n    * {\n        font-family: Verdana, serif;\n        fill: var(--foreground-colour);\n        color: var(--foreground-colour);\n        outline: none;\n        box-sizing: border-box;\n    }\n\n</style>\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.chatbot-file-upload-container[data-v-2a1e22d0] {\n    --background-colour: #FFFFFF;\n    --background-colour-hover: #EFEFEF;\n    --foreground-colour: #8F8F8F;\n    --foreground-colour-hover: #6F6F6F;\n\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 100%;\n    max-width: 320px;\n    height: auto;\n    max-height: 180px;\n    margin: 8px auto 8px 8px;\n    overflow: hidden;\n    box-sizing: border-box;\n}\n*[data-v-2a1e22d0] {\n    font-family: Verdana, serif;\n    fill: var(--foreground-colour);\n    color: var(--foreground-colour);\n    outline: none;\n    box-sizing: border-box;\n}\n\n", "",{"version":3,"sources":["webpack://./resources/js/components/File/FileUploadComponent.vue"],"names":[],"mappings":";AA+VA;IACA,4BAAA;IACA,kCAAA;IACA,4BAAA;IACA,kCAAA;;IAEA,aAAA;IACA,mBAAA;IACA,uBAAA;IACA,WAAA;IACA,gBAAA;IACA,YAAA;IACA,iBAAA;IACA,wBAAA;IACA,gBAAA;IACA,sBAAA;AACA;AAEA;IACA,2BAAA;IACA,8BAAA;IACA,+BAAA;IACA,aAAA;IACA,sBAAA;AACA","sourcesContent":["<template>\r\n\t<div class=\"chatbot-file-upload-container\">\r\n        <AttachFileComponent ref=\"attach-file\"\r\n                             v-if=\"currentState === State.ATTACH_FILE\" />\r\n        <FileAttachedComponent ref=\"file-attached\"\r\n                               v-if=\"currentState === State.FIlE_ATTACHED\" />\r\n        <FileUploadingComponent ref=\"file-uploading\"\r\n                                v-if=\"currentState === State.FILE_UPLOADING\" />\r\n        <AnalyseFileComponent ref=\"analyse-file\"\r\n                              v-if=\"currentState === State.ANALYSE_FILE\" />\r\n\t</div>\r\n</template>\r\n\r\n<script>\r\n\r\n    import AttachFileComponent from \"./AttachFileComponent\";\r\n    import FileAttachedComponent from \"./FileAttachedComponent\";\r\n    import FileUploadingComponent from \"./FileUploadingComponent\";\r\n    import AnalyseFileComponent from \"./AnalyseFileComponent\";\r\n\r\n\r\n    /**\r\n     * Sets the state of this component to the one specified.\r\n     *\r\n     * Waits for the next tick so the component is rendered.\r\n     *\r\n     * @param state  the new state of this component\r\n     */\r\n    async function setState(state) {\r\n        if (Object.values(this.State).includes(state)) {\r\n            this.currentState = state;\r\n\r\n            // Wait for the component to render before continuing\r\n            await this.$nextTick();\r\n\r\n            return true;\r\n        }\r\n\r\n        return false;\r\n    }\r\n\r\n    /**\r\n     * Sets the state of this component to the attach file state.\r\n     */\r\n    async function setAttachFileState() {\r\n        return await this.setState(this.State.ATTACH_FILE);\r\n    }\r\n\r\n    /**\r\n     * Sets the state of this component to the file attached state.\r\n     */\r\n    async function setFileAttachedState() {\r\n        return await this.setState(this.State.FIlE_ATTACHED);\r\n    }\r\n\r\n    /**\r\n     * Sets the state of this component to the file uploading state.\r\n     */\r\n    async function setFileUploadingState() {\r\n        return await this.setState(this.State.FILE_UPLOADING);\r\n    }\r\n\r\n    /**\r\n     * Sets the state of this component to the file uploaded state.\r\n     */\r\n    async function setAnalyseFileState() {\r\n        return await this.setState(this.State.ANALYSE_FILE);\r\n    }\r\n\r\n    /**\r\n     * Uploads the file to the server, returning whether it was successful.\r\n     *\r\n     * If a file is not attached to this component, false will be returned\r\n     * without any attempt at uploading the file.\r\n     *\r\n     * @returns {boolean}  whether the file was uploaded to the server\r\n     */\r\n    function uploadFile() {\r\n        if (!this.hasFile()) {\r\n            return false;\r\n        }\r\n\r\n        // Change the component's state to file uploading\r\n        this.setFileUploadingState();\r\n\r\n        // Reference this component inside anonymous/embedded functions\r\n        let component = this;\r\n        // The form data containing the file to send via post\r\n        let formData  = new FormData();\r\n        formData.append(\"pdf\", this.file);\r\n        // The config data containing the file upload progress function\r\n        let config    = {\r\n            onUploadProgress(progressEvent) {\r\n                component.onFileUploadProgress(progressEvent);\r\n            },\r\n        };\r\n\r\n        // Upload the file with the progress, uploaded and error callback\r\n        // functions\r\n        axios.post(this.URL.UPLOAD_FILE, formData, config)\r\n             .then(this.onFileUploaded)\r\n             .catch(this.onFileUploadError);\r\n    }\r\n\r\n    /**\r\n     * Called when the file being uploaded progresses.\r\n     *\r\n     * Updates the progress bar to display how much of the file has been\r\n     * uploaded.\r\n     *\r\n     * @param progress  the progress event from the http request\r\n     */\r\n    function onFileUploadProgress(progress) {\r\n        this.fileUploadProgress = (progress.loaded / progress.total) * 100;\r\n    }\r\n\r\n    /**\r\n     * Called when the file has successfully been uploaded.\r\n     *\r\n     * Changes the component's state to file uploaded.\r\n     *\r\n     * If an error occurred uploading the file, a file upload error will be\r\n     * displayed.\r\n     *\r\n     * @param response  the response from the http request\r\n     */\r\n    async function onFileUploaded(response) {\r\n        let filePath = response.data[\"file\"] ?? null;\r\n\r\n        if (!(filePath instanceof String) || !filePath.trim()) {\r\n            await this.onFileUploadError(\"Error uploading file!\");\r\n        }\r\n\r\n        this.fileUploadProgress = 100;\r\n        this.isFileUploaded     = true;\r\n\r\n        await this.setAnalyseFileState();\r\n\r\n        this.$refs[\"analyse-file\"].setText(\"Analysing file...\");\r\n\r\n        // The form data containing the file to send via post\r\n        let formData  = new FormData();\r\n        formData.append(\"pdf\", filePath);\r\n\r\n        // console.log(filePath);\r\n\r\n        // Analyse the uploaded file\r\n        axios.post(this.URI.ANALYSE_FILE, formData)\r\n             .then(this.onFileAnalysed)\r\n             .catch(this.onFileAnalyseError);\r\n    }\r\n\r\n    /**\r\n     * Called when the file being uploaded encounters an error.\r\n     *\r\n     * Displays a file upload error, logging the error to the console.\r\n     *\r\n     * @param error  the error that occurred\r\n     */\r\n    async function onFileUploadError(error) {\r\n        await this.setAnalyseFileState();\r\n\r\n        this.$refs[\"analyse-file\"].setText(\"Error uploading file!\", true);\r\n\r\n        console.log(\"Error Uploading File: \", error);\r\n    }\r\n\r\n    /**\r\n     * Called when the uploaded file has been analysed.\r\n     *\r\n     * Displays the returned topics for the user to select, or an error if\r\n     * the topics array was not returned in the response.\r\n     *\r\n     * @param response  the response from the http request\r\n     */\r\n    async function onFileAnalysed(response) {\r\n        let topics = response.data[\"possibleTopics\"];\r\n\r\n        // Displays the topics returned and remove this component\r\n        if (Array.isArray(topics)) {\r\n            if (topics.length > 0) {\r\n                this.$emit(\"messages\", {\r\n                    text: response.data[\"response\"],\r\n                    author: 'bot',\r\n                    type: 'text'\r\n                })\r\n                this.$refs[\"analyse-file\"].setText(\"File analysed!\");\r\n                this.isFileAnalysed = true;\r\n\r\n                this.$parent.showTopics = true;\r\n\r\n                await this.$nextTick();\r\n\r\n                this.$parent.$refs[\"topics\"].topics.topicsFound = topics;\r\n\r\n                this.$parent.showFileUpload = false;\r\n            }\r\n            else {\r\n                this.$refs[\"analyse-file\"].setText(\"File analysed!\");\r\n                 setTimeout(() => {\r\n                    this.$parent.showFileUpload = false;\r\n                    this.$emit(\"messages\", {\r\n                        text: response.data[\"response\"],\r\n                        author: 'bot',\r\n                        type: 'text'\r\n                    })\r\n                }, 1000)\r\n\r\n\r\n            }\r\n        }\r\n        // Displays an error if the topics array was not returned\r\n        else {\r\n            this.onFileAnalyseError(\"Topics array was not returned!\");\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Called when the uploaded file being analysed encounters an error.\r\n     *\r\n     * Displays a file analyse error, logging the error to the console\r\n     *\r\n     * @param error  the error that occurred\r\n     */\r\n    function onFileAnalyseError(error) {\r\n        this.$refs[\"analyse-file\"].setText(\"Error analysing file!\", true);\r\n\r\n        console.log(\"Error Analysing File: \", error);\r\n    }\r\n\r\n    /**\r\n     * Returns whether a file is attached to this component.\r\n     *\r\n     * @returns {boolean}  whether a file is attached to this component\r\n     */\r\n    function hasFile() {\r\n        return this.file !== null;\r\n    }\r\n\r\n    /**\r\n     * Returns whether the given file is a File object and a PDF.\r\n     *\r\n     * @param file         the file to check\r\n     * @returns {boolean}  whether the given file is valid\r\n     */\r\n    function isValidFile(file) {\r\n        return (file instanceof File) && (file.type === this.FileType.PDF);\r\n    }\r\n\r\n    /**\r\n     * Returns the name of the file attached to this component, or a file not\r\n     * found string if a file is not attached.\r\n     *\r\n     * @returns {string}  the name of the file attached, or a file not found\r\n     *                    string\r\n     */\r\n    function getFilename() {\r\n        return this.hasFile() ? this.file.name : \"File not found!\";\r\n    }\r\n\r\n    /**\r\n     * Sets the file for this component to the one given, changing the\r\n     * component's state to file attached.\r\n     *\r\n     * If the file is not a File object or is not a PDF, the file will not be\r\n     * set and false will be returned.\r\n     *\r\n     * @param file         the file to attach to this component\r\n     * @returns {boolean}  whether or not the file was attached\r\n     */\r\n    function setFile(file) {\r\n        if (!this.isValidFile(file)) {\r\n            alert(\"File must be a PDF!\");\r\n\r\n            return false;\r\n        }\r\n\r\n        this.file = file;\r\n        this.setFileAttachedState();\r\n\r\n        return true;\r\n    }\r\n\r\n    /**\r\n     * Removes the currently attached file from this component, changing the\r\n     * component's state back to attach file.\r\n     */\r\n    function removeFile() {\r\n        this.file = null;\r\n        this.setAttachFileState();\r\n    }\r\n\r\n\r\n    export default {\r\n        components: {\r\n            AttachFileComponent,\r\n            FileAttachedComponent,\r\n            FileUploadingComponent,\r\n            AnalyseFileComponent,\r\n        },\r\n\r\n        methods: {\r\n            setState,\r\n            setAttachFileState,\r\n            setFileAttachedState,\r\n            setFileUploadingState,\r\n            setAnalyseFileState,\r\n            uploadFile,\r\n            onFileUploaded,\r\n            onFileUploadProgress,\r\n            onFileUploadError,\r\n            onFileAnalysed,\r\n            onFileAnalyseError,\r\n            getFilename,\r\n            hasFile,\r\n            isValidFile,\r\n            setFile,\r\n            removeFile,\r\n        },\r\n\r\n        data() {\r\n            return {\r\n                State: {\r\n                    ATTACH_FILE: 0,\r\n                    FIlE_ATTACHED: 1,\r\n                    FILE_UPLOADING: 2,\r\n                    ANALYSE_FILE: 3,\r\n                },\r\n                FileType: {\r\n                    PDF: \"application/pdf\"\r\n                },\r\n                URL: {\r\n                    UPLOAD_FILE: \"https://chatbot-educ-api.herokuapp.com/upload/pdf\",\r\n                },\r\n                URI: {\r\n                    ANALYSE_FILE: \"/analyse\",\r\n                },\r\n\r\n                currentState: 0,\r\n                file: null,\r\n                isFileUploaded: false,\r\n                isFileAnalysed: false,\r\n                fileUploadProgress: 0,\r\n            }\r\n        }\r\n    }\r\n\r\n</script>\r\n\r\n<style scoped>\r\n\r\n    .chatbot-file-upload-container {\r\n        --background-colour: #FFFFFF;\r\n        --background-colour-hover: #EFEFEF;\r\n        --foreground-colour: #8F8F8F;\r\n        --foreground-colour-hover: #6F6F6F;\r\n\r\n        display: flex;\r\n        align-items: center;\r\n        justify-content: center;\r\n        width: 100%;\r\n        max-width: 320px;\r\n        height: auto;\r\n        max-height: 180px;\r\n        margin: 8px auto 8px 8px;\r\n        overflow: hidden;\r\n        box-sizing: border-box;\r\n    }\r\n\r\n    * {\r\n        font-family: Verdana, serif;\r\n        fill: var(--foreground-colour);\r\n        color: var(--foreground-colour);\r\n        outline: none;\r\n        box-sizing: border-box;\r\n    }\r\n\r\n</style>\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3754,6 +3870,60 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.chatbot-file-uploading-container[da
 
 /***/ }),
 
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.link-preview-card[data-v-eda0c8cc] {\n    display: inline-grid;\n    grid-template-rows: 100%;\n    grid-template-columns: -webkit-max-content auto;\n    grid-template-columns: max-content auto;\n    grid-template-areas: \"icon title\";\n    align-items: center;\n    height: 100px;\n    grid-gap: 12px;\n    width: 80%;\n    padding: 16px;\n    margin: 8px 0;\n    border: 1px solid var(--grey);\n    border-radius: 5px;\n    background-color: white;\n    white-space: initial;\n}\n.link-preview-card[data-v-eda0c8cc]:not(:first-child) {\n    margin-left: 20px;\n}\n.link-preview-card[data-v-eda0c8cc]:hover {\n    background-color: #EFEFEF;\n}\n.link-preview-icon[data-v-eda0c8cc] {\n    height: inherit;;\n    border-radius: 6px;\n    grid-area: icon;\n}\n.link-preview-title[data-v-eda0c8cc], .link-preview-url[data-v-eda0c8cc] {\n    height: -webkit-max-content;\n    height: -moz-max-content;\n    height: max-content;\n    max-height: 100%;\n    font-size: 15px;\n    font-weight: bold;\n    color: var(--grey);\n    overflow: hidden;\n    grid-area: title;\n}\n.link-preview-title[data-v-eda0c8cc] {\n    word-break: break-word;\n}\n.link-preview-url[data-v-eda0c8cc] {\n    word-break: break-all;\n}\n", "",{"version":3,"sources":["webpack://./resources/js/components/LinkPreviewComponent.vue"],"names":[],"mappings":";AAiFA;IACA,oBAAA;IACA,wBAAA;IACA,+CAAA;IAAA,uCAAA;IACA,iCAAA;IACA,mBAAA;IACA,aAAA;IACA,cAAA;IACA,UAAA;IACA,aAAA;IACA,aAAA;IACA,6BAAA;IACA,kBAAA;IACA,uBAAA;IACA,oBAAA;AACA;AAEA;IACA,iBAAA;AACA;AAEA;IACA,yBAAA;AACA;AAEA;IACA,eAAA;IACA,kBAAA;IACA,eAAA;AACA;AAEA;IACA,2BAAA;IAAA,wBAAA;IAAA,mBAAA;IACA,gBAAA;IACA,eAAA;IACA,iBAAA;IACA,kBAAA;IACA,gBAAA;IACA,gBAAA;AACA;AAEA;IACA,sBAAA;AACA;AAEA;IACA,qBAAA;AACA","sourcesContent":["<template>\n    <a class=\"link-preview-card\" v-bind:href=\"this.URL\" target=\"_blank\"\n       v-bind:title=\"(this.title != null) ? this.title : this.URL\">\n\n        <img class=\"link-preview-icon\" v-bind:src=\"this.icon\" />\n        <span v-bind:class=\"(this.title != null)\n                            ? 'link-preview-title'\n                            : 'link-preview-url'\">\n            {{(this.title != null) ? this.title : this.URL}}\n        </span>\n    </a>\n</template>\n\n<script>\n\n    /**\n     * Loads the preview data from the given URL.\n     *\n     * @param url  the url of the webpage\n     */\n    function loadPreviewData(url) {\n        let formData  = new FormData();\n        formData.append(\"url\", url);\n\n        axios.post(\"/linkPreviewData\", formData)\n             .then(this.onPreviewDataLoaded)\n             .catch(this.onPreviewDataError);\n    }\n\n    /**\n     * Updates the icon and title to the ones retrieved if they are not null.\n     *\n     * @param response  the response from the HTTP POST request\n     * @returns {Promise<void>}\n     */\n    async function onPreviewDataLoaded(response) {\n        if (response.data.icon != null) {\n            this.icon = response.data.icon;\n        }\n\n        if (response.data.title != null) {\n            this.title = response.data.title;\n        }\n    }\n\n    /**\n     * Logs the error that occurred whilst retrieving the preview data.\n     *\n     * @param error  the error that occurred\n     */\n    function onPreviewDataError(error) {\n        console.log(\"ERROR GETTING PREVIEW DATA\");\n        console.log(error);\n    }\n\n    export default {\n        mounted() {\n            this.loadPreviewData(this.$props.url);\n        },\n\n        methods: {\n            loadPreviewData,\n            onPreviewDataLoaded,\n            onPreviewDataError,\n        },\n\n        props: [\n            \"url\",\n        ],\n\n        data() {\n            return {\n                URL: this.$props.url,\n                icon: \"/images/image-placeholder.svg\",\n                title: null,\n            }\n        }\n    }\n</script>\n\n<style scoped>\n    .link-preview-card {\n        display: inline-grid;\n        grid-template-rows: 100%;\n        grid-template-columns: max-content auto;\n        grid-template-areas: \"icon title\";\n        align-items: center;\n        height: 100px;\n        grid-gap: 12px;\n        width: 80%;\n        padding: 16px;\n        margin: 8px 0;\n        border: 1px solid var(--grey);\n        border-radius: 5px;\n        background-color: white;\n        white-space: initial;\n    }\n\n    .link-preview-card:not(:first-child) {\n        margin-left: 20px;\n    }\n\n    .link-preview-card:hover {\n        background-color: #EFEFEF;\n    }\n\n    .link-preview-icon {\n        height: inherit;;\n        border-radius: 6px;\n        grid-area: icon;\n    }\n\n    .link-preview-title, .link-preview-url {\n        height: max-content;\n        max-height: 100%;\n        font-size: 15px;\n        font-weight: bold;\n        color: var(--grey);\n        overflow: hidden;\n        grid-area: title;\n    }\n\n    .link-preview-title {\n        word-break: break-word;\n    }\n\n    .link-preview-url {\n        word-break: break-all;\n    }\n</style>\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.link-previews-container[data-v-d5328546] {\n    display: block;\n    width: 100%;\n    height: -webkit-max-content;\n    height: -moz-max-content;\n    height: max-content;\n    overflow-y: hidden;\n    overflow-x: auto;\n    white-space: nowrap;\n}\n\n", "",{"version":3,"sources":["webpack://./resources/js/components/LinkPreviewsComponent.vue"],"names":[],"mappings":";AAmBA;IACA,cAAA;IACA,WAAA;IACA,2BAAA;IAAA,wBAAA;IAAA,mBAAA;IACA,kBAAA;IACA,gBAAA;IACA,mBAAA;AACA","sourcesContent":["<template>\n    <ul class=\"link-previews-container\">\n        <slot></slot>\n    </ul>\n</template>\n\n<script>\n\n    import LinkPreviewComponent from \"./LinkPreviewComponent\";\n\n\n    export default {\n        components: {\n            LinkPreviewComponent\n        },\n    }\n</script>\n\n<style scoped>\n    .link-previews-container {\n        display: block;\n        width: 100%;\n        height: max-content;\n        overflow-y: hidden;\n        overflow-x: auto;\n        white-space: nowrap;\n    }\n\n</style>\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Links.vue?vue&type=style&index=0&lang=css&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Links.vue?vue&type=style&index=0&lang=css& ***!
@@ -3774,7 +3944,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*a {*/\n/*    display: table;*/\n/*    margin-left: .5rem;*/\n/*    padding: .5rem;*/\n/*    background: green;*/\n/*    color: blue;*/\n/*    font-size: 1rem;*/\n/*    border-radius: 4px;*/\n/*    max-width: 100%;*/\n/*}*/\n/*.card {*/\n/*    display: inline-block;*/\n/*}*/\n", "",{"version":3,"sources":["webpack://./resources/js/components/Links.vue"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;AAyBA,MAAA;AACA,sBAAA;AACA,0BAAA;AACA,sBAAA;AACA,yBAAA;AACA,mBAAA;AACA,uBAAA;AACA,0BAAA;AACA,uBAAA;AACA,IAAA;AACA,UAAA;AACA,6BAAA;AACA,IAAA","sourcesContent":["<template>\n    <div>\n        <div class=\"card\" v-for=\"link in links\">\n<!--            <link-prevue :url=\"link\" cardWidth=\"200px\"></link-prevue>-->\n        </div>\n        <div v-for=\"link in links\">\n<!--            <a v-bind:href=\"link\" target=\"_blank\">{{link}}</a>-->\n        </div>\n    </div>\n</template>\n\n<script>\n    // import LinkPrevue from 'link-prevue'\n    export default {\n        name: 'Links',\n        props: [\n            'links'\n        ],\n        components: {\n            // LinkPrevue\n        }\n}\n</script>\n\n<style>\n    /*a {*/\n    /*    display: table;*/\n    /*    margin-left: .5rem;*/\n    /*    padding: .5rem;*/\n    /*    background: green;*/\n    /*    color: blue;*/\n    /*    font-size: 1rem;*/\n    /*    border-radius: 4px;*/\n    /*    max-width: 100%;*/\n    /*}*/\n    /*.card {*/\n    /*    display: inline-block;*/\n    /*}*/\n</style>\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*a {*/\n/*    display: table;*/\n/*    margin-left: .5rem;*/\n/*    padding: .5rem;*/\n/*    background: green;*/\n/*    color: blue;*/\n/*    font-size: 1rem;*/\n/*    border-radius: 4px;*/\n/*    max-width: 100%;*/\n/*}*/\n/*.card {*/\n/*    display: inline-block;*/\n/*}*/\n", "",{"version":3,"sources":["webpack://./resources/js/components/Links.vue"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;AAyBA,MAAA;AACA,sBAAA;AACA,0BAAA;AACA,sBAAA;AACA,yBAAA;AACA,mBAAA;AACA,uBAAA;AACA,0BAAA;AACA,uBAAA;AACA,IAAA;AACA,UAAA;AACA,6BAAA;AACA,IAAA","sourcesContent":["<template>\r\n    <div>\r\n        <div class=\"card\" v-for=\"link in links\">\r\n<!--            <link-prevue :url=\"link\" cardWidth=\"200px\"></link-prevue>-->\r\n        </div>\r\n        <div v-for=\"link in links\">\r\n<!--            <a v-bind:href=\"link\" target=\"_blank\">{{link}}</a>-->\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    // import LinkPrevue from 'link-prevue'\r\n    export default {\r\n        name: 'Links',\r\n        props: [\r\n            'links'\r\n        ],\r\n        components: {\r\n            // LinkPrevue\r\n        }\r\n}\r\n</script>\r\n\r\n<style>\r\n    /*a {*/\r\n    /*    display: table;*/\r\n    /*    margin-left: .5rem;*/\r\n    /*    padding: .5rem;*/\r\n    /*    background: green;*/\r\n    /*    color: blue;*/\r\n    /*    font-size: 1rem;*/\r\n    /*    border-radius: 4px;*/\r\n    /*    max-width: 100%;*/\r\n    /*}*/\r\n    /*.card {*/\r\n    /*    display: inline-block;*/\r\n    /*}*/\r\n</style>\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3801,7 +3971,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.chosenTopic{\n    display: table;\n    margin-left: .5rem;\n    padding: .5rem;\n    background: green;\n    color: white;\n    font-size: 1rem;\n    border-radius: 4px;\n    max-width: 100%;\n}\n#topic{\n    font-weight: bold;\n}\n\n", "",{"version":3,"sources":["webpack://./resources/js/components/TopicHandler.vue"],"names":[],"mappings":";AAuBA;IACA,cAAA;IACA,kBAAA;IACA,cAAA;IACA,iBAAA;IACA,YAAA;IACA,eAAA;IACA,kBAAA;IACA,eAAA;AACA;AACA;IACA,iBAAA;AACA","sourcesContent":["<template>\n    <section>\n<!--        <p class=\"chosenTopic\"> Let me see what I can find about '<span id=\"topic\">{{chosenTopic}}</span>'.... </p>-->\n    </section>\n</template>\n\n\n<script>\nimport LinksOut from \"./LinksOut\";\n\nexport default {\n    name:'topicHandler',\n    props:['chosenTopic'],\n    components: {\n        LinksOut\n    }\n}\n\n</script>\n\n\n<style>\n\n .chosenTopic{\n     display: table;\n     margin-left: .5rem;\n     padding: .5rem;\n     background: green;\n     color: white;\n     font-size: 1rem;\n     border-radius: 4px;\n     max-width: 100%;\n }\n #topic{\n     font-weight: bold;\n }\n\n</style>\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.chosenTopic{\n    display: table;\n    margin-left: .5rem;\n    padding: .5rem;\n    background: green;\n    color: white;\n    font-size: 1rem;\n    border-radius: 4px;\n    max-width: 100%;\n}\n#topic{\n    font-weight: bold;\n}\n\n", "",{"version":3,"sources":["webpack://./resources/js/components/TopicHandler.vue"],"names":[],"mappings":";AAuBA;IACA,cAAA;IACA,kBAAA;IACA,cAAA;IACA,iBAAA;IACA,YAAA;IACA,eAAA;IACA,kBAAA;IACA,eAAA;AACA;AACA;IACA,iBAAA;AACA","sourcesContent":["<template>\r\n    <section>\r\n<!--        <p class=\"chosenTopic\"> Let me see what I can find about '<span id=\"topic\">{{chosenTopic}}</span>'.... </p>-->\r\n    </section>\r\n</template>\r\n\r\n\r\n<script>\r\nimport LinksOut from \"./LinksOut\";\r\n\r\nexport default {\r\n    name:'topicHandler',\r\n    props:['chosenTopic'],\r\n    components: {\r\n        LinksOut\r\n    }\r\n}\r\n\r\n</script>\r\n\r\n\r\n<style>\r\n\r\n .chosenTopic{\r\n     display: table;\r\n     margin-left: .5rem;\r\n     padding: .5rem;\r\n     background: green;\r\n     color: white;\r\n     font-size: 1rem;\r\n     border-radius: 4px;\r\n     max-width: 100%;\r\n }\r\n #topic{\r\n     font-weight: bold;\r\n }\r\n\r\n</style>\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3828,7 +3998,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.btn[data-v-e46213f2] {\n    display: table;\n    background-color: #c99d30;\n    color: white;\n    text-align: left;\n    text-decoration: none;\n    font-style: italic;\n    font-family: \"Helvetica Neue\", sans-serif;\n    margin-right: 1rem;\n    padding: .5rem;\n    font-size: 1rem;\n    border-radius: 4px;\n}\n.btn[data-v-e46213f2]:hover {\n    cursor: pointer;\n    background-color: #3c444f;\n    font-weight: bold;\n}\n", "",{"version":3,"sources":["webpack://./resources/js/components/TopicItem.vue"],"names":[],"mappings":";AA0BA;IACA,cAAA;IACA,yBAAA;IACA,YAAA;IACA,gBAAA;IACA,qBAAA;IACA,kBAAA;IACA,yCAAA;IACA,kBAAA;IACA,cAAA;IACA,eAAA;IACA,kBAAA;AACA;AAEA;IACA,eAAA;IACA,yBAAA;IACA,iBAAA;AACA","sourcesContent":["<template>\n    <section>\n        <div class=\"topic-item\">\n            <p class=\"btn\" @click=\"$emit('print-topic', topic);\n\n                            $parent.$emit('messages', {\n                            text: 'Let me see what I can find about ' + topic + '....',\n                            author:'bot',\n                            type: 'text'\n                        });\n\n                        \">{{ topic }}</p>\n        </div>\n    </section>\n</template>\n\n<script>\n    export default {\n        name: 'topicItem',\n        props:['topic'],\n\n    }\n</script>\n\n<style scoped>\n\n.btn {\n    display: table;\n    background-color: #c99d30;\n    color: white;\n    text-align: left;\n    text-decoration: none;\n    font-style: italic;\n    font-family: \"Helvetica Neue\", sans-serif;\n    margin-right: 1rem;\n    padding: .5rem;\n    font-size: 1rem;\n    border-radius: 4px;\n}\n\n.btn:hover {\n    cursor: pointer;\n    background-color: #3c444f;\n    font-weight: bold;\n}\n</style>\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.btn[data-v-e46213f2] {\r\n    display: table;\r\n    background-color: #c99d30;\r\n    color: white;\r\n    text-align: left;\r\n    text-decoration: none;\r\n    font-style: italic;\r\n    font-family: \"Helvetica Neue\", sans-serif;\r\n    margin-right: 1rem;\r\n    padding: .5rem;\r\n    font-size: 1rem;\r\n    border-radius: 4px;\n}\n.btn[data-v-e46213f2]:hover {\r\n    cursor: pointer;\r\n    background-color: #3c444f;\r\n    font-weight: bold;\n}\r\n", "",{"version":3,"sources":["webpack://./resources/js/components/TopicItem.vue"],"names":[],"mappings":";AA0BA;IACA,cAAA;IACA,yBAAA;IACA,YAAA;IACA,gBAAA;IACA,qBAAA;IACA,kBAAA;IACA,yCAAA;IACA,kBAAA;IACA,cAAA;IACA,eAAA;IACA,kBAAA;AACA;AAEA;IACA,eAAA;IACA,yBAAA;IACA,iBAAA;AACA","sourcesContent":["<template>\r\n    <section>\r\n        <div class=\"topic-item\">\r\n            <p class=\"btn\" @click=\"$emit('print-topic', topic);\r\n\r\n                            $parent.$emit('messages', {\r\n                            text: 'Let me see what I can find about ' + topic + '....',\r\n                            author:'bot',\r\n                            type: 'text'\r\n                        });\r\n\r\n                        \">{{ topic }}</p>\r\n        </div>\r\n    </section>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        name: 'topicItem',\r\n        props:['topic'],\r\n\r\n    }\r\n</script>\r\n\r\n<style scoped>\r\n\r\n.btn {\r\n    display: table;\r\n    background-color: #c99d30;\r\n    color: white;\r\n    text-align: left;\r\n    text-decoration: none;\r\n    font-style: italic;\r\n    font-family: \"Helvetica Neue\", sans-serif;\r\n    margin-right: 1rem;\r\n    padding: .5rem;\r\n    font-size: 1rem;\r\n    border-radius: 4px;\r\n}\r\n\r\n.btn:hover {\r\n    cursor: pointer;\r\n    background-color: #3c444f;\r\n    font-weight: bold;\r\n}\r\n</style>\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3855,7 +4025,34 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nul[data-v-49d1554f] {\n    list-style-type: none;\n    margin-left: -2rem;\n}\nli[data-v-49d1554f] {\n    float: left;\n}\n.chosenTopic[data-v-49d1554f]{\n    display: table;\n    padding: .5rem;\n    background: green;\n    color: white;\n    font-size: 1rem;\n    border-radius: 4px;\n    max-width: 100%;\n}\n\n", "",{"version":3,"sources":["webpack://./resources/js/components/Topics.vue"],"names":[],"mappings":";AAyGA;IACA,qBAAA;IACA,kBAAA;AACA;AAEA;IACA,WAAA;AACA;AAIA;IACA,cAAA;IACA,cAAA;IACA,iBAAA;IACA,YAAA;IACA,eAAA;IACA,kBAAA;IACA,eAAA;AACA","sourcesContent":["<template >\n    <section>\n        <div>\n            <div class=\"topics-found\" v-if=\"topics['topicsFound'].length\">\n<!--                <p class=\"chosenTopic\">This is what I found! Please select one of the topics</p>-->\n                <div class=\"topics\" >\n                    <ul>\n                        <li v-for=\"topic in topics['topicsFound']\">\n                            <TopicItem v-on:print-topic=\"showTopic\" v-bind:topic=\"topic\"/>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n        <div >\n\n        </div >\n        <TopicHandler v-if=\"topics['isTopicSelected']\" :chosenTopic=\"topics['selectedTopic']\"/>\n    </section>\n</template>\n\n<script>\nimport TopicItem from './TopicItem';\nimport TopicHandler from './TopicHandler'\n\n    const TOPICS_NOT_FOUND = 'No topics found';\nexport default {\n    name:\"topics\",\n    components:{\n      TopicItem,\n        TopicHandler\n\n    },\n    data() {\n        return {\n            topics :{\n                // THIS WILL STORE TOPICS AFTER FETCHING FROM THE API\n                topicsFound: [],\n                selectedTopic: '',\n                isTopicSelected: false,\n                response: ''\n            }\n        }\n    },\n    methods: {\n\n        /**\n         * Picks the topic that the user has chosen\n         * @if there are no topics the user cannot click the button\n         * @else the selected topic will be displayed into the chat for the user to confirm that\n         * is the correct topic he chose.\n         *\n         * @param topic\n         */\n        showTopic(topic) {\n\n            if (topic === TOPICS_NOT_FOUND) {\n                // TODO: this should lead back to chatbot and asking the user if he want to search for something else.\n            }else{\n                // TODO: this should be displayed to the user chat area for confirmation.\n                this.topics['selectedTopic'] = topic\n                this.topics['isTopicSelected'] = true\n                this.$parent.showLinks = true;\n                this.topics['topicsFound'] = [];\n\n                this.$emit('chosenTopic' , topic)\n            }\n        },\n\n        /**\n         *\n         * @axios will call the route for the API to get the topics after the given file has been upload and analyzed.\n         *\n         * @return list of topics relevant to the user's query for him to use one.\n         */\n        // fetchTopics() {\n        //\n        //     axios.get('/topicFound')\n        //          .then(res => {\n        //              var topicsFound = res.data['topicFound']\n        //\n        //\n        //              this.$emit(\"messages\", {\n        //                  text: res.data.response,\n        //                  author: 'bot'\n        //              })\n        //\n        //              console.log(topicsFound)\n        //              if(topicsFound === 'False') {\n        //                  this.topics['topicsFound'] = [TOPICS_NOT_FOUND]\n        //              }else{\n        //                  this.topics['topicsFound'] = topicsFound\n        //              }\n        //          }).catch(e => {\n        //              this.topics['topicsFound'] = e.error;\n        //     })\n        // }\n    }\n}\n\n</script>\n\n<style scoped>\n\n\nul {\n    list-style-type: none;\n    margin-left: -2rem;\n}\n\nli {\n    float: left;\n}\n\n\n\n.chosenTopic{\n    display: table;\n    padding: .5rem;\n    background: green;\n    color: white;\n    font-size: 1rem;\n    border-radius: 4px;\n    max-width: 100%;\n}\n\n</style>\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nul[data-v-49d1554f] {\r\n    list-style-type: none;\r\n    margin-left: -2rem;\n}\nli[data-v-49d1554f] {\r\n    float: left;\n}\n.chosenTopic[data-v-49d1554f]{\r\n    display: table;\r\n    padding: .5rem;\r\n    background: green;\r\n    color: white;\r\n    font-size: 1rem;\r\n    border-radius: 4px;\r\n    max-width: 100%;\n}\r\n\r\n", "",{"version":3,"sources":["webpack://./resources/js/components/Topics.vue"],"names":[],"mappings":";AAyGA;IACA,qBAAA;IACA,kBAAA;AACA;AAEA;IACA,WAAA;AACA;AAIA;IACA,cAAA;IACA,cAAA;IACA,iBAAA;IACA,YAAA;IACA,eAAA;IACA,kBAAA;IACA,eAAA;AACA","sourcesContent":["<template >\r\n    <section>\r\n        <div>\r\n            <div class=\"topics-found\" v-if=\"topics['topicsFound'].length\">\r\n<!--                <p class=\"chosenTopic\">This is what I found! Please select one of the topics</p>-->\r\n                <div class=\"topics\" >\r\n                    <ul>\r\n                        <li v-for=\"topic in topics['topicsFound']\">\r\n                            <TopicItem v-on:print-topic=\"showTopic\" v-bind:topic=\"topic\"/>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div >\r\n\r\n        </div >\r\n        <TopicHandler v-if=\"topics['isTopicSelected']\" :chosenTopic=\"topics['selectedTopic']\"/>\r\n    </section>\r\n</template>\r\n\r\n<script>\r\nimport TopicItem from './TopicItem';\r\nimport TopicHandler from './TopicHandler'\r\n\r\n    const TOPICS_NOT_FOUND = 'No topics found';\r\nexport default {\r\n    name:\"topics\",\r\n    components:{\r\n      TopicItem,\r\n        TopicHandler\r\n\r\n    },\r\n    data() {\r\n        return {\r\n            topics :{\r\n                // THIS WILL STORE TOPICS AFTER FETCHING FROM THE API\r\n                topicsFound: [],\r\n                selectedTopic: '',\r\n                isTopicSelected: false,\r\n                response: ''\r\n            }\r\n        }\r\n    },\r\n    methods: {\r\n\r\n        /**\r\n         * Picks the topic that the user has chosen\r\n         * @if there are no topics the user cannot click the button\r\n         * @else the selected topic will be displayed into the chat for the user to confirm that\r\n         * is the correct topic he chose.\r\n         *\r\n         * @param topic\r\n         */\r\n        showTopic(topic) {\r\n\r\n            if (topic === TOPICS_NOT_FOUND) {\r\n                // TODO: this should lead back to chatbot and asking the user if he want to search for something else.\r\n            }else{\r\n                // TODO: this should be displayed to the user chat area for confirmation.\r\n                this.topics['selectedTopic'] = topic\r\n                this.topics['isTopicSelected'] = true\r\n                this.$parent.showLinks = true;\r\n                this.topics['topicsFound'] = [];\r\n\r\n                this.$emit('chosenTopic' , topic)\r\n            }\r\n        },\r\n\r\n        /**\r\n         *\r\n         * @axios will call the route for the API to get the topics after the given file has been upload and analyzed.\r\n         *\r\n         * @return list of topics relevant to the user's query for him to use one.\r\n         */\r\n        // fetchTopics() {\r\n        //\r\n        //     axios.get('/topicFound')\r\n        //          .then(res => {\r\n        //              var topicsFound = res.data['topicFound']\r\n        //\r\n        //\r\n        //              this.$emit(\"messages\", {\r\n        //                  text: res.data.response,\r\n        //                  author: 'bot'\r\n        //              })\r\n        //\r\n        //              console.log(topicsFound)\r\n        //              if(topicsFound === 'False') {\r\n        //                  this.topics['topicsFound'] = [TOPICS_NOT_FOUND]\r\n        //              }else{\r\n        //                  this.topics['topicsFound'] = topicsFound\r\n        //              }\r\n        //          }).catch(e => {\r\n        //              this.topics['topicsFound'] = e.error;\r\n        //     })\r\n        // }\r\n    }\r\n}\r\n\r\n</script>\r\n\r\n<style scoped>\r\n\r\n\r\nul {\r\n    list-style-type: none;\r\n    margin-left: -2rem;\r\n}\r\n\r\nli {\r\n    float: left;\r\n}\r\n\r\n\r\n\r\n.chosenTopic{\r\n    display: table;\r\n    padding: .5rem;\r\n    background: green;\r\n    color: white;\r\n    font-size: 1rem;\r\n    border-radius: 4px;\r\n    max-width: 100%;\r\n}\r\n\r\n</style>\r\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/layouts/App.vue?vue&type=style&index=1&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/layouts/App.vue?vue&type=style&index=1&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n:root {\n    --grey: #404650;\n    --grey-rgb: 64, 70, 80;\n}\n\n/* Scrollbar */\n::-webkit-scrollbar {\n    width: 10px;\n    height: 10px;\n}\n::-webkit-scrollbar-track {\n    background: rgba(255, 255, 255, 0.5);\n    border-radius: 0;\n}\n::-webkit-scrollbar-thumb {\n    background: var(--grey);\n    border-radius: 0;\n}\n\n", "",{"version":3,"sources":["webpack://./resources/js/layouts/App.vue"],"names":[],"mappings":";AA6QA;IACA,eAAA;IACA,sBAAA;AACA;;AAEA,cAAA;AACA;IACA,WAAA;IACA,YAAA;AACA;AACA;IACA,oCAAA;IACA,gBAAA;AACA;AACA;IACA,uBAAA;IACA,gBAAA;AACA","sourcesContent":["<template>\n    <section class=\"chat-bot\" >\n\n        <div id=\"main_container\" class=\"chat-bot__container\" >\n            <div id=\"header-div\" class=\"header-div-show \">\n                <div id=\"header-icon\"> <img :src=\"require('/img/chatbot2.png').default\" alt=\"\" ></div>\n                <div id=\"header-title\">Chatbot</div>\n                <div id=\"header-close-btn\"><input id=\"hideChatBot\" type=\"button\" value=\"X\" @click=\"hideChatBot\"></div>\n            </div>\n\n            <div class=\"chat-bot__main main-list\" >\n                <div class=\"main-list__container\" ref=\"chatBot\">\n                    <ul class=\"main-list__messages\">\n                        <li class=\"main-list__message\"\n                            v-for=\"(message, index) in messages\"\n                            :key=\"index\"\n                            :class=\"(message.type ==='link') ? message.author + ' message__links': message.author\">\n\n                            <p v-if=\"message.type === 'text'\">\n                                <span class=\"message__text-span\">{{ message.text }}</span>\n                            </p>\n\n                            <LinkPreviewsComponent v-if=\"message.type === 'link'\">\n                                <LinkPreviewComponent v-for=\"link in message.text\" v-bind:url=\"link\" />\n                            </LinkPreviewsComponent>\n                        </li>\n                    </ul>\n                    <div v-if=\"showFileUpload\" class=\"main-list__upload-file\">\n                        <FileUploadComponent @messages=\"getMessages\"/>\n                    </div>\n                    <div v-if=\"showTopics\" class=\"main-list__show-topics\">\n                        <Topics ref=\"topics\" @chosenTopic=\"sendChosenTopic\" @messages=\"getMessages\" />\n                    </div>\n                    <div v-if=\"showLinks\" class=\"main-list__show-links\">\n                        <LinksOut :topic=\"this.chosenTopic\" @messages=\"getMessages\" />\n                    </div>\n                    <div v-if=\"showFeedback\" class=\"main-list__show-feedback\">\n                        <FeedbackComponent  @showFeedback=\"isShowFeedback\" @messages=\"getMessages\"/>\n                    </div>\n\n                </div>\n                <TextInputField @messages=\"getMessages\"\n                                @readyToSubmit=\"isFileUploaded\"\n                                @showFeedback=\"isShowFeedback\"\n                />\n            </div>\n        </div>\n    </section>\n</template>\n\n<script>\n\nimport Topics from '../components/Topics';\nimport FileUploadComponent from '../components/File/FileUploadComponent';\nimport TextInputField from \"../components/TextInputField\";\nimport FeedbackComponent from \"../components/FeedbackComponent\";\nimport LinksOut from \"../components/LinksOut\";\nimport LinkPreviewComponent from \"../components/LinkPreviewComponent\";\nimport LinkPreviewsComponent from \"../components/LinkPreviewsComponent\";\n\n\nexport default {\n    name: \"MainWindowComponent\",\n    data: () => ({\n        messages:[],\n        showFileUpload: false,\n        showTopics: false,\n        showLinks: false,\n        showFeedback: false,\n        chosenTopic: ''\n    }),\n    updated() {\n        this.$nextTick(() => this.scrollToEnd());\n    },\n    methods: {\n        getMessages(values) {\n            this.messages.push(values)\n        },\n        isFileUploaded(values) {\n            if (values === 'False') this.showFileUpload = false\n            if (values === 'True') this.showFileUpload = true\n\n        },\n        isShowFeedback(values) {\n            if (values === 'False') this.showFeedback = false\n            if (values === 'True') this.showFeedback = true\n        },\n\n        hideChatBot() {\n           this.axios.get('/flash')\n        },\n        sendChosenTopic(chosenTopic){\n            this.chosenTopic = chosenTopic\n        },\n        scrollToEnd () {\n            // scroll to the start of the last message\n            this.$refs.chatBot.scrollTop = this.$refs.chatBot.scrollHeight\n        }\n    },\n    components: {\n        Topics,\n        TextInputField,\n\t    FileUploadComponent,\n        FeedbackComponent,\n        LinksOut,\n        LinkPreviewsComponent,\n        LinkPreviewComponent,\n\n\n  },\n\n}\n</script>\n\n\n<style scoped lang=\"scss\">\n\n.main_container_hide{\n    display: none;\n}\n// Messages\n.main-list {\n    //overflow-y: scroll;\n    display: flex;\n    flex-direction: column;\n    list-style-type: none;\n    width: 100%;\n    height: 533px;\n    border-radius:0 0 4px 4px;\n    position: fixed;\n    left:5px;\n    top:50px;\n    justify-content: space-between;\n\n}\n\n.main-list__container {\n    //overflow: auto;\n    scrollbar-width: none;  /* Firefox */\n    overflow-y: auto;\n\n    ul {\n        margin-block-start: unset;\n        margin-block-end: unset;\n        margin-inline-start: unset;\n        margin-inline-end: unset;\n        padding-inline-start: unset;\n    }\n}\n\n.main-list__messages {\n    display: flex;\n    flex-direction: column;\n    list-style-type: none;\n\n    span {\n        padding: 8px;\n        color: white;\n        border-radius: 4px;\n\n    }\n\n    .bot {\n        span {\n            background: green;\n        }\n\n        p {\n            float: left\n        }\n    }\n\n    .user {\n        span {\n            background: #1722a2;\n        }\n\n        p {\n            float: right;\n        }\n    }\n\n}\n\n.main-list__message {\n    padding: 0.5rem;\n}\n\n// file upload container\n.main-list__upload-file {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.header-div-show {\n    display: grid;\n    grid-template-columns: repeat(6, 1fr);\n    width: 100%;\n    height: 50px;\n    position: fixed;\n    top:0;\n    left:0;\n    background-color: #404650;\n}\n\n#header-icon {\n    grid-column: 1/2;\n    margin: 0 auto;\n    line-height: 50px;\n    padding-top: 5px;\n}\n#header-title {\n    line-height: 50px;\n    grid-column: 2/6;\n    font-size: 20px;\n    font-weight: bold;\n    color: white;\n}\n#header-close-btn {\n    grid-column: 6/7;\n    line-height: 50px;\n    margin:0 auto;\n}\n\n.main-list__show-topics {\n    overflow-x: scroll;\n    overflow-y: hidden;\n    white-space: nowrap;\n    display: inline-block;\n}\n\n// Links\n.message__links {\n    display: flex;\n    overflow: auto;\n    flex-wrap: nowrap;\n    align-content: center;\n    justify-content: flex-start;\n}\n\n.message__link {\n    margin-right: 1em;\n}\n\n.message__text-span {\n    line-height: 3em;\n}\n\n@media screen and (max-device-width: 480px){\n    .main-list {\n        //overflow-y: scroll;\n        display: flex;\n        flex-direction: column;\n        list-style-type: none;\n        width: 100%;\n        height: 533px;\n        border-radius:0 0 4px 4px;\n        position: fixed;\n        left:5px;\n        top:50px;\n        justify-content: space-between;\n\n    }\n}\n</style>\n\n<style>\n\n    :root {\n        --grey: #404650;\n        --grey-rgb: 64, 70, 80;\n    }\n\n    /* Scrollbar */\n    ::-webkit-scrollbar {\n        width: 10px;\n        height: 10px;\n    }\n    ::-webkit-scrollbar-track {\n        background: rgba(255, 255, 255, 0.5);\n        border-radius: 0;\n    }\n    ::-webkit-scrollbar-thumb {\n        background: var(--grey);\n        border-radius: 0;\n    }\n\n</style>\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3909,7 +4106,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main_container_hide[data-v-9087fe26] {\n  display: none;\n}\n.main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 435px;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  scrollbar-width: none;\n  /* Firefox */\n  overflow-y: scroll;\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 449px;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #404650;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}\n.main-list__show-topics[data-v-9087fe26] {\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap;\n  display: inline-block;\n}\n.message__links[data-v-9087fe26] {\n  display: flex;\n  overflow: auto;\n  flex-wrap: nowrap;\n  align-content: center;\n  justify-content: flex-start;\n}\n.message__link[data-v-9087fe26] {\n  margin-right: 1em;\n}\n.message__text-span[data-v-9087fe26] {\n  line-height: 3em;\n}", "",{"version":3,"sources":["webpack://./resources/js/layouts/App.vue"],"names":[],"mappings":"AA4HA;EACI,aAAA;AA3HJ;AA8HA;EAEI,aAAA;EACA,sBAAA;EACA,qBAAA;EACA,YAAA;EACA,aAAA;EACA,0BAAA;EACA,eAAA;EACA,SAAA;EACA,SAAA;EACA,8BAAA;AA5HJ;AAgIA;EAEI,qBAAA;EAAwB,YAAA;EACxB,kBAAA;AA7HJ;AA+HI;EACI,4BAAA;UAAA,yBAAA;EACA,2BAAA;UAAA,uBAAA;EACA,2BAAA;UAAA,0BAAA;EACA,yBAAA;UAAA,wBAAA;EACA,4BAAA;UAAA,2BAAA;AA7HR;AAiIA;EACI,aAAA;EACA,sBAAA;EACA,qBAAA;AA9HJ;AAgII;EACI,YAAA;EACA,YAAA;EACA,kBAAA;AA9HR;AAmIQ;EACI,iBAAA;AAjIZ;AAoIQ;EACI,WAAA;AAlIZ;AAuIQ;EACI,mBAAA;AArIZ;AAwIQ;EACI,YAAA;AAtIZ;AA4IA;EACI,eAAA;AAzIJ;AA6IA;EACI,aAAA;EACA,mBAAA;EACA,uBAAA;AA1IJ;AA6IA;EACI,aAAA;EACA,qCAAA;EACA,YAAA;EACA,YAAA;EACA,eAAA;EACA,MAAA;EACA,OAAA;EACA,yBAAA;AA1IJ;AA6IA;EACI,gBAAA;EACA,cAAA;EACA,iBAAA;EACA,gBAAA;AA1IJ;AA4IA;EACI,iBAAA;EACA,gBAAA;EACA,eAAA;EACA,iBAAA;EACA,YAAA;AAzIJ;AA2IA;EACI,gBAAA;EACA,iBAAA;EACA,cAAA;AAxIJ;AA2IA;EACI,kBAAA;EACA,kBAAA;EACA,mBAAA;EACA,qBAAA;AAxIJ;AA4IA;EACI,aAAA;EACA,cAAA;EACA,iBAAA;EACA,qBAAA;EACA,2BAAA;AAzIJ;AA4IA;EACI,iBAAA;AAzIJ;AA4IA;EACI,gBAAA;AAzIJ","sourcesContent":["\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.main_container_hide{\n    display: none;\n}\n// Messages\n.main-list {\n    //overflow-y: scroll;\n    display: flex;\n    flex-direction: column;\n    list-style-type: none;\n    width: 435px;\n    height: 533px;\n    border-radius:0 0 4px 4px;\n    position: fixed;\n    left:5px;\n    top:50px;\n    justify-content: space-between;\n\n}\n\n.main-list__container {\n    //overflow: auto;\n    scrollbar-width: none;  /* Firefox */\n    overflow-y: scroll;\n\n    ul {\n        margin-block-start: unset;\n        margin-block-end: unset;\n        margin-inline-start: unset;\n        margin-inline-end: unset;\n        padding-inline-start: unset;\n    }\n}\n\n.main-list__messages {\n    display: flex;\n    flex-direction: column;\n    list-style-type: none;\n\n    span {\n        padding: 8px;\n        color: white;\n        border-radius: 4px;\n\n    }\n\n    .bot {\n        span {\n            background: green;\n        }\n\n        p {\n            float: left\n        }\n    }\n\n    .user {\n        span {\n            background: #1722a2;\n        }\n\n        p {\n            float: right;\n        }\n    }\n\n}\n\n.main-list__message {\n    padding: 0.5rem;\n}\n\n// file upload container\n.main-list__upload-file {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.header-div-show {\n    display: grid;\n    grid-template-columns: repeat(6, 1fr);\n    width: 449px;\n    height: 50px;\n    position: fixed;\n    top:0;\n    left:0;\n    background-color: #404650;\n}\n\n#header-icon {\n    grid-column: 1/2;\n    margin: 0 auto;\n    line-height: 50px;\n    padding-top: 5px;\n}\n#header-title {\n    line-height: 50px;\n    grid-column: 2/6;\n    font-size: 20px;\n    font-weight: bold;\n    color: white;\n}\n#header-close-btn {\n    grid-column: 6/7;\n    line-height: 50px;\n    margin:0 auto;\n}\n\n.main-list__show-topics {\n    overflow-x: scroll;\n    overflow-y: hidden;\n    white-space: nowrap;\n    display: inline-block;\n}\n\n// Links\n.message__links {\n    display: flex;\n    overflow: auto;\n    flex-wrap: nowrap;\n    align-content: center;\n    justify-content: flex-start;\n}\n\n.message__link {\n    margin-right: 1em;\n}\n\n.message__text-span {\n    line-height: 3em;\n}\n\n\n\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main_container_hide[data-v-9087fe26] {\n  display: none;\n}\n.main-list[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n  width: 100%;\n  height: 533px;\n  border-radius: 0 0 4px 4px;\n  position: fixed;\n  left: 5px;\n  top: 50px;\n  justify-content: space-between;\n}\n.main-list__container[data-v-9087fe26] {\n  scrollbar-width: none;\n  /* Firefox */\n  overflow-y: auto;\n}\n.main-list__container ul[data-v-9087fe26] {\n  -webkit-margin-before: unset;\n          margin-block-start: unset;\n  -webkit-margin-after: unset;\n          margin-block-end: unset;\n  -webkit-margin-start: unset;\n          margin-inline-start: unset;\n  -webkit-margin-end: unset;\n          margin-inline-end: unset;\n  -webkit-padding-start: unset;\n          padding-inline-start: unset;\n}\n.main-list__messages[data-v-9087fe26] {\n  display: flex;\n  flex-direction: column;\n  list-style-type: none;\n}\n.main-list__messages span[data-v-9087fe26] {\n  padding: 8px;\n  color: white;\n  border-radius: 4px;\n}\n.main-list__messages .bot span[data-v-9087fe26] {\n  background: green;\n}\n.main-list__messages .bot p[data-v-9087fe26] {\n  float: left;\n}\n.main-list__messages .user span[data-v-9087fe26] {\n  background: #1722a2;\n}\n.main-list__messages .user p[data-v-9087fe26] {\n  float: right;\n}\n.main-list__message[data-v-9087fe26] {\n  padding: 0.5rem;\n}\n.main-list__upload-file[data-v-9087fe26] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.header-div-show[data-v-9087fe26] {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  width: 100%;\n  height: 50px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: #404650;\n}\n#header-icon[data-v-9087fe26] {\n  grid-column: 1/2;\n  margin: 0 auto;\n  line-height: 50px;\n  padding-top: 5px;\n}\n#header-title[data-v-9087fe26] {\n  line-height: 50px;\n  grid-column: 2/6;\n  font-size: 20px;\n  font-weight: bold;\n  color: white;\n}\n#header-close-btn[data-v-9087fe26] {\n  grid-column: 6/7;\n  line-height: 50px;\n  margin: 0 auto;\n}\n.main-list__show-topics[data-v-9087fe26] {\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap;\n  display: inline-block;\n}\n.message__links[data-v-9087fe26] {\n  display: flex;\n  overflow: auto;\n  flex-wrap: nowrap;\n  align-content: center;\n  justify-content: flex-start;\n}\n.message__link[data-v-9087fe26] {\n  margin-right: 1em;\n}\n.message__text-span[data-v-9087fe26] {\n  line-height: 3em;\n}\n@media screen and (max-device-width: 480px) {\n.main-list[data-v-9087fe26] {\n    display: flex;\n    flex-direction: column;\n    list-style-type: none;\n    width: 100%;\n    height: 533px;\n    border-radius: 0 0 4px 4px;\n    position: fixed;\n    left: 5px;\n    top: 50px;\n    justify-content: space-between;\n}\n}", "",{"version":3,"sources":["webpack://./resources/js/layouts/App.vue"],"names":[],"mappings":"AAqHA;EACI,aAAA;AApHJ;AAuHA;EAEI,aAAA;EACA,sBAAA;EACA,qBAAA;EACA,WAAA;EACA,aAAA;EACA,0BAAA;EACA,eAAA;EACA,SAAA;EACA,SAAA;EACA,8BAAA;AArHJ;AAyHA;EAEI,qBAAA;EAAwB,YAAA;EACxB,gBAAA;AAtHJ;AAwHI;EACI,4BAAA;UAAA,yBAAA;EACA,2BAAA;UAAA,uBAAA;EACA,2BAAA;UAAA,0BAAA;EACA,yBAAA;UAAA,wBAAA;EACA,4BAAA;UAAA,2BAAA;AAtHR;AA0HA;EACI,aAAA;EACA,sBAAA;EACA,qBAAA;AAvHJ;AAyHI;EACI,YAAA;EACA,YAAA;EACA,kBAAA;AAvHR;AA4HQ;EACI,iBAAA;AA1HZ;AA6HQ;EACI,WAAA;AA3HZ;AAgIQ;EACI,mBAAA;AA9HZ;AAiIQ;EACI,YAAA;AA/HZ;AAqIA;EACI,eAAA;AAlIJ;AAsIA;EACI,aAAA;EACA,mBAAA;EACA,uBAAA;AAnIJ;AAsIA;EACI,aAAA;EACA,qCAAA;EACA,WAAA;EACA,YAAA;EACA,eAAA;EACA,MAAA;EACA,OAAA;EACA,yBAAA;AAnIJ;AAsIA;EACI,gBAAA;EACA,cAAA;EACA,iBAAA;EACA,gBAAA;AAnIJ;AAqIA;EACI,iBAAA;EACA,gBAAA;EACA,eAAA;EACA,iBAAA;EACA,YAAA;AAlIJ;AAoIA;EACI,gBAAA;EACA,iBAAA;EACA,cAAA;AAjIJ;AAoIA;EACI,kBAAA;EACA,kBAAA;EACA,mBAAA;EACA,qBAAA;AAjIJ;AAqIA;EACI,aAAA;EACA,cAAA;EACA,iBAAA;EACA,qBAAA;EACA,2BAAA;AAlIJ;AAqIA;EACI,iBAAA;AAlIJ;AAqIA;EACI,gBAAA;AAlIJ;AAqIA;AACI;IAEI,aAAA;IACA,sBAAA;IACA,qBAAA;IACA,WAAA;IACA,aAAA;IACA,0BAAA;IACA,eAAA;IACA,SAAA;IACA,SAAA;IACA,8BAAA;AAnIN;AACF","sourcesContent":["\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.main_container_hide{\n    display: none;\n}\n// Messages\n.main-list {\n    //overflow-y: scroll;\n    display: flex;\n    flex-direction: column;\n    list-style-type: none;\n    width: 100%;\n    height: 533px;\n    border-radius:0 0 4px 4px;\n    position: fixed;\n    left:5px;\n    top:50px;\n    justify-content: space-between;\n\n}\n\n.main-list__container {\n    //overflow: auto;\n    scrollbar-width: none;  /* Firefox */\n    overflow-y: auto;\n\n    ul {\n        margin-block-start: unset;\n        margin-block-end: unset;\n        margin-inline-start: unset;\n        margin-inline-end: unset;\n        padding-inline-start: unset;\n    }\n}\n\n.main-list__messages {\n    display: flex;\n    flex-direction: column;\n    list-style-type: none;\n\n    span {\n        padding: 8px;\n        color: white;\n        border-radius: 4px;\n\n    }\n\n    .bot {\n        span {\n            background: green;\n        }\n\n        p {\n            float: left\n        }\n    }\n\n    .user {\n        span {\n            background: #1722a2;\n        }\n\n        p {\n            float: right;\n        }\n    }\n\n}\n\n.main-list__message {\n    padding: 0.5rem;\n}\n\n// file upload container\n.main-list__upload-file {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.header-div-show {\n    display: grid;\n    grid-template-columns: repeat(6, 1fr);\n    width: 100%;\n    height: 50px;\n    position: fixed;\n    top:0;\n    left:0;\n    background-color: #404650;\n}\n\n#header-icon {\n    grid-column: 1/2;\n    margin: 0 auto;\n    line-height: 50px;\n    padding-top: 5px;\n}\n#header-title {\n    line-height: 50px;\n    grid-column: 2/6;\n    font-size: 20px;\n    font-weight: bold;\n    color: white;\n}\n#header-close-btn {\n    grid-column: 6/7;\n    line-height: 50px;\n    margin:0 auto;\n}\n\n.main-list__show-topics {\n    overflow-x: scroll;\n    overflow-y: hidden;\n    white-space: nowrap;\n    display: inline-block;\n}\n\n// Links\n.message__links {\n    display: flex;\n    overflow: auto;\n    flex-wrap: nowrap;\n    align-content: center;\n    justify-content: flex-start;\n}\n\n.message__link {\n    margin-right: 1em;\n}\n\n.message__text-span {\n    line-height: 3em;\n}\n\n@media screen and (max-device-width: 480px){\n    .main-list {\n        //overflow-y: scroll;\n        display: flex;\n        flex-direction: column;\n        list-style-type: none;\n        width: 100%;\n        height: 533px;\n        border-radius:0 0 4px 4px;\n        position: fixed;\n        left:5px;\n        top:50px;\n        justify-content: space-between;\n\n    }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22414,6 +22611,66 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewComponent_vue_vue_type_style_index_0_id_eda0c8cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css& */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewComponent_vue_vue_type_style_index_0_id_eda0c8cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewComponent_vue_vue_type_style_index_0_id_eda0c8cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewsComponent_vue_vue_type_style_index_0_id_d5328546_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css& */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewsComponent_vue_vue_type_style_index_0_id_d5328546_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewsComponent_vue_vue_type_style_index_0_id_d5328546_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Links.vue?vue&type=style&index=0&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Links.vue?vue&type=style&index=0&lang=css& ***!
@@ -22531,6 +22788,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Topics_vue_vue_type_style_index_0_id_49d1554f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/layouts/App.vue?vue&type=style&index=1&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/layouts/App.vue?vue&type=style&index=1&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./App.vue?vue&type=style&index=1&lang=css& */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/layouts/App.vue?vue&type=style&index=1&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -23119,6 +23406,88 @@ component.options.__file = "resources/js/components/File/FileUploadingComponent.
 
 /***/ }),
 
+/***/ "./resources/js/components/LinkPreviewComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/LinkPreviewComponent.vue ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _LinkPreviewComponent_vue_vue_type_template_id_eda0c8cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LinkPreviewComponent.vue?vue&type=template&id=eda0c8cc&scoped=true& */ "./resources/js/components/LinkPreviewComponent.vue?vue&type=template&id=eda0c8cc&scoped=true&");
+/* harmony import */ var _LinkPreviewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LinkPreviewComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/LinkPreviewComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _LinkPreviewComponent_vue_vue_type_style_index_0_id_eda0c8cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css& */ "./resources/js/components/LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _LinkPreviewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LinkPreviewComponent_vue_vue_type_template_id_eda0c8cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _LinkPreviewComponent_vue_vue_type_template_id_eda0c8cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "eda0c8cc",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/LinkPreviewComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/LinkPreviewsComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/LinkPreviewsComponent.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _LinkPreviewsComponent_vue_vue_type_template_id_d5328546_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LinkPreviewsComponent.vue?vue&type=template&id=d5328546&scoped=true& */ "./resources/js/components/LinkPreviewsComponent.vue?vue&type=template&id=d5328546&scoped=true&");
+/* harmony import */ var _LinkPreviewsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LinkPreviewsComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/LinkPreviewsComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _LinkPreviewsComponent_vue_vue_type_style_index_0_id_d5328546_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css& */ "./resources/js/components/LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _LinkPreviewsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LinkPreviewsComponent_vue_vue_type_template_id_d5328546_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _LinkPreviewsComponent_vue_vue_type_template_id_d5328546_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "d5328546",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/LinkPreviewsComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Links.vue":
 /*!*******************************************!*\
   !*** ./resources/js/components/Links.vue ***!
@@ -23377,16 +23746,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_vue_vue_type_template_id_9087fe26_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue?vue&type=template&id=9087fe26&scoped=true& */ "./resources/js/layouts/App.vue?vue&type=template&id=9087fe26&scoped=true&");
 /* harmony import */ var _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue?vue&type=script&lang=js& */ "./resources/js/layouts/App.vue?vue&type=script&lang=js&");
 /* harmony import */ var _App_vue_vue_type_style_index_0_id_9087fe26_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue?vue&type=style&index=0&id=9087fe26&scoped=true&lang=scss& */ "./resources/js/layouts/App.vue?vue&type=style&index=0&id=9087fe26&scoped=true&lang=scss&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _App_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App.vue?vue&type=style&index=1&lang=css& */ "./resources/js/layouts/App.vue?vue&type=style&index=1&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
 ;
 
 
+
 /* normalize component */
 
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(
   _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _App_vue_vue_type_template_id_9087fe26_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
   _App_vue_vue_type_template_id_9087fe26_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -23497,6 +23868,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUploadingComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FileUploadingComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/File/FileUploadingComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUploadingComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/LinkPreviewComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/LinkPreviewComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LinkPreviewComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/LinkPreviewsComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/LinkPreviewsComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LinkPreviewsComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -23690,6 +24093,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewComponent_vue_vue_type_style_index_0_id_eda0c8cc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=style&index=0&id=eda0c8cc&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css&":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/js/components/LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css& ***!
+  \********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewsComponent_vue_vue_type_style_index_0_id_d5328546_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=style&index=0&id=d5328546&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Links.vue?vue&type=style&index=0&lang=css&":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/Links.vue?vue&type=style&index=0&lang=css& ***!
@@ -23738,6 +24167,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Topics_vue_vue_type_style_index_0_id_49d1554f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Topics.vue?vue&type=style&index=0&id=49d1554f&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Topics.vue?vue&type=style&index=0&id=49d1554f&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/layouts/App.vue?vue&type=style&index=1&lang=css&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/layouts/App.vue?vue&type=style&index=1&lang=css& ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./App.vue?vue&type=style&index=1&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/layouts/App.vue?vue&type=style&index=1&lang=css&");
 
 
 /***/ }),
@@ -23866,6 +24308,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUploadingComponent_vue_vue_type_template_id_b7fd7860_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUploadingComponent_vue_vue_type_template_id_b7fd7860_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FileUploadingComponent.vue?vue&type=template&id=b7fd7860&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/File/FileUploadingComponent.vue?vue&type=template&id=b7fd7860&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/LinkPreviewComponent.vue?vue&type=template&id=eda0c8cc&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/LinkPreviewComponent.vue?vue&type=template&id=eda0c8cc&scoped=true& ***!
+  \*****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewComponent_vue_vue_type_template_id_eda0c8cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewComponent_vue_vue_type_template_id_eda0c8cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewComponent_vue_vue_type_template_id_eda0c8cc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LinkPreviewComponent.vue?vue&type=template&id=eda0c8cc&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=template&id=eda0c8cc&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/LinkPreviewsComponent.vue?vue&type=template&id=d5328546&scoped=true&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/LinkPreviewsComponent.vue?vue&type=template&id=d5328546&scoped=true& ***!
+  \******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewsComponent_vue_vue_type_template_id_d5328546_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewsComponent_vue_vue_type_template_id_d5328546_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LinkPreviewsComponent_vue_vue_type_template_id_d5328546_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LinkPreviewsComponent.vue?vue&type=template&id=d5328546&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=template&id=d5328546&scoped=true&");
 
 
 /***/ }),
@@ -24302,6 +24778,91 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=template&id=eda0c8cc&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewComponent.vue?vue&type=template&id=eda0c8cc&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "a",
+    {
+      staticClass: "link-preview-card",
+      attrs: {
+        href: this.URL,
+        target: "_blank",
+        title: this.title != null ? this.title : this.URL,
+      },
+    },
+    [
+      _c("img", {
+        staticClass: "link-preview-icon",
+        attrs: { src: this.icon },
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          class: this.title != null ? "link-preview-title" : "link-preview-url",
+        },
+        [
+          _vm._v(
+            "\n        " +
+              _vm._s(this.title != null ? this.title : this.URL) +
+              "\n    "
+          ),
+        ]
+      ),
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=template&id=d5328546&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LinkPreviewsComponent.vue?vue&type=template&id=d5328546&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "ul",
+    { staticClass: "link-previews-container" },
+    [_vm._t("default")],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Links.vue?vue&type=template&id=729143de&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Links.vue?vue&type=template&id=729143de& ***!
@@ -24585,7 +25146,7 @@ var render = function () {
           [
             _c("div", { attrs: { id: "header-icon" } }, [
               _c("img", {
-                attrs: { src: (__webpack_require__(/*! ../../../../../../img/chatbot2.png */ "./public/img/chatbot2.png")["default"]), alt: "" },
+                attrs: { src: (__webpack_require__(/*! ../../img/chatbot2.png */ "./public/img/chatbot2.png")["default"]), alt: "" },
               }),
             ]),
             _vm._v(" "),
@@ -24628,32 +25189,19 @@ var render = function () {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm._l(message.text, function (link) {
-                        return message.type === "link"
-                          ? _c(
-                              "p",
-                              { staticClass: "message__link" },
-                              [
-                                _c("LinkPreview", {
-                                  staticClass: "message__link-prevue",
-                                  attrs: { url: link },
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "message__link-target",
-                                    attrs: { href: link, target: "_blank" },
-                                  },
-                                  [_vm._v("Find out more")]
-                                ),
-                              ],
-                              1
-                            )
-                          : _vm._e()
-                      }),
+                      message.type === "link"
+                        ? _c(
+                            "LinkPreviewsComponent",
+                            _vm._l(message.text, function (link) {
+                              return _c("LinkPreviewComponent", {
+                                attrs: { url: link },
+                              })
+                            }),
+                            1
+                          )
+                        : _vm._e(),
                     ],
-                    2
+                    1
                   )
                 }),
                 0
@@ -36905,7 +37453,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","F:\\\\MyCloud\\\\university\\\\Computing\\\\Stage 3\\\\CO600 - Group Project - Laravel"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"F:\\\\MyCloud\\\\university\\\\Computing\\\\Stage 3\\\\CO600 - Group Project - Laravel","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

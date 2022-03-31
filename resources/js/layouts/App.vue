@@ -137,7 +137,7 @@ export default {
 .main-list__container {
     //overflow: auto;
     scrollbar-width: none;  /* Firefox */
-    overflow-y: scroll;
+    overflow-y: auto;
 
     ul {
         margin-block-start: unset;
