@@ -137,8 +137,8 @@
                 bottom: 2px;
                 right: 2px;
                 background-color: #5f6368;
-                border-radius: 12px 12px 12px 12px;
-                margin-left: 10px;
+                /*border-radius: 12px 12px 12px 12px;*/
+                /*margin-left: 10px;*/
                 margin-bottom:10px;
             }
         }
@@ -229,7 +229,7 @@
 
 
 <img id="showChatBot" class="btn-hidden" src="{{ url('/img/chatbot.png') }}" onclick="showChatBot()" alt="">
-<iframe id="iframe" class="show" src="https://chat-bot-educ.herokuapp.com/chatbot" allowfullscreen></iframe>
+<iframe id="iframe" class="hidden" src="https://chat-bot-educ.herokuapp.com/chatbot" allowfullscreen></iframe>
 
 <script>
 
